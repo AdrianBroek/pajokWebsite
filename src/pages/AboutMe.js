@@ -28,13 +28,15 @@ const OmniePage = () => {
         if (!copy) {
         copyToClipboard('lucaskrzyzak@gmail.com')
         setCopy(true)
+        clearTimeout()
         }
     }
     useEffect(() => {
         if (copy) {
-            setInterval(()=> {
+            setTimeout(()=> {
                 setCopy(false)
             }, 2500)
+            
         }
     }   
     , [copy])
@@ -55,7 +57,7 @@ const OmniePage = () => {
              variants={PageAnimation}
              initial="hidden"
              animate="show"
-             exit="exit">
+             exit="exit"git >
                 <AvContainer
                 variants={glow}
                 animate='show'
