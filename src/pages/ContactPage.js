@@ -3,6 +3,7 @@ import pajokLogoWhite from '../images/pajok_logo_w.png'
 import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
+import abstract from '../images/contact/abstract2.jpg'
 
 // styles
 import {
@@ -51,13 +52,16 @@ const ContactPage = () => {
     return (
     <PageContainer>
       <PageLayoutContact>
-        <div>
+        <Block1 />
+        <Block2 />
+
+        <ItemContainer>
+
             <Logo src={pajokLogoWhite} />
-        </div>
 
         <ContactCont>
             <TitleContainer>
-                <h2>Kontakt ze mną</h2>
+                <h2>Kontakt</h2>
             </TitleContainer>
             <Form ref={form} onSubmit={sendEmail}>
                 <InputContainer>
@@ -74,7 +78,7 @@ const ContactPage = () => {
                 <TextAreaContainer>
                     <textarea placeholder="Wiadomość" required name="message" />
                 </TextAreaContainer>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Wyślij" />
             </Form>
         </ContactCont>
 
@@ -98,7 +102,7 @@ const ContactPage = () => {
             src={like} 
             />        
         </Send>
-
+        </ItemContainer>
       </PageLayoutContact>
     </PageContainer>
     );
@@ -131,16 +135,32 @@ const Load = styled(Send)`
 
 const ContactCont = styled.div`
     display: flex;
+    justify-content: space-around;
+    width: 100%;
 `
 
 const Form = styled.form`
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    width: 40%;
+    input[type="submit"]{
+        outline: none;
+        border: 1px solid black;
+        padding: 1rem;
+        font-size: 1rem;
+        width: 30%;
+        margin: auto;
+        background: white;
+        border-radius: .5rem;
+        cursor: pointer;
+    }
 `
 
 const TitleContainer = styled.div`
+    color: #fff;
     h2 {
+        margin-top: 30%;
         text-transform: uppercase;
         font-weight: 700;
         font-size: 3rem;
@@ -148,18 +168,74 @@ const TitleContainer = styled.div`
     }
 `
 const Logo = styled(Icon)`
-    max-width: 250px;
-    height: 200px;
+    width: 100px;
+    max-width: unset;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 `
 
 const TextAreaContainer = styled.div`
-
+    textarea {
+        background: #fff;
+        outline: none;
+        width: 100%;
+        height: 100px;
+        border: 1.5px solid #000;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        padding: .5rem;
+        &::placeholder {
+            font-size: .85rem;
+            font-family: inherit;
+            color: #000;
+            padding: .25rem .25rem;
+        }
+    } 
 `
+
+const Block1 = styled.div`
+    position: absolute;
+    top: -49%;
+    left: -13%;
+    width: 150%;
+    height: 700px;
+    z-index: 1;
+    background-color: #fff;
+    transform: rotate(35deg) translateX(-0px);
+`
+
+const Block2 = styled.div`
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(${abstract});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scaleX(-1);
+`
+const ItemContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 
 const InputContainer = styled.div`
     position: relative;
     height: 60px;
     label {
+        background: transparent;
         position: absolute;
         bottom: 0px;
         left: 0%;
@@ -189,6 +265,7 @@ const InputContainer = styled.div`
         }
     }
     input {
+        background: transparent;
         font-size: 1rem;
         outline: none;
         border: none;
@@ -207,26 +284,19 @@ const InputContainer = styled.div`
     {
         transform: translateX(0%)
     }
-    textarea {
-        outline: none;
-        width: 100%;
-        height: 100px;
-        border: 1.5px solid #000;
-        font-size: 1rem;
-        &::placeholder {
-            font-size: .85rem;
-            font-family: inherit;
-            color: #000;
-            padding: .25rem .25rem;
-        }
-    }
+
 `
 
 const PageLayoutContact = styled(PageLayout)`
-    width: 80%;
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
     margin: auto;
     border-radius: .5rem;
     box-shadow: 0 3px 10px -5px;
-    padding: 10rem 0;
+    /* padding: 10rem 0; */
+    height: 700px;
+    row-gap: 0;
+    display: block;
 `
 export default ContactPage
