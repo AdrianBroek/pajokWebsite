@@ -21,9 +21,6 @@ const GlobalStyles = createGlobalStyle`
     a {
         text-decoration: none;
     }
-    input, textarea {
-        font-family: 'Joan', serif;
-    }
     .even {
         margin-bottom: 3rem;
     }

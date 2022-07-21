@@ -33,7 +33,7 @@ const PhotoPage = () => {
     >
         <Title>
             <h1 
-            style={{marginTop: '5rem',fontFamily: 'Dancing Script'}}
+            style={{marginTop: '5rem'}}
             >Fotografia
             </h1>
             <LinePhoto />

@@ -48,11 +48,12 @@ export const Logo = styled.img`
     border-radius: .25rem;
 `
 
-export const Icon = styled.img`
+export const Icon = styled(motion.img)`
     width: 100%;
     object-fit: cover;
     max-width: 25px;
 `
+
 
 export const PajokThemeTxt = styled.h1`
     font-family: 'Yellowtail', cursive;
@@ -74,3 +75,4 @@ export const ImageContainer = styled.div`
     justify-content: center;
     column-gap: 2.5rem;
 `
+

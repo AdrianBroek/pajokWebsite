@@ -7,6 +7,7 @@ import pajoklogo from '../images/pajok_logo.png'
 import pajokLogoWhite from '../images/pajok_logo_w.png'
 import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
+import video_gif from '../images/gifs/video.gif'
 // animations
 import {PageAnimation,buttonAnim} from '../animation'
 import { motion } from 'framer-motion'
@@ -64,7 +65,7 @@ const MainPage = () => {
                 whileHover= "hover">
                 <ImageContainer>
                     <h3>Wideo</h3>
-                    <Icon src={video_icon}/>
+                    <Icon src={video_gif}/>
                 </ImageContainer>
                 </Linkbutton>
             </Link>

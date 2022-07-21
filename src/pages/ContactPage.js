@@ -5,6 +5,10 @@ import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
 import abstract from '../images/contact/abstract2.jpg'
 
+//icons
+import sendPNG from '../images/gifs/png/message.png'
+import sendGIF from '../images/gifs/message.gif'
+import SendBtn from '../components/SendBtn'
 // styles
 import {
     PageContainer,
@@ -16,9 +20,10 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import {Icon} from '../style/styles'
 
-import {PageAnimation} from '../animation'
+import {PageAnimation, buttonAnim} from '../animation'
 
 const ContactPage = () => {
+    const api_key = process.env.REACT_APP_API_KEY
     const [load, setLoad] = useState(false)
     const [success, setSuccess] = useState(false)
     const form = useRef();
@@ -27,7 +32,7 @@ const ContactPage = () => {
       setLoad(true)
       e.preventDefault();
   
-      emailjs.sendForm('service_spv36b4', 'pajok_contact_form', form.current, 'PA3zWXoPCJiny8bxo')
+      emailjs.sendForm('service_spv36b4', 'pajok_contact_form', form.current, api_key)
         .then((result) => {
             console.log(result);
             setLoad(false)
@@ -51,7 +56,12 @@ const ContactPage = () => {
   
     return (
     <PageContainer>
-      <PageLayoutContact>
+      <PageLayoutContact
+      variants={PageAnimation}
+      initial="hidden"
+      animate="show"
+      exit="exit"
+      >
         <Block1 />
         <Block2 />
 
@@ -62,6 +72,7 @@ const ContactPage = () => {
         <ContactCont>
             <TitleContainer>
                 <h2>Kontakt</h2>
+                <p>ze mną</p>
             </TitleContainer>
             <Form ref={form} onSubmit={sendEmail}>
                 <InputContainer>
@@ -76,9 +87,9 @@ const ContactPage = () => {
                     <span className="content-name">E-mail</span></label>
                 </InputContainer>
                 <TextAreaContainer>
-                    <textarea placeholder="Wiadomość" required name="message" />
+                    <textarea maxLength="200" placeholder="Wiadomość" required name="message" />
                 </TextAreaContainer>
-                <input type="submit" value="Wyślij" />
+                <SendBtn png={sendPNG} gif={sendGIF}/>
             </Form>
         </ContactCont>
 
@@ -98,15 +109,16 @@ const ContactPage = () => {
             animate={success ? 'show' : 'hidden'}
             initial='hidden'>
             <h5>Wiadomość wysłana</h5>
-            <Icon
-            src={like} 
-            />        
+            <Icon src={like} 
+        />        
         </Send>
         </ItemContainer>
       </PageLayoutContact>
     </PageContainer>
     );
 }
+
+
 
 const Send = styled(motion.div)`
     position: fixed;
@@ -129,6 +141,7 @@ const Send = styled(motion.div)`
     }
 `
 
+
 const Load = styled(Send)`
     background: rgba(70,130,180, .1);
 `
@@ -144,27 +157,24 @@ const Form = styled.form`
     flex-direction: column;
     row-gap: 1rem;
     width: 40%;
-    input[type="submit"]{
-        outline: none;
-        border: 1px solid black;
-        padding: 1rem;
-        font-size: 1rem;
-        width: 30%;
-        margin: auto;
-        background: white;
-        border-radius: .5rem;
-        cursor: pointer;
-    }
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
 `
 
 const TitleContainer = styled.div`
     color: #fff;
-    h2 {
-        margin-top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: 'system-ui';
+    h2 , p{
         text-transform: uppercase;
+        color: #fff;
         font-weight: 700;
-        font-size: 3rem;
-        font-family: system-ui;
+    }
+    h2 {
+        font-size: 4.25rem;
     }
 `
 const Logo = styled(Icon)`
@@ -178,19 +188,19 @@ const Logo = styled(Icon)`
 
 const TextAreaContainer = styled.div`
     textarea {
-        background: #fff;
+        font-family: 'Roboto', sans-serif;
+        background: #ffffff7a;
         outline: none;
         width: 100%;
         height: 100px;
-        border: 1.5px solid #000;
+        border: 1px solid #000;
         font-size: 1rem;
         border-radius: 0.5rem;
-        padding: .5rem;
+        padding: .5rem .5rem;
         &::placeholder {
-            font-size: .85rem;
-            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 300;
             color: #000;
-            padding: .25rem .25rem;
         }
     } 
 `
@@ -217,6 +227,7 @@ const Block2 = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     transform: scaleX(-1);
+    filter: brightness(0.7);
 `
 const ItemContainer = styled.div`
     width: 100%;
@@ -271,6 +282,7 @@ const InputContainer = styled.div`
         border: none;
         width: 100%;
         height: 100%;
+        padding: 1rem 0 0 .5rem;
     }
     input:focus + .label-name .content-name,
     input:valid + .label-name .content-name{
