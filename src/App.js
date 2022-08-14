@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
 //pages
 import MainPage from './pages/MainPage'
 import PhotoPage from './pages/PhotoPage'
@@ -17,6 +19,7 @@ import Nav from './components/Nav'
 // menu
 import Menu from './components/Menu'
 
+const queryClient = new QueryClient()
 
 function App() {
   const location = useLocation()
@@ -25,6 +28,7 @@ function App() {
   const [open, setOpen] = useState(false)
   
   return (
+    <QueryClientProvider client={queryClient}>
     <div className="App">
       <GlobalStyles />
       <Nav open={open} setOpen={setOpen}/>
@@ -43,6 +47,7 @@ function App() {
       </Routes>
       </AnimatePresence>
     </div>
+    </QueryClientProvider>
   );
 }
 

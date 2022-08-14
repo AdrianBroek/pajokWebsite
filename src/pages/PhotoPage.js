@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 // defined styles
 import {PageLayout,PageContainer, Hide, Line} from '../style/styles'
 // routes
@@ -17,13 +17,16 @@ import weddingPhoto from '../images/photoPageImgs/webp/wedding2.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
 
+
 const PhotoPage = () => {
+
+    //end of graph
     const [element1, controls1] = useScroll()
     const [element2, controls2] = useScroll()
     const [element3, controls3] = useScroll()
 
     return(
-        <PageContainerPhotos>
+    <PageContainerPhotos>
     
     <PageLayoutPhotos 
         variants={HideParent}
@@ -118,7 +121,7 @@ const PhotoPage = () => {
             display: 'flex',
             alignItems: 'center'
          }} 
-        to="/photos/slubne">
+        to="/photo/slubne">
             <CatTitle
             variants={titleAnim}
             >Ślubne</CatTitle>

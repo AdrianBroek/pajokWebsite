@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Joan', serif;
+        /* font-family: 'Jost', sans-serif; */
     }
     h1 {
         font-size: 5rem;
