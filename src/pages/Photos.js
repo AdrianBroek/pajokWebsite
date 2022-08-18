@@ -6,6 +6,8 @@ import {motion} from 'framer-motion'
 import { GraphQLClient, gql } from "graphql-request";
 import axios from "axios";
 import { useQuery } from "react-query";
+// segregate
+import Segregate from "../components/SegregatePhotos";
 
 // import styles
 import {
@@ -33,11 +35,13 @@ const Photos = () => {
             imgs {
               url
               id
+              createdAt
             }
           }
       }
     `;
 
+    // location
     const location = useLocation()
     const url = location.pathname
 
@@ -46,6 +50,7 @@ const Photos = () => {
     const [img, setImg] = useState(null)
     const [grid, setGrid] = useState('30% 30% 30%')
 
+    // graph api
     const { data, isLoading, error } = useQuery("launches", () => {
         return axios({
           url: endpoint,
@@ -56,13 +61,14 @@ const Photos = () => {
         }).then(res => setPhotos(res.data.data.photos));
       });
 
+    // filter photo category
     useEffect(()=>{
         const currentPhoto = photos.filter((statePhoto) => statePhoto.url === url)
         setImg(currentPhoto[0])
-        console.log(img)
 
     }, [photos, url])
 
+    console.log(photos[0].imgs[0].createdAt)
     return (
         <>
        {img && (
@@ -78,31 +84,8 @@ const Photos = () => {
             <Desc>
             <h3>{img.description}</h3>
             </Desc>
+            <Segregate gird={grid} setGrid={setGrid}/>
 
-            <Segregate>
-                    <div
-                    onClick={() => setGrid('90%')}
-                    className="block single">
-                        <div className="">
-
-                        </div>
-                    </div>
-
-                    <div className="block double"
-                    onClick={() => setGrid('45% 45%')}>
-                        <div className="">
-
-                        </div>
-                    </div>
-
-                    <div className="block trio"
-                    onClick={() => setGrid('30% 30% 30%')}>
-                        <div className="">
-
-                        </div>
-                    </div>
-            </Segregate>
-            
             <ImgCont
             style={{
                 gridTemplateColumns: grid
@@ -110,6 +93,7 @@ const Photos = () => {
                 {img.imgs.map((item, index) => (
                     <Picture>
                         <img 
+                        key={item.id}
                         variants={showImg}
                         initial="hidden"
                         animate='show'
@@ -161,31 +145,6 @@ const Picture = styled(motion.div)`
 
 const Desc = styled(Description)`
     max-width: 90%;
-`
-
-const Segregate = styled.div`
-    height: 65px;
-    width: 65%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: rgba(0,0,0, 0.03);
-    padding: .5rem;
-    .block {
-        width: 100px;
-        border: 1px solid #0000008d;
-        border-radius: 0.5rem;
-        height: 100%;
-    }
-    .double {
-
-    }
-    .trio {
-
-    }
-    .single {
-
-    }
 `
 
 export default Photos

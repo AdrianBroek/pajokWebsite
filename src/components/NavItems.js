@@ -40,6 +40,8 @@ const NavItem = ({open}) => {
 const MenuItem = styled.h3`
     padding: 1rem 0;
     font-size: 1.2rem;
+    font-weight: 300;
+    font-family: 'Jost', sans-serif;
 `
 
 const Menu = styled(motion.div)`

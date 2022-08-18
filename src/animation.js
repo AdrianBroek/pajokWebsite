@@ -143,3 +143,12 @@ export const glow = {
         }   
     }
 }
+
+export const segregateAnim = {
+    hidden: {
+        height: 0,
+    },
+    show: {
+        height: 'auto'
+    }
+}
