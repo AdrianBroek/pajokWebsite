@@ -4,6 +4,12 @@ import {motion} from 'framer-motion'
 // import items
 import segregateList from '../segregate'
 import { segregateAnim } from '../animation'
+import Overlay from './Overlay'
+// icons
+import arrow from '../images/icons/arrow-up.svg'
+import {Icon} from '../style/styles'
+// animation
+import {arrowRotate} from '../animation'
 
 const Segregate = ({grid, setGrid}) => {
     const [loaded, setLoaded] = useState(segregateList)
@@ -18,9 +24,12 @@ const Segregate = ({grid, setGrid}) => {
     return (
         <SegregateStyle>
         <h4>Widok: </h4>
+        <Overlay open={open} setOpen={setOpen} />
         <div className="cont" onClick={() => setOpen(!open)}>
-        <p>{loaded[active].text}</p>
-
+        <div class="itemCont">
+            <p>{loaded[active].text}</p>
+            <motion.img className='noselect' variants={arrowRotate} initial='set' animate={open ? 'go' : 'set'} src={arrow}></motion.img>
+        </div>
         <motion.div 
             className='container' 
             variants={segregateAnim}
@@ -38,6 +47,7 @@ const Segregate = ({grid, setGrid}) => {
                         </div>
                     </div>
             ))}
+
         </motion.div>
 
         </div>    
@@ -56,6 +66,18 @@ const SegregateStyle = styled.div`
     padding: .5rem;
     column-gap: 2rem;
     font-family: 'Jost', sans-serif;
+    .overlay {
+            display: none;
+            &.open {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+        }
     h4, p, .block  {
         font-weight: 300;
     }
@@ -66,10 +88,18 @@ const SegregateStyle = styled.div`
     .cont {
         background: white;
         border: 1px solid black;
-        width: 5%;
-        min-width: 50px;
-        position: relative;
+        min-width: 70px;
         overflow: hidden;
+        cursor: pointer;
+        z-index: 2;
+        .itemCont {
+            display: flex;
+            justify-content: space-between;
+            img {
+                max-width: 11px;
+                margin-right: 0.5rem;
+            }
+        }
     }
     .container {
         top: 100%;
@@ -80,6 +110,7 @@ const SegregateStyle = styled.div`
     }
     .block {
         padding: 0 .5rem;
+        z-index: 10;
         &:hover { 
             background: #000;
             color: #fff;

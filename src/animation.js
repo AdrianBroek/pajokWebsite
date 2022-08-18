@@ -152,3 +152,12 @@ export const segregateAnim = {
         height: 'auto'
     }
 }
+
+export const arrowRotate = {
+    set: {
+            rotate: '0deg'
+    },
+    go: {
+        rotate: '180deg'
+    }
+}

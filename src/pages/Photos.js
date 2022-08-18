@@ -68,7 +68,7 @@ const Photos = () => {
 
     }, [photos, url])
 
-    console.log(photos[0].imgs[0].createdAt)
+    // console.log(photos[0].imgs[0].createdAt)
     return (
         <>
        {img && (
