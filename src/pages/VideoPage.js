@@ -1,6 +1,6 @@
 import React from 'react'
 // defined styles
-import {PageLayout,PageContainer} from '../style/styles'
+import {PageLayout,PageContainer, Line} from '../style/styles'
 // routes
 import {Link} from 'react-router-dom'
 import {HideParent, titleAnim} from '../animation'
@@ -20,6 +20,7 @@ const VideoPage = () => {
         >
 
         <h1>Wideo</h1>
+        <Line />
         {/* <LinkCont>
         <Hide>
             <Link to="/klipy">
@@ -79,6 +80,10 @@ const LinkCont = styled.div`
     justify-content: center;
     row-gap: 2rem;
     flex-direction: column;
+`
+
+const LinePhoto = styled(Line)`
+    width: 100%;
 `
 
 

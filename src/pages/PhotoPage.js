@@ -35,10 +35,7 @@ const PhotoPage = () => {
         exit='exit'
     >
         <Title>
-            <h1 
-            style={{marginTop: '5rem'}}
-            >Fotografia
-            </h1>
+            <h1>Fotografia</h1>
             <LinePhoto />
         </Title>
 
@@ -154,6 +151,14 @@ const LinkCont = styled.div`
 
 `
 const Title = styled.div`
+    margin-top: 5rem;
+    h1{
+        @media screen and (max-width: 768px){
+            font-size: 15vw;
+            padding: 3vw;
+            margin-left: 3vw;
+        }
+    }
 `
 
 const LinePhoto = styled(Line)`
@@ -180,7 +185,8 @@ const ImgSlider = styled.img`
 
 const LinkContainer = styled(Hide)`
     width: 100%;
-    height: 600px;
+    height: 40vw;
+    max-height: 600px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -189,6 +195,11 @@ const LinkContainer = styled(Hide)`
     h3 {
         color: #fff;
         font-size: 4rem;
+        @media screen and (max-width: 1024px){
+            font-size: 6vw;
+            padding: 3vw;
+            margin-left: 3vw;
+        }
     }
 `
 

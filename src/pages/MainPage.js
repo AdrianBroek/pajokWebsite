@@ -79,23 +79,23 @@ const MainPage = () => {
 const PageContainerMain = styled(motion.PageContainer)`
     &:before {
         content: '';
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: transparent;
-    display: block;
-    background-image: url(${background});
-    -webkit-filter: grayscale(100%);
-    filter: blur(5px);
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
-    background-position: center;
-    background-size: cover;
-    /* object-position: 0%; */
-    opacity: .35;
-    position: absolute;
-    z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+        display: block;
+        background-image: url(${background});
+        -webkit-filter: grayscale(100%);
+        filter: blur(5px);
+        background-repeat: no-repeat;
+        /* background-attachment: fixed; */
+        background-position: center;
+        background-size: cover;
+        /* object-position: 0%; */
+        opacity: .35;
+        position: absolute;
+        z-index: -1;
     }
 `
 
@@ -118,6 +118,9 @@ const LogoMainPage = styled(Logo)`
     max-height: 400px;
     object-fit: fill;
     margin: -5rem 0;
+    @media screen and (max-width: 768px){
+        max-width: 60vw;
+    }
 `
 
 export default MainPage

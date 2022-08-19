@@ -20,6 +20,9 @@ const GlobalStyles = createGlobalStyle`
     }
     h1 {
         font-size: 5rem;
+        @media screen and (max-width: 768px){
+            font-size: 15vw;
+    }
     }
     a, p, span, h3 {
         font-size: 1.5rem;
