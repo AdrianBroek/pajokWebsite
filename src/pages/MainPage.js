@@ -9,7 +9,7 @@ import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
 import video_gif from '../images/gifs/video.gif'
 // animations
-import {PageAnimation,buttonAnim} from '../animation'
+import { PageAnimation,buttonAnim } from '../animation'
 import { motion } from 'framer-motion'
 
 // defined styles
@@ -65,7 +65,7 @@ const MainPage = () => {
                 whileHover= "hover">
                 <ImageContainer>
                     <h3>Wideo</h3>
-                    <Icon src={video_gif}/>
+                    <Icon src={video_icon}/>
                 </ImageContainer>
                 </Linkbutton>
             </Link>
@@ -98,8 +98,6 @@ const PageContainerMain = styled(motion.PageContainer)`
         z-index: -1;
     }
 `
-
-
 
 const Container = styled(motion.article)`
     display: flex;

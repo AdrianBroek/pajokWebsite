@@ -4,7 +4,7 @@ import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
 import abstract from '../images/contact/abstract2.jpg'
-
+import background from '../images/background.jpg'
 //icons
 import sendPNG from '../images/gifs/png/message.png'
 import sendGIF from '../images/gifs/message.gif'
@@ -37,7 +37,6 @@ const ContactPage = () => {
             console.log(result);
             setLoad(false)
             setSuccess(true)
-
         }, (error) => {
             console.log(error.text);
         });
@@ -55,71 +54,92 @@ const ContactPage = () => {
     , [success])
   
     return (
-    <PageContainer>
-      <PageLayoutContact
-      variants={PageAnimation}
-      initial="hidden"
-      animate="show"
-      exit="exit"
-      >
-        <Block1 />
-        <Block2 />
 
-        <ItemContainer>
-
+    <ContactContainer>
+        <div className="background">
+            <img src={background} alr='' />
+        </div>
+        <PageLayoutContact
+        variants={PageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        >
+            <ItemContainer>
             <Logo src={pajokLogoWhite} />
 
-        <ContactCont>
-            <TitleContainer>
-                <h2>Kontakt</h2>
-                <p>ze mną</p>
-            </TitleContainer>
-            <Form ref={form} onSubmit={sendEmail}>
-                <InputContainer>
-                    <input required type="text" name="user_name" id="user_name" />
-                    <label className="label-name">
-                        <span className="content-name">Imię</span>
-                    </label>
-                </InputContainer>
-                <InputContainer>
-                    <input required type="text" name="user_email" id="user_email"/>
-                    <label className="label-name">
-                    <span className="content-name">E-mail</span></label>
-                </InputContainer>
-                <TextAreaContainer>
-                    <textarea maxLength="200" placeholder="Wiadomość" required name="message" />
-                </TextAreaContainer>
-                <SendBtn png={sendPNG} gif={sendGIF}/>
-            </Form>
-        </ContactCont>
+            <ContactCont>
+                <Form ref={form} onSubmit={sendEmail}>
+                    <InputContainer>
+                        <input required type="text" name="user_name" id="user_name" />
+                        <label className="label-name">
+                            <span className="content-name">Imię</span>
+                        </label>
+                    </InputContainer>
+                    <InputContainer>
+                        <input required type="text" name="user_email" id="user_email"/>
+                        <label className="label-name">
+                        <span className="content-name">E-mail</span></label>
+                    </InputContainer>
+                    <TextAreaContainer>
+                        <textarea maxLength="200" placeholder="Wiadomość" required name="message" />
+                    </TextAreaContainer>
+                    <SendBtn png={sendPNG} gif={sendGIF}/>
+                </Form>
+            </ContactCont>
 
-        <Load
-            variants={PageAnimation}
-            animate={load ? 'show' : 'hidden'}
-            initial='hidden'>
-            
-            <h5>Wysyłam...</h5>
-            <Icon
-            src={loadingif} 
+            <Load
+                variants={PageAnimation}
+                animate={load ? 'show' : 'hidden'}
+                initial='hidden'>
+                
+                <h5>Wysyłam...</h5>
+                <Icon
+                src={loadingif} 
+                />        
+            </Load>
+
+            <Send
+                variants={PageAnimation}
+                animate={success ? 'show' : 'hidden'}
+                initial='hidden'>
+                <h5>Wiadomość wysłana</h5>
+                <Icon src={like} 
             />        
-        </Load>
-
-        <Send
-            variants={PageAnimation}
-            animate={success ? 'show' : 'hidden'}
-            initial='hidden'>
-            <h5>Wiadomość wysłana</h5>
-            <Icon src={like} 
-        />        
-        </Send>
-        </ItemContainer>
-      </PageLayoutContact>
-    </PageContainer>
+            </Send>
+            </ItemContainer>
+        </PageLayoutContact>
+    </ContactContainer>
     );
 }
 
 
-
+const ContactContainer = styled(PageContainer)`
+    margin-top: 0;
+    .background {
+        width: 100%;
+        max-height: 350px;
+        position: relative;
+        &:before{
+            z-index: 1;
+            content: 'Kontakt';
+            font-size: 5rem;
+            font-weight: 600;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        img {
+            max-width: 100%;
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            filter: blur(3px);
+            opacity: .35;
+        }
+    }
+`
 const Send = styled(motion.div)`
     position: fixed;
     display: flex;
@@ -155,28 +175,12 @@ const ContactCont = styled.div`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
-    width: 40%;
+    row-gap: 2rem;
+    width: 80%;
     font-weight: normal;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Jost', sans-serif;
 `
 
-const TitleContainer = styled.div`
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    font-family: 'system-ui';
-    h2 , p{
-        text-transform: uppercase;
-        color: #fff;
-        font-weight: 700;
-    }
-    h2 {
-        font-size: 4.25rem;
-    }
-`
 const Logo = styled(Icon)`
     width: 100px;
     max-width: unset;
@@ -188,7 +192,7 @@ const Logo = styled(Icon)`
 
 const TextAreaContainer = styled.div`
     textarea {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Jost', sans-serif;
         background: #ffffff7a;
         outline: none;
         width: 100%;
@@ -205,37 +209,12 @@ const TextAreaContainer = styled.div`
     } 
 `
 
-const Block1 = styled.div`
-    position: absolute;
-    top: -49%;
-    left: -13%;
-    width: 150%;
-    height: 700px;
-    z-index: 1;
-    background-color: #fff;
-    transform: rotate(35deg) translateX(-0px);
-`
-
-const Block2 = styled.div`
-    position: absolute;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(${abstract});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: scaleX(-1);
-    filter: brightness(0.7);
-`
 const ItemContainer = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0%;
     left: 0%;
-    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,7 +223,7 @@ const ItemContainer = styled.div`
 
 const InputContainer = styled.div`
     position: relative;
-    height: 60px;
+    height: 70px;
     label {
         background: transparent;
         position: absolute;
@@ -265,7 +244,7 @@ const InputContainer = styled.div`
             height: 100%;
             border-bottom: 2px solid #5fa8d3;
             transition: .3s ease;
-            transform: translateX(-100%)
+            transform: translateX(-101%)
         }
         span {
             position: absolute;
@@ -305,8 +284,6 @@ const PageLayoutContact = styled(PageLayout)`
     max-width: 1000px;
     margin: auto;
     border-radius: .5rem;
-    box-shadow: 0 3px 10px -5px;
-    /* padding: 10rem 0; */
     height: 700px;
     row-gap: 0;
     display: block;
