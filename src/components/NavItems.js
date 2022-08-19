@@ -17,15 +17,13 @@ const NavItem = ({open}) => {
         setActiveLink(filterLink[0])
     }, [link, pathname])
 
-    
-
     return (
     <Menu variants={HideMenuItems} initial='hidden' animate={open ? 'show' : 'hidden'}>
             {pages_nav.map((page) => (
                 <Hide>
-                <motion.div variants={titleAnim}>
-                <Link style={{width: 'fit-content',display: 'block'}} key={page.url} to={page.url}>
-                    <MenuItem>{page.title}</MenuItem>
+                <motion.div whileHover={{ x: 5 }} variants={titleAnim}>
+                <Link  style={{width: 'fit-content',display: 'block'}} key={page.url} to={page.url}>
+                    <MenuItem> {page.title}</MenuItem>
                     {pathname == page.url ? <MenuLine initial={{width: '0'}} animate={{width: '100%'}} /> : ''}
                    
                 </Link>

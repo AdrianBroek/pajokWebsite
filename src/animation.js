@@ -161,3 +161,12 @@ export const arrowRotate = {
         rotate: '180deg'
     }
 }
+
+export const moveLink = {
+    set: {
+        x: '0'
+    },
+    go: {
+        x: '10px'
+    }
+}
