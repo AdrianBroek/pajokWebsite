@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         /* font-family: 'Joan', serif; */
         font-family: 'Jost', sans-serif;
+        overflow-x: hidden;
     }
 
     h1 {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import PageInfo from '../PageInfo'
+import PhotoOpen from '../components/PhotoOpen'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import { GraphQLClient, gql } from "graphql-request";
@@ -23,7 +23,7 @@ import {
 } from '../animation'
 
 
-const Photos = () => {
+const Photos = ({current, setCurrent}) => {
     //graph
     const endpoint  = 'https://api-eu-central-1.hygraph.com/v2/cl6rxv2tg0ogt01ujc798fpc0/master'
     const QUERY = gql`
@@ -49,6 +49,7 @@ const Photos = () => {
     const [photos, setPhotos] = useState([])
     const [img, setImg] = useState(null)
     const [grid, setGrid] = useState('30% 30% 30%')
+    const [open, setOpen] = useState(false)
 
     // graph api
     const { data, isLoading, error } = useQuery("launches", () => {
@@ -67,6 +68,15 @@ const Photos = () => {
         setImg(currentPhoto[0])
 
     }, [photos, url])
+
+    function photoClickHandler(e) {
+        setCurrent(e.target.src)
+        setOpen(true)
+    }
+
+    useEffect(()=>{
+        console.log(current)
+    }, [current])
 
     // console.log(photos[0].imgs[0].createdAt)
     return (
@@ -97,11 +107,20 @@ const Photos = () => {
                         variants={showImg}
                         initial="hidden"
                         animate='show'
-                        src={item.url} />
+                        src={item.url} 
+                        onClick={(e) => photoClickHandler(e)}
+                        />
                     </Picture>
                 ))}
+                {current && (
+                   <PhotoOpen 
+                    open={open}
+                    setOpen={setOpen}
+                    current={current}
+                    setCurrent={setCurrent}
+                    />
+                )}
             </ImgCont>
-
         </PageLayout>
         </PageContainer>
         )}

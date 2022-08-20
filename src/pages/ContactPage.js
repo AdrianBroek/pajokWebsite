@@ -67,7 +67,7 @@ const ContactPage = () => {
         exit="exit"
         >
             <ItemContainer>
-            <Logo src={pajokLogoWhite} />
+            {/* <Logo src={pajokLogoWhite} /> */}
 
             <ContactCont>
                 <div className='pCont'>

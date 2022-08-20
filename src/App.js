@@ -28,6 +28,8 @@ function App() {
 
   // menu state 
   const [open, setOpen] = useState(false)
+  // image state
+  const [current, setCurrent] = useState('')
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -42,7 +44,12 @@ function App() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/:id" element={<Photos />} />
+        <Route path="/photo/:id" 
+        element={
+        <Photos 
+        current={current}
+        setCurrent={setCurrent}
+        />} />
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
