@@ -88,7 +88,7 @@ const SegregateStyle = styled.div`
     .cont {
         background: white;
         border: 1px solid black;
-        min-width: 70px;
+        min-width: 150px;
         overflow: hidden;
         cursor: pointer;
         z-index: 2;

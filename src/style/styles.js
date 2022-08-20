@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 
 export const PageContainer = styled.article`
     height: 100%;
+    min-height: 80vh;
     width: 100%;
     position: relative;
     margin-top: 5rem;
+    
 `
 
 export const PageLayout = styled(motion.section)`

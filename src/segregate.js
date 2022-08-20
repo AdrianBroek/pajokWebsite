@@ -2,12 +2,12 @@ const segregateList = [
     {
         active: false,
         grid: '45% 45%',
-        text: '2x'
+        text: '50/50'
     },
     {
         active: true,
         grid: '30% 30% 30%',
-        text: '3x'
+        text: 'triple-view'
     }
 ]
 

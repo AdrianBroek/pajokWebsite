@@ -9,6 +9,7 @@ import background from '../images/background.jpg'
 import sendPNG from '../images/gifs/png/message.png'
 import sendGIF from '../images/gifs/message.gif'
 import SendBtn from '../components/SendBtn'
+import PaperPlane from '../images/icons/paper-plane.png'
 // styles
 import {
     PageContainer,
@@ -69,6 +70,10 @@ const ContactPage = () => {
             <Logo src={pajokLogoWhite} />
 
             <ContactCont>
+                <div className='pCont'>
+                    <p>Jesteś zainteresowany współpracą?</p>
+                    <p>Koniecznie daj mi wypełniając poniższy formularz</p>
+                </div>
                 <Form ref={form} onSubmit={sendEmail}>
                     <InputContainer>
                         <input required type="text" name="user_name" id="user_name" />
@@ -84,7 +89,7 @@ const ContactPage = () => {
                     <TextAreaContainer>
                         <textarea maxLength="200" placeholder="Wiadomość" required name="message" />
                     </TextAreaContainer>
-                    <SendBtn png={sendPNG} gif={sendGIF}/>
+                    <SendBtn png={PaperPlane} gif={sendGIF}/>
                 </Form>
             </ContactCont>
 
@@ -113,6 +118,17 @@ const ContactPage = () => {
     );
 }
 
+const PageLayoutContact = styled(PageLayout)`
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
+    border-radius: .5rem;
+    height: 700px;
+    row-gap: 0;
+    display: block;
+    margin-top: -51px;
+`
 
 const ContactContainer = styled(PageContainer)`
     margin-top: 0;
@@ -121,6 +137,8 @@ const ContactContainer = styled(PageContainer)`
         max-height: 350px;
         position: relative;
         &:before{
+            font-family: 'Assistant', sans-serif;
+            text-transform: uppercase;
             z-index: 1;
             content: 'Kontakt';
             font-size: 5rem;
@@ -129,6 +147,9 @@ const ContactContainer = styled(PageContainer)`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            @media screen and (max-width: 768px){
+                font-size: 10vw;
+            }
         }
         img {
             max-width: 100%;
@@ -168,8 +189,14 @@ const Load = styled(Send)`
 
 const ContactCont = styled.div`
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    .pCont {
+        text-align: center;
+        margin: 2rem 0;
+    }
 `
 
 const Form = styled.form`
@@ -275,17 +302,7 @@ const InputContainer = styled.div`
     {
         transform: translateX(0%)
     }
-
 `
 
-const PageLayoutContact = styled(PageLayout)`
-    position: relative;
-    overflow: hidden;
-    max-width: 1000px;
-    margin: auto;
-    border-radius: .5rem;
-    height: 700px;
-    row-gap: 0;
-    display: block;
-`
+
 export default ContactPage

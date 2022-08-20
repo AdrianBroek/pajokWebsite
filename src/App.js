@@ -18,6 +18,8 @@ import {AnimatePresence} from 'framer-motion'
 import Nav from './components/Nav'
 // menu
 import Menu from './components/Menu'
+// footer
+import Footer from './components/Footer'
 
 const queryClient = new QueryClient()
 
@@ -45,6 +47,7 @@ function App() {
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
       </Routes>
+      <Footer />
       </AnimatePresence>
     </div>
     </QueryClientProvider>

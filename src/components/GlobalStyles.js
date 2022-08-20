@@ -15,14 +15,17 @@ const GlobalStyles = createGlobalStyle`
         user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     }
     body {
-        font-family: 'Joan', serif;
-        /* font-family: 'Jost', sans-serif; */
+        /* font-family: 'Joan', serif; */
+        font-family: 'Jost', sans-serif;
     }
+
     h1 {
+        font-family: 'Assistant', sans-serif;
+        text-transform: uppercase;
         font-size: 5rem;
         @media screen and (max-width: 768px){
-            font-size: 15vw;
-    }
+            font-size: 10vw;
+        }
     }
     a, p, span, h3 {
         font-size: 1.5rem;
