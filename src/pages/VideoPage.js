@@ -7,6 +7,10 @@ import {HideParent, titleAnim} from '../animation'
 // styled
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
+import PhotoOpen from '../components/PhotoOpen'
+
+import { Routes, Route, useLocation, HistoryRouterProps } from "react-router-dom"
+
 
 
 const VideoPage = () => {
@@ -55,16 +59,6 @@ const VideoPage = () => {
          on <a href="https://vimeo.com">Vimeo</a>.
         </p>
 
-        {/* <div style="padding:56.25% 0 0 0;position:relative;">
-        <iframe src="https://player.vimeo.com/video/729598207?h=dc9c020d1b" 
-        style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-        frameborder="0" 
-        allow="autoplay; fullscreen; picture-in-picture" 
-        allowfullscreen>
-        </iframe>
-        </div>
-        <p><a href="https://vimeo.com/729598207">Anhelika Video</a> from <a href="https://vimeo.com/user115069247">Pajok</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-        <p></p> */}
         </PageLayout>
         </PageContainer>
     )

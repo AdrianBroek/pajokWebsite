@@ -195,7 +195,7 @@ const ContactCont = styled.div`
     width: 100%;
     .pCont {
         text-align: center;
-        margin: 2rem 0;
+        padding: 2rem;
     }
 `
 

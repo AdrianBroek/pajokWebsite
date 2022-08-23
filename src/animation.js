@@ -170,3 +170,7 @@ export const moveLink = {
         x: '10px'
     }
 }
+
+export const photoAnim = {
+    
+}

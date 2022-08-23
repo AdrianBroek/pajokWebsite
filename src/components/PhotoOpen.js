@@ -1,56 +1,46 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import Overlay from '../components/Overlay'
+import {motion} from 'framer-motion'
+import {showImg} from '../animation'
+import { useLocation } from "react-router-dom";
 
-const PhotoOpen = ({current, setCurrent, open, setOpen}) => {
-    
+const PhotoOpen = () => {
+    const location = useLocation()
+    const url = location.pathname
+
+    console.log('jestem')
     return (
-        <Container>
-        <Overlay setCurrent={setCurrent} open={open} setOpen={setOpen} />
-        <PhotoStyle>
-            <div className="imgContainer">
-                <img src={current} alt='' />
-            </div>
-        </PhotoStyle>
-        </Container>
+        // <Picture>
+        //     <img />
+        // </Picture>
+        <>
+                <div className="siema">
+                    <h2>SiEmA</h2>
+                </div>
+        </>
     )
 }
 
-const Container = styled.div`
-    z-index: 2;
-    .overlay {
-        display: none;
-        &.open {
-            display: block;
+const Picture = styled(motion.div)`
+    height: 85%;
+    min-height: 40vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        transition: all .3s ease;
+        max-height: 100%;
+        min-height: 100%;
+        width: 90%;
+        object-fit: cover;
+        border-radius: .5rem;
+        box-shadow: 0 10px 10px -5px;
+        &.openPhoto {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0000009c;
-        }
-    }
-    
-    
-`
-
-const PhotoStyle = styled.section`
-        width: fit-content;
-        height: fit-content;
-        max-height: 90%;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    .imgContainer {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        img {
-            max-width: 100%;
-            max-height: 100%;
+            object-fit: contain;
+            width: 90vw;
+            box-shadow: none;
         }
     }
 `

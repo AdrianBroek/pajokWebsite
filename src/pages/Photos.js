@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import PhotoOpen from '../components/PhotoOpen'
+import PhotoGrid from '../components/PhotoGrid'
+import PhotoOpen from "../components/PhotoOpen";
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import { GraphQLClient, gql } from "graphql-request";
@@ -8,6 +9,11 @@ import axios from "axios";
 import { useQuery } from "react-query";
 // segregate
 import Segregate from "../components/SegregatePhotos";
+// overlay
+import Overlay from '../components/Overlay'
+
+import { Routes, Route, Link, useNavigate  } from "react-router-dom"
+
 
 // import styles
 import {
@@ -32,10 +38,14 @@ const Photos = ({current, setCurrent}) => {
             title
             url
             description
-            imgs {
-              url
-              id
-              createdAt
+            photoModule {
+                id
+                model
+                photo {
+                  url
+                  createdAt
+                }
+                photoDescription
             }
           }
       }
@@ -46,8 +56,8 @@ const Photos = ({current, setCurrent}) => {
     const url = location.pathname
 
     // state
-    const [photos, setPhotos] = useState([])
-    const [img, setImg] = useState(null)
+    const [objectData, setObjectData] = useState([])
+    const [singleObject, setSingleObject] = useState(null)
     const [grid, setGrid] = useState('30% 30% 30%')
     const [open, setOpen] = useState(false)
 
@@ -59,71 +69,74 @@ const Photos = ({current, setCurrent}) => {
           data: {
             query: QUERY
           }
-        }).then(res => setPhotos(res.data.data.photos));
-      });
+        }).then(res => setObjectData(res.data.data.photos));
+    });
 
     // filter photo category
-    useEffect(()=>{
-        const currentPhoto = photos.filter((statePhoto) => statePhoto.url === url)
-        setImg(currentPhoto[0])
+    useEffect(() => {
+        // const currentPhoto = objectData.filter((statePhoto) => statePhoto.url === url)
+        // setSingleObject(currentPhoto[0])
+        if(url == '/photo/portrety' || url == '/photo/portrety/likes'){
+            setSingleObject(objectData[1])
+        }else if (url == '/photo/miasto' || url == '/photo/miasto/likes'){
+            setSingleObject(objectData[0])
+        }else if (url == '/photo/fashion' || url == '/photo/fashion/likes'){
+            setSingleObject(objectData[2])
+        }else if (url == '/photo/slubne' || url == '/photo/slubne/likes'){
+            setSingleObject(objectData[3])
+        }
+    }, [objectData, url])
 
-    }, [photos, url])
+    const navigate = useNavigate()
+    const handleClick = () => navigate(`${url}/likes`)
 
-    function photoClickHandler(e) {
-        setCurrent(e.target.src)
-        setOpen(true)
-    }
-
-    useEffect(()=>{
-        console.log(current)
-    }, [current])
-
-    // console.log(photos[0].imgs[0].createdAt)
     return (
         <>
-       {img && (
+       {/* {singleObject && (
         <PageContainer>
         <PageLayout 
-        variants={HideParent}
-        initial="hidden"
-        animate="show"
-        exit="exit"
+            // variants={HideParent}
+            // initial="hidden"
+            // animate="show"
+            // exit="exit"
         >
-            <h1>{img.title}</h1>
+            <h1>{singleObject.title}</h1>
             <Line />
             <Desc>
-            <h3>{img.description}</h3>
+            <h3>{singleObject.description}</h3>
             </Desc>
             <Segregate gird={grid} setGrid={setGrid}/>
-
-            <ImgCont
-            style={{
-                gridTemplateColumns: grid
-            }}>
-                {img.imgs.map((item, index) => (
-                    <Picture>
-                        <img 
-                        key={item.id}
-                        variants={showImg}
-                        initial="hidden"
-                        animate='show'
-                        src={item.url} 
-                        onClick={(e) => photoClickHandler(e)}
-                        />
-                    </Picture>
-                ))}
-                {current && (
-                   <PhotoOpen 
-                    open={open}
-                    setOpen={setOpen}
-                    current={current}
-                    setCurrent={setCurrent}
+            <Overlay open={open} setOpen={setOpen} />
+            <ImgCont style={{gridTemplateColumns: grid}}>
+                {singleObject.photoModule.map((item, index) => (
+                    <PhotoGrid 
+                        photos={singleObject}
+                        open={open}
+                        setOpen={setOpen}
+                        item={item}
+                        index={index}
                     />
-                )}
+                ))}
             </ImgCont>
+            
         </PageLayout>
+
+        
+        
         </PageContainer>
-        )}
+        
+        )} */}
+        <h1>siemanko</h1>
+        <Routes>
+            <Route path="likes" element={ <PhotoOpen />}></Route>
+        </Routes>  
+
+        <Link to="likes">
+            <div>Siema</div>
+        </Link>
+
+        <div onClick={() => handleClick()}>KLKIK</div>
+
         </>
     )
 }
@@ -143,23 +156,7 @@ const ImgCont = styled(motion.div)`
     @media screen and (max-width: 501.99px) {
         padding: .5rem;
     }
-`
-
-const Picture = styled(motion.div)`
-    height: 85%;
-    min-height: 40vw;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-    max-height: 100%;
-    min-height: 100%;
-    width: 90%;
-    object-fit: cover;
-    border-radius: .5rem;
-    box-shadow: 0 10px 10px -5px;
-    }
+    
 `
 
 const Desc = styled(Description)`

@@ -32,6 +32,9 @@ const GlobalStyles = createGlobalStyle`
         font-size: 1.5rem;
         color: #000;
         font-weight: 300;
+        @media screen and (max-width: 601px){
+            font-size: 1.3rem;
+        }
     }
     a {
         text-decoration: none;

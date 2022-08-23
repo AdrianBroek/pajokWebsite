@@ -66,18 +66,6 @@ const SegregateStyle = styled.div`
     padding: .5rem;
     column-gap: 2rem;
     font-family: 'Jost', sans-serif;
-    .overlay {
-            display: none;
-            &.open {
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 0;
-            }
-        }
     h4, p, .block  {
         font-weight: 300;
     }

@@ -23,7 +23,7 @@ const FooterStyle = styled.section`
     display: flex;
     flex-direction: column;
     .top {
-        background: #0c0c0c;
+        background: #1a1919;
         height: 65%;
         display: flex;
         flex-direction: column;

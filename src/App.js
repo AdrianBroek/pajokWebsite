@@ -8,10 +8,11 @@ import VideoPage from './pages/VideoPage'
 import Photos from './pages/Photos'
 import ContactPage from './pages/ContactPage'
 import OmniePage from './pages/AboutMe'
+import PhotoOpen from './components/PhotoOpen'
 // global styles
 import GlobalStyles from './components/GlobalStyles';
 // router
-import { Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route, useLocation, HistoryRouterProps } from "react-router-dom"
 // animation
 import {AnimatePresence} from 'framer-motion'
 // nav
@@ -44,12 +45,7 @@ function App() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/:id" 
-        element={
-        <Photos 
-        current={current}
-        setCurrent={setCurrent}
-        />} />
+        <Route path="/photo/:id/*" element={<Photos />} />
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
