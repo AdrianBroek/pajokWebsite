@@ -74,7 +74,7 @@ const PhotoPage = () => {
             display: 'flex',
             alignItems: 'center'
          }} 
-         to="/photo/fashion">
+         to="/photo/moda">
             <CatTitle 
             variants={titleAnim}
             >Fashion</CatTitle>

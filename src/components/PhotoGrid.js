@@ -20,7 +20,7 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
     }
 
     useEffect(()=>{
-        console.log(item)
+        // console.log(item)
     }, [open])
 
     return (

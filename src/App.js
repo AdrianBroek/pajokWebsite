@@ -5,22 +5,28 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import MainPage from './pages/MainPage'
 import PhotoPage from './pages/PhotoPage'
 import VideoPage from './pages/VideoPage'
-import Photos from './pages/Photos'
 import ContactPage from './pages/ContactPage'
 import OmniePage from './pages/AboutMe'
 import PhotoOpen from './components/PhotoOpen'
+// photo pages
+import CityPhoto from './components/photos/CityPhoto'
+import FashionPhoto from './components/photos/FashionPhoto'
+import WeddingPhoto from './components/photos/WeddingPhoto'
+import PortraitPhoto from './components/photos/PortraitPhoto'
 // global styles
 import GlobalStyles from './components/GlobalStyles';
 // router
 import { Routes, Route, useLocation, HistoryRouterProps } from "react-router-dom"
 // animation
-import {AnimatePresence} from 'framer-motion'
+import {AnimatePresence, AnimateSharedLayout} from 'framer-motion'
 // nav
 import Nav from './components/Nav'
 // menu
 import Menu from './components/Menu'
 // footer
 import Footer from './components/Footer'
+// context
+import {UserProvider} from './components/fetchData/data'
 
 const queryClient = new QueryClient()
 
@@ -42,14 +48,30 @@ function App() {
       onExitComplete={()=> {
         window.scrollTo(0,0)
       }}>
+      <UserProvider>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/:id/*" element={<Photos />} />
+        
+        <Route path="/photo/Miasto" element={<CityPhoto />}>
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        <Route path="/photo/Portrety" element={<PortraitPhoto />}>
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        <Route path="/photo/Moda" element={<FashionPhoto />}>
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        <Route path="/photo/Slubne" element={<WeddingPhoto />}>
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
       </Routes>
+      </UserProvider>
+
       <Footer />
       </AnimatePresence>
     </div>
