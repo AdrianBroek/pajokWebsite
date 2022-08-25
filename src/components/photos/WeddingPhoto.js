@@ -27,21 +27,26 @@ import {
 import UserContext from '../fetchData/data'
 
 const CityPhoto = () => {
-    const { photoData } = useContext(UserContext)
+    const { photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
     const [singleObject, setSingleObject] = useState(photoData.wedding)
-    console.log(singleObject)
     // state
     const [grid, setGrid] = useState('30% 30% 30%')
-    const [open, setOpen] = useState(false)
 
     // location
-    const location = useLocation()
-    const url = location.pathname
+    const {pathname} = useLocation()
 
+    useEffect(() => {
+        setSingleObject(photoData.wedding)
+       
+    }, [pathname, photoData])
+
+    useEffect(() => {
+        singleObject ? setCopiedObject(singleObject.photoModule) : console.log('nie')
+        // copiedObject ? console.log(copiedObject) : console.log('nie2')
+    }, [singleObject])
+    
     return (
         <motion.div layout>
-        <h2>siema</h2>
-        <Link to="likes" style={{marginTop: '200px', display: 'block'}}>KILK</Link>
         {singleObject && (
                 <PageContainer>
                 <PageLayout 
@@ -60,7 +65,7 @@ const CityPhoto = () => {
                     <ImgCont style={{gridTemplateColumns: grid}}>
                         {singleObject.photoModule.map((item, index) => (
                             <PhotoGrid 
-                                photos={singleObject}
+                                key={item.id}
                                 open={open}
                                 setOpen={setOpen}
                                 item={item}

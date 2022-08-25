@@ -23,35 +23,35 @@ const Segregate = ({grid, setGrid}) => {
 
     return (
         <SegregateStyle>
-        <h4>Widok: </h4>
-        <Overlay open={open} setOpen={setOpen} />
-        <div className="cont" onClick={() => setOpen(!open)}>
-        <div class="itemCont">
-            <p>{loaded[active].text}</p>
-            <motion.img className='noselect' variants={arrowRotate} initial='set' animate={open ? 'go' : 'set'} src={arrow}></motion.img>
-        </div>
-        <motion.div 
-            className='container' 
-            variants={segregateAnim}
-            initial="hidden"
-            animate={open ? 'show' : 'hidden'}
-        >
-            {loaded.map((item, index) => (
-                    
-                    <div 
-                    className='block'
-                    onClick={() => segregate(item.grid, index)}
-                    >
-                        <div className="">
-                            {item.text}
+            <h4>Widok: </h4>
+            <Overlay open={open} setOpen={setOpen} />
+            <div className="cont" onClick={() => setOpen(!open)}>
+            <div class="itemCont">
+                <p>{loaded[active].text}</p>
+                <motion.img className='noselect' variants={arrowRotate} initial='set' animate={open ? 'go' : 'set'} src={arrow}></motion.img>
+            </div>
+            <motion.div 
+                className='container' 
+                variants={segregateAnim}
+                initial="hidden"
+                animate={open ? 'show' : 'hidden'}
+            >
+                {loaded.map((item, index) => (
+                        
+                        <div 
+                        className='block'
+                        onClick={() => segregate(item.grid, index)}
+                        >
+                            <div className="">
+                                {item.text}
+                            </div>
                         </div>
-                    </div>
-            ))}
+                ))}
 
-        </motion.div>
+            </motion.div>
 
-        </div>    
-    </SegregateStyle>
+            </div>    
+        </SegregateStyle>
     )
 }
 
@@ -66,6 +66,9 @@ const SegregateStyle = styled.div`
     padding: .5rem;
     column-gap: 2rem;
     font-family: 'Jost', sans-serif;
+    .overlay.open {
+        background-color: transparent;
+    }
     h4, p, .block  {
         font-weight: 300;
     }

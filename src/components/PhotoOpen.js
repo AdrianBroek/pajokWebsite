@@ -1,47 +1,75 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import {motion} from 'framer-motion'
 import {showImg} from '../animation'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+// import user context
+import UserContext from './fetchData/data'
+// overlay
+import Overlay from './Overlay'
 
 const PhotoOpen = () => {
-    const location = useLocation()
-    const url = location.pathname
+    const navigate = useNavigate();
+    const {pathname} = useLocation()
+    let result = /[^/]*$/.exec(pathname)[0];
+    // console.log(result)
+    const { openDetail, setOpenDetail, setOpen, open, copiedObject, setCopiedObject } = useContext(UserContext)
 
-    console.log('jestem')
+    useEffect(()=>{
+        setOpen(true)
+    }, [openDetail])
+
+    useEffect(()=>{
+        result = /[^/]*$/.exec(pathname)[0];
+    }, [pathname])
+
+    useEffect(()=>{
+        if(copiedObject) {
+            const objectCopy = copiedObject.filter(
+                (item) => item.id === result)
+            setOpenDetail(objectCopy[0])
+        }
+        
+    }, [copiedObject])
+
     return (
-        // <Picture>
-        //     <img />
-        // </Picture>
         <>
-                <div className="siema">
-                    <h2>SiEmA</h2>
+        {openDetail && (
+            <Picture onClick={() => navigate(-1)}>
+                <img src={openDetail.photo.url}/>
+                <div className="photoDescription">
+                    <div>Model: 
+                        {openDetail.model.map((model) => (
+                            <h3>{model}</h3>
+                        ))}
+                    </div>
+                    <p>{openDetail.photoDescription}</p>
                 </div>
+            </Picture>
+        )}
         </>
     )
 }
 
-const Picture = styled(motion.div)`
-    height: 85%;
-    min-height: 40vw;
-    max-width: 100%;
+const Picture = styled.section`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    max-height: 90%;
+    z-index: 99;
     display: flex;
     justify-content: center;
-    align-items: center;
+    color: #fff;
     img {
-        transition: all .3s ease;
+        max-width: 100%;
         max-height: 100%;
-        min-height: 100%;
-        width: 90%;
-        object-fit: cover;
-        border-radius: .5rem;
-        box-shadow: 0 10px 10px -5px;
-        &.openPhoto {
-            position: absolute;
-            object-fit: contain;
-            width: 90vw;
-            box-shadow: none;
-        }
+        object-fit: contain;
+    }
+    h3,p {
+        color: #fff;
     }
 `
 

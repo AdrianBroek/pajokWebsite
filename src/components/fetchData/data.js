@@ -4,19 +4,24 @@ import axios from "axios";
 import { useQuery } from "react-query";
 // graph
 import { gql } from "graphql-request";
+// location
+import { useLocation } from "react-router-dom";
 
 const UserContext = createContext()
 
 export function UserProvider({children}){
+    const {pathname} = useLocation()
     // state
+    const [open, setOpen] = useState(false)
+    const [openDetail, setOpenDetail] = useState()
     const [objectData, setObjectData] = useState([])
+    const [copiedObject, setCopiedObject] = useState()
     const [photoData, setPhotoData] = useState({
         city: '',
         portrait: '',
         fashion: '',
         wedding: ''
     })
-
     const endpoint  = 'https://api-eu-central-1.hygraph.com/v2/cl6rxv2tg0ogt01ujc798fpc0/master'
     const QUERY = gql`
     {
@@ -53,12 +58,18 @@ export function UserProvider({children}){
             portrait: objectData[1], 
             wedding: objectData[3],
             fashion: objectData[2] })
-    }, [objectData])
+    }, [objectData, pathname])
 
     return (
         <UserContext.Provider 
         value={{
-            photoData
+            photoData,
+            openDetail,
+            setOpenDetail,
+            open,
+            setOpen,
+            copiedObject, 
+            setCopiedObject
         }}>
 
         {children}

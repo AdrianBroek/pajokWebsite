@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
 
 const Overlay = ({open , setOpen, setCurrent}) => {
   const handleClick = () => {
     setOpen(false)
-    console.log('over click')
   }
-  
+
+  open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
+
+  const {pathname} = useLocation()
+
+  useEffect(()=> {
+    setOpen(false)
+  }, [pathname])
+
   return (
     <OverlayStyle 
       className={ open ? 'overlay open' : "overlay"} 
@@ -19,7 +27,7 @@ const OverlayStyle = styled.div`
     &.overlay {
       display: none;
       &.open {
-          position: absolute;
+          position: fixed;
           background: #000000b5;
           display: block;
           

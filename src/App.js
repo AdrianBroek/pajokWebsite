@@ -48,6 +48,7 @@ function App() {
       onExitComplete={()=> {
         window.scrollTo(0,0)
       }}>
+      <AnimateSharedLayout>
       <UserProvider>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainPage />} />
@@ -62,7 +63,7 @@ function App() {
         <Route path="/photo/Moda" element={<FashionPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
-        <Route path="/photo/Slubne" element={<WeddingPhoto />}>
+        <Route path="/photo/Slubne/*" element={<WeddingPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         
@@ -71,7 +72,7 @@ function App() {
         <Route path="/o-mnie" element={<OmniePage />} />
       </Routes>
       </UserProvider>
-
+      </AnimateSharedLayout>
       <Footer />
       </AnimatePresence>
     </div>

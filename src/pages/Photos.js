@@ -58,7 +58,7 @@ const Photos = ({current, setCurrent}) => {
             <Desc>
             <h3>{singleObject.description}</h3>
             </Desc>
-            <Segregate gird={grid} setGrid={setGrid}/>
+            <Segregate open={open} setOpen={setOpen} gird={grid} setGrid={setGrid}/>
             <Overlay open={open} setOpen={setOpen} />
             <ImgCont style={{gridTemplateColumns: grid}}>
                 {singleObject.photoModule.map((item, index) => (

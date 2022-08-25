@@ -1,27 +1,23 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import {motion} from 'framer-motion'
 import {showImg} from '../animation'
-// router
 import PhotoOpen from "./PhotoOpen";
+import { useNavigate, useLocation } from "react-router-dom";
+// import user context
+import UserContext from './fetchData/data'
 
 
 const PhotoGrid = ({open, setOpen, item, index, photos}) => {
-
+    const {pathname} = useLocation()
+    const navigate = useNavigate()
+    const { openDetail, setOpenDetail } = useContext(UserContext)
+    
     function photoClickHandler(e, index) {
-        setOpen(!open)
-        // e.target.classList.toggle('openPhoto')
-        console.log(photos.imgs[index])
-        if (e.target.classList.contains('openPhoto')){
-            document.body.style.overflowY = 'hidden'
-        }else {
-            document.body.style.overflowY = 'unset'
-        }
+        setOpenDetail(item)
+        navigate(`${pathname}/${item.id}`)
+        console.log(openDetail)
     }
-
-    useEffect(()=>{
-        // console.log(item)
-    }, [open])
 
     return (
         <Picture>
@@ -33,7 +29,6 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
                 src={item.photo.url} 
                 onClick={(e) => photoClickHandler(e, index)}
             />
-
         </Picture>
     )
 }
