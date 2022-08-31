@@ -28,9 +28,8 @@ const OverlayStyle = styled.div`
       display: none;
       &.open {
           position: fixed;
-          background: #000000b5;
+          background: rgba(0,0,0,0.95);
           display: block;
-          
           top: 0;
           left: 0;
           width: 100%;

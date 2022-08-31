@@ -19,15 +19,12 @@ import { glow, buttonAnim, PageAnimation } from '../animation'
 
 // images
 import avatar from '../images/aboutMe/avatar2.jpg'
-import copySvg from '../images/aboutMe/copy.svg'
+import copySvg from '../images/aboutMe/file.png'
 import like from '../images/aboutMe/thumbs-up.svg'
-import likeGif from '../images/gifs/like.gif'
-import copyGif from '../images/gifs/document.gif'
-import way from '../images/gifs/way.gif'
-import id from '../images/gifs/id.gif'
-import sociale from '../images/gifs/social-media.gif'
-import share from '../images/gifs/share.gif'
-import education from '../images/gifs/education.gif'
+import way from '../images/aboutMe/location.png'
+import id from '../images/aboutMe/id-card.png'
+import sociale from '../images/aboutMe/share.png'
+import share from '../images/aboutMe/wifi.png'
 
 
 const OmniePage = () => {
@@ -86,13 +83,6 @@ const OmniePage = () => {
                         </h3>
                     </InfoCont>
                     <Underline />
-                    <InfoCont>
-                        <IconAM src={education} />
-                        <h3>
-                        Studiuje filmocośtam w Katowicach                        
-                        </h3>
-                    </InfoCont>
-                    <Underline />
 
                     <InfoCont>
                         <IconAM src={sociale} />
@@ -119,7 +109,7 @@ const OmniePage = () => {
                     >
                         <ImageContainer>
                         <h3>lucaskrzyzak@gmail.com</h3>
-                        <Icon src={copyGif} />
+                        <Icon src={copySvg} />
                         </ImageContainer>
                     </LinkBtn>
 
@@ -144,6 +134,17 @@ const WriteToMe = styled(motion.div)`
     align-items: center;
     column-gap: 2rem;
     margin: 2.5rem 0;
+    @media screen and (max-width: 601px){
+        flex-direction: column;
+        margin: 0;
+        row-gap: 1rem;
+        max-width: 90%;
+        @media screen and (max-width: 401px){
+            h3 {
+                font-size: 5vw;
+            }
+        }
+    }
 `
 
 const PageContainerAboutMe = styled(PageContainer)`
@@ -159,6 +160,10 @@ const InfoCont = styled(motion.div)`
     text-align: left;
     h3 {
     }
+    @media screen and (max-width: 501px){
+        grid-template-columns: 15% 80%;
+        justify-content: space-between;
+    }
 `
 
 const DescriptionAM = styled(Description)`
@@ -166,8 +171,10 @@ const DescriptionAM = styled(Description)`
     flex-direction: column;
     row-gap: 2rem;
     padding: 5rem 2rem;
-    border-radius: .5rem;
-    box-shadow: 0 3px 10px -5px;
+    @media screen and (max-width: 768px){
+        padding: 5rem .5rem;
+        max-width: 90%;
+    }
 `
 
 const IconAM = styled(Icon)`
@@ -175,7 +182,7 @@ const IconAM = styled(Icon)`
     flex-direction: column;
     row-gap: 2rem;
     object-fit: contain;
-    max-width: 60px;
+    max-width: 40px;
 `
 
 const Copied = styled(motion.div)`
@@ -187,9 +194,8 @@ const Copied = styled(motion.div)`
     top: 10%;
     right: 2.5%;
     border-radius: .5rem;
-    /* border: 1px solid rgb(70,130,180); */
     padding: .5rem;
-    background: #27BDD0;
+    background: rgb(70,130,180);
     h5 {
         color: #fff;
         font-family: Arial, Helvetica, sans-serif;
@@ -212,6 +218,10 @@ const AvContainer = styled(motion.div)`
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid #44D62C;
+    @media screen and (max-width: 400px){
+        max-width: 90%;
+        height: auto;
+    }
 `
 
 const Underline = styled(Line)`
@@ -219,6 +229,6 @@ const Underline = styled(Line)`
     margin: auto;
     height: 1px;
     border-radius: 20px;
-    background: #27BDD0;
+    background: #000;
 `
 export default OmniePage

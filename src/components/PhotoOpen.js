@@ -9,6 +9,7 @@ import UserContext from './fetchData/data'
 import Overlay from './Overlay'
 
 const PhotoOpen = () => {
+    const [formattedDate, setFormattedDate] = useState(false)
     const navigate = useNavigate();
     const {pathname} = useLocation()
     let result = /[^/]*$/.exec(pathname)[0];
@@ -19,7 +20,7 @@ const PhotoOpen = () => {
         setOpen(true)
     }, [openDetail])
 
-    useEffect(()=>{
+    useEffect(() => {
         result = /[^/]*$/.exec(pathname)[0];
     }, [pathname])
 
@@ -32,18 +33,45 @@ const PhotoOpen = () => {
         
     }, [copiedObject])
 
+
+
+    useEffect(()=> {
+        if (openDetail) {
+            let date = new Date(openDetail.photo.createdAt)
+            console.log(date)
+            // Get year, month, and day part from the date
+            let year = date.toLocaleString("default", { year: "numeric" });
+            let month = date.toLocaleString("default", { month: "2-digit" });
+            let day = date.toLocaleString("default", { day: "2-digit" });
+
+            // Generate yyyy-mm-dd date string
+            setFormattedDate(day + "-" + month + "-" + year) 
+            // console.log(formattedDate);  // Prints: 04-05-2022
+        }
+    }, [copiedObject])
+
+    // console.log(formattedDate)
+
     return (
         <>
-        {openDetail && (
+        {openDetail
+         && formattedDate
+          && (
             <Picture onClick={() => navigate(-1)}>
-                <img src={openDetail.photo.url}/>
+                <div className="imgCont">
+                    <img src={openDetail.photo.url}/>
+                </div>
                 <div className="photoDescription">
-                    <div>Model: 
-                        {openDetail.model.map((model) => (
-                            <h3>{model}</h3>
-                        ))}
+                    <div className="container">
+                        <div>Model: 
+                            {openDetail.model.map((model) => (
+                                <h3>{model}</h3>
+                            ))}
+                        </div>
+                        <div className="line" />
+                        <p>{openDetail.photoDescription}</p>
+                        <p>{formattedDate}</p>
                     </div>
-                    <p>{openDetail.photoDescription}</p>
                 </div>
             </Picture>
         )}
@@ -63,6 +91,26 @@ const Picture = styled.section`
     display: flex;
     justify-content: center;
     color: #fff;
+    .imgCont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .photoDescription {
+        padding: 0 1rem 1rem 1rem;
+        .container {
+            background: #000;
+            padding: 1rem;
+            width: 100%;
+            .line {
+                width: 90%;
+                margin: auto;
+                margin: .5rem auto;
+                height: 0.15px;
+                background: white;
+            }
+        }
+    }
     img {
         max-width: 100%;
         max-height: 100%;
@@ -70,6 +118,15 @@ const Picture = styled.section`
     }
     h3,p {
         color: #fff;
+    }
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        .photoDescription {
+            padding: 0;
+        }
+        .imgCont {
+            max-height: 80vh;
+        }
     }
 `
 
