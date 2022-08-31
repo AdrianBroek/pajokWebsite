@@ -1,19 +1,12 @@
 {
   "files": {
-    "main.js": "/pajokWebsite/static/js/main.c528746a.js",
+    "main.js": "/pajokWebsite/static/js/main.a51f7411.js",
     "static/js/787.64dd0c0d.chunk.js": "/pajokWebsite/static/js/787.64dd0c0d.chunk.js",
-    "static/media/social-media.gif": "/pajokWebsite/static/media/social-media.c425a61ef0966f7c2ac0.gif",
     "static/media/background.jpg": "/pajokWebsite/static/media/background.127cebbf187ba5b2bc4e.jpg",
     "static/media/message.gif": "/pajokWebsite/static/media/message.2d282eb3644f1851858f.gif",
-    "static/media/id.gif": "/pajokWebsite/static/media/id.53ece3639890ec6f13d1.gif",
-    "static/media/education.gif": "/pajokWebsite/static/media/education.1173b93c9a2f84c78b13.gif",
     "static/media/abstract2.jpg": "/pajokWebsite/static/media/abstract2.4f42a974ea00a03600bc.jpg",
     "static/media/video.gif": "/pajokWebsite/static/media/video.a31066ca67c66135d829.gif",
     "static/media/avatar2.jpg": "/pajokWebsite/static/media/avatar2.87e76d86cef69ceb4ae9.jpg",
-    "static/media/like.gif": "/pajokWebsite/static/media/like.d96f8788f49fa750ca00.gif",
-    "static/media/way.gif": "/pajokWebsite/static/media/way.6beef2f222ff242eef69.gif",
-    "static/media/share.gif": "/pajokWebsite/static/media/share.6d7f4d813a4319c8b650.gif",
-    "static/media/document.gif": "/pajokWebsite/static/media/document.72788dbe4fdcaae0baa8.gif",
     "static/media/pajok_logo.png": "/pajokWebsite/static/media/pajok_logo.4be18f7ab5a5b38a32d3.png",
     "static/media/pajok_logo_w.png": "/pajokWebsite/static/media/pajok_logo_w.90baedb85484a20d69cf.png",
     "static/media/portrait3.webp": "/pajokWebsite/static/media/portrait3.593af35144a899ee54b0.webp",
@@ -21,19 +14,20 @@
     "static/media/spinner.gif": "/pajokWebsite/static/media/spinner.fbe3cd5d5b53290979b5.gif",
     "static/media/city4.webp": "/pajokWebsite/static/media/city4.76fbdf45986e2b67e973.webp",
     "static/media/fashion3.webp": "/pajokWebsite/static/media/fashion3.5718223ce576739e763c.webp",
+    "static/media/location.png": "/pajokWebsite/static/media/location.b0c61e646a0b915831c7.png",
     "static/media/video.png": "/pajokWebsite/static/media/video.52535072f84ae498ac6f.png",
     "static/media/message.png": "/pajokWebsite/static/media/message.a5f3975b1fd143748e5e.png",
+    "static/media/wifi.png": "/pajokWebsite/static/media/wifi.1218c37b40e6fb58f1c7.png",
     "static/media/paper-plane.png": "/pajokWebsite/static/media/paper-plane.94969f8dc18ef9d88a57.png",
     "index.html": "/pajokWebsite/index.html",
     "static/media/instagram-brands.svg": "/pajokWebsite/static/media/instagram-brands.813fd06b51b26e101fbbdde32e64af13.svg",
     "static/media/thumbs-up.svg": "/pajokWebsite/static/media/thumbs-up.5fd475c798470b2359d78ed83a9ddc64.svg",
-    "static/media/copy.svg": "/pajokWebsite/static/media/copy.f261f74cce8066317c6dcef196409bd3.svg",
     "static/media/facebook-brands.svg": "/pajokWebsite/static/media/facebook-brands.c6089f12d8bb287d9dcefca86bac3740.svg",
     "static/media/arrow-up.svg": "/pajokWebsite/static/media/arrow-up.fb05bd7c9472f83952252dce2038749c.svg",
-    "main.c528746a.js.map": "/pajokWebsite/static/js/main.c528746a.js.map",
+    "main.a51f7411.js.map": "/pajokWebsite/static/js/main.a51f7411.js.map",
     "787.64dd0c0d.chunk.js.map": "/pajokWebsite/static/js/787.64dd0c0d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.c528746a.js"
+    "static/js/main.a51f7411.js"
   ]
 }
