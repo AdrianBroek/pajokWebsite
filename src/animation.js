@@ -171,6 +171,29 @@ export const moveLink = {
     }
 }
 
-export const photoAnim = {
-    
+export const svgAnimate = {
+    hidden: {
+        rotate: -180
+    },
+    visible: {
+        rotate: 0,
+        transition: { duration: 1 }
+    }
+}
+
+export const pathAnimate = {
+    hidden: {
+        opacity: 0,
+        pathLength: 0,
+        fill: '#fff',
+    },
+    visible: {
+        opacity: 1,
+        pathLength: 1,
+        fill: '#0ec717',
+        transition: { 
+            duration: .5,
+            ease: "easeInOut"
+        }
+    }
 }

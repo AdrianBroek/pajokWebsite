@@ -17,17 +17,20 @@ import {
 }
 from '../style/styles'
 
+
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import {Icon} from '../style/styles'
 
-import {PageAnimation, buttonAnim} from '../animation'
+import {PageAnimation, svgAnimate, pathAnimate} from '../animation'
 
 const ContactPage = () => {
     const api_key = process.env.REACT_APP_API_KEY
     const [load, setLoad] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [agree, setAgreed] = useState(false)
     const form = useRef();
+    const check = useRef()
 
     const sendEmail = (e) => {
       setLoad(true)
@@ -72,22 +75,52 @@ const ContactPage = () => {
             <ContactCont>
                 <div className='pCont'>
                     <p>Jesteś zainteresowany współpracą?</p>
-                    <p>Koniecznie daj mi wypełniając poniższy formularz</p>
+                    <p>Daj mi wypełniając <b>poniższy formularz.</b></p>
                 </div>
                 <Form ref={form} onSubmit={sendEmail}>
                     <InputContainer>
-                        <input required type="text" name="user_name" id="user_name" />
+                        <input minLength='3' required type="text" name="user_name" id="user_name" />
                         <label className="label-name">
                             <span className="content-name">Imię</span>
                         </label>
                     </InputContainer>
                     <InputContainer>
-                        <input required type="text" name="user_email" id="user_email"/>
+                        <input required type="email" name="user_email" id="user_email"/>
                         <label className="label-name">
                         <span className="content-name">E-mail</span></label>
                     </InputContainer>
+                    <div className="agreement" onClick={() => setAgreed(!agree)}>
+                        <input checked={agree} required type="checkbox"/>
+                        <div className="svgContainer">
+                            <motion.svg 
+                                className="agreedSvg"
+                                xmlns="http://www.w3.org/2000/svg" 
+                                viewBox="0 0 448 512">
+                                <motion.path
+                                    variants={pathAnimate}
+                                    initial='hidden'
+                                    animate={ agree ? 'visible' : 'hidden'}
+                                    d="M438.6 105.4C451.1 117.9 451.1 138.1 
+                                    438.6 150.6L182.6 406.6C170.1 419.1 149.9 
+                                    419.1 137.4 406.6L9.372 278.6C-3.124 
+                                    266.1-3.124 245.9 9.372 233.4C21.87 220.9 
+                                    42.13 220.9 54.63 233.4L159.1 338.7L393.4 
+                                    105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z" 
+                                    stroke="#0ec717" 
+                                    strokeWidth="20"
+                                />
+                            </motion.svg>
+                        </div>
+                        <span className="content-name"><i>Wyrażam zgodę na przetwarzanie danych
+                        osobowych w związku z umieszczeniem przeze mnie danych osobowych do formularza kontaktowego.
+                        Podanie danych jest dobrowolne, ale niezbędne do przetwodzenia zapytania.
+                        Zostałem/am poinformowany/a, że przysługuje mi prawo dostępu do swoich
+                        danych, możliwości ich poprawienia, żądania zaprzestania ich przetwarzania.
+                        Administratorem danych jest administrator strony internetowej
+                        Pajok Website.com</i></span>
+                    </div>
                     <TextAreaContainer>
-                        <textarea maxLength="200" placeholder="Wiadomość" required name="message" />
+                        <textarea maxLength="1000" minLength='20' placeholder="Wiadomość" required name="message" />
                     </TextAreaContainer>
                     <SendBtn png={PaperPlane} gif={sendGIF}/>
                 </Form>
@@ -206,6 +239,49 @@ const Form = styled.form`
     width: 80%;
     font-weight: normal;
     font-family: 'Jost', sans-serif;
+    .agreement {
+        cursor: pointer;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        column-gap: .8rem;
+        .svgContainer {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            &::before {
+                content: "";
+                display: block;
+                width: 80%;
+                height: 80%;
+                border: 1px solid black;
+                border-radius: 0.25rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+            }
+        }
+        input[type="checkbox"] {
+            display: none;
+        }
+        .content-name {
+            font-size: .85rem;
+            max-height: 100px;
+            overflow-y: auto;
+            display: block;
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+        }
+        .agreedSvg {
+            max-width: 20px;
+            min-width: 20px;
+            
+        }
+    }
 `
 
 const Logo = styled(Icon)`
@@ -228,6 +304,8 @@ const TextAreaContainer = styled.div`
         font-size: 1rem;
         border-radius: 0.5rem;
         padding: .5rem .5rem;
+        max-height: 280px;
+        max-width: 100%;min-width: 100%;
         &::placeholder {
             font-size: 1rem;
             font-weight: 300;
