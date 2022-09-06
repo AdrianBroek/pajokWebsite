@@ -85,6 +85,7 @@ const CityPhoto = () => {
 
 const ImgCont = styled(motion.div)`
     width: 100%;
+    max-width: 1400px;
     height: auto;
     display: grid;
     flex-direction: column;
@@ -94,7 +95,7 @@ const ImgCont = styled(motion.div)`
     row-gap: 1rem;
     column-gap: 1rem;
     @media screen and (max-width: 767.99px) {
-        row-gap: unset;
+
     }
     @media screen and (max-width: 501.99px) {
         padding: .5rem;
