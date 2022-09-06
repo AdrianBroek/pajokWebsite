@@ -46,7 +46,7 @@ const CityPhoto = () => {
     }, [singleObject])
 
     return (
-        <motion.div layout>
+        <motion.div >
         {singleObject && (
                 <PageContainer>
                 <PageLayout 
@@ -62,7 +62,7 @@ const CityPhoto = () => {
                     </Desc>
                     <Segregate grid={grid} setGrid={setGrid}/>
                     <Overlay open={open} setOpen={setOpen} />
-                    <ImgCont style={{gridTemplateColumns: grid}}>
+                    <ImgCont layout style={{gridTemplateColumns: grid}}>
                         {singleObject.photoModule.map((item, index) => (
                             <PhotoGrid 
                                 photos={singleObject}
@@ -88,10 +88,12 @@ const ImgCont = styled(motion.div)`
     height: auto;
     display: grid;
     flex-direction: column;
-    row-gap: 5rem;
     justify-content: center;
     align-items: center;
     padding: 2.5rem;
+    row-gap: 1rem;
+    column-gap: 1rem;
+    grid-template-columns: repeat( 12, minmax(250px, 1fr) );
     @media screen and (max-width: 767.99px) {
         row-gap: unset;
     }

@@ -19,35 +19,44 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
         console.log(openDetail)
     }
 
+    open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
+
+
     return (
         <Picture>
-            <img 
+            <div className="imgContainer">
+            <motion.img 
                 key={item.id}
-                // variants={showImg}
-                // initial="hidden"
-                // animate='show'
                 src={item.photo.url} 
                 onClick={(e) => photoClickHandler(e, index)}
             />
+            </div>
         </Picture>
     )
 }
 
 const Picture = styled(motion.div)`
-    height: 85%;
-    min-height: 40vw;
+    height: 100%;
+    /* min-height: 40vw; */
     max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    .imgContainer {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        border-radius: .5rem;
+        box-shadow: 0 10px 10px -5px;
+    }
     img {
         transition: all .3s ease;
         max-height: 100%;
         min-height: 100%;
-        width: 90%;
+        width: 100%;
         object-fit: cover;
-        border-radius: .5rem;
-        box-shadow: 0 10px 10px -5px;
+
         &.openPhoto {
             position: absolute;
             object-fit: contain;

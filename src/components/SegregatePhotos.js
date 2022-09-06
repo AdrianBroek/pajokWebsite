@@ -26,7 +26,7 @@ const Segregate = ({grid, setGrid}) => {
             <h4>Widok: </h4>
             <Overlay open={open} setOpen={setOpen} />
             <div className="cont" onClick={() => setOpen(!open)}>
-            <div class="itemCont">
+            <div className="itemCont">
                 <p>{loaded[active].text}</p>
                 <motion.img className='noselect' variants={arrowRotate} initial='set' animate={open ? 'go' : 'set'} src={arrow}></motion.img>
             </div>
@@ -82,7 +82,7 @@ const SegregateStyle = styled.div`
         min-width: 150px;
         overflow: hidden;
         cursor: pointer;
-        z-index: 2;
+        z-index: 1;
         .itemCont {
             display: flex;
             justify-content: space-between;

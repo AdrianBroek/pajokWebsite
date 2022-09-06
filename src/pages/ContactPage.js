@@ -8,7 +8,6 @@ import background from '../images/background.jpg'
 //icons
 import sendPNG from '../images/gifs/png/message.png'
 import sendGIF from '../images/gifs/message.gif'
-import SendBtn from '../components/SendBtn'
 import PaperPlane from '../images/icons/paper-plane.png'
 // styles
 import {
@@ -22,7 +21,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import {Icon} from '../style/styles'
 
-import {PageAnimation, svgAnimate, pathAnimate} from '../animation'
+import {PageAnimation,HideParent, svgAnimate, pathAnimate, buttonAnim} from '../animation'
 
 const ContactPage = () => {
     const api_key = process.env.REACT_APP_API_KEY
@@ -64,10 +63,10 @@ const ContactPage = () => {
             <img src={background} alr='' />
         </div>
         <PageLayoutContact
-        variants={PageAnimation}
-        initial="hidden"
-        animate="show"
-        exit="exit"
+        variants={HideParent}
+        animate='show'
+        initial='hidden'
+        exit='exit'
         >
             <ItemContainer>
             {/* <Logo src={pajokLogoWhite} /> */}
@@ -75,7 +74,7 @@ const ContactPage = () => {
             <ContactCont>
                 <div className='pCont'>
                     <p>Jesteś zainteresowany współpracą?</p>
-                    <p>Daj mi wypełniając <b>poniższy formularz.</b></p>
+                    <p>Daj mi znać wypełniając <b>poniższy formularz.</b></p>
                 </div>
                 <Form ref={form} onSubmit={sendEmail}>
                     <InputContainer>
@@ -91,8 +90,11 @@ const ContactPage = () => {
                     </InputContainer>
                     <div className="agreement" onClick={() => setAgreed(!agree)}>
                         <input checked={agree} required type="checkbox"/>
-                        <div className="svgContainer">
+                        <div className="svgContainer" whileTap={{
+                                    scale: 0.95,
+                                }}>
                             <motion.svg 
+                                
                                 className="agreedSvg"
                                 xmlns="http://www.w3.org/2000/svg" 
                                 viewBox="0 0 448 512">
@@ -122,7 +124,19 @@ const ContactPage = () => {
                     <TextAreaContainer>
                         <textarea maxLength="1000" minLength='20' placeholder="Wiadomość" required name="message" />
                     </TextAreaContainer>
-                    <SendBtn png={PaperPlane} gif={sendGIF}/>
+                    <SendBtn
+                    variants={buttonAnim}
+                    whileTap={{
+                        scale: 0.95,
+                    }}
+                    whileHover="hover">
+                        <input 
+                            type="submit" 
+                            value="">
+                        </input>
+                        <h4>Wyślij</h4>
+                        <Icon src={PaperPlane} />
+                    </SendBtn>
                 </Form>
             </ContactCont>
 
@@ -156,11 +170,11 @@ const PageLayoutContact = styled(PageLayout)`
     overflow: hidden;
     max-width: 1000px;
     margin: auto;
+    margin-bottom: 5rem;
     border-radius: .5rem;
     height: 700px;
     row-gap: 0;
     display: block;
-    margin-top: -51px;
 `
 
 const ContactContainer = styled(PageContainer)`
@@ -212,6 +226,39 @@ const Send = styled(motion.div)`
     img {
         max-width: 20px;
         filter: invert(93%) sepia(100%) saturate(27%) hue-rotate(103deg) brightness(108%) contrast(106%);
+    }
+`
+
+const SendBtn = styled(motion.div)`
+    position: relative;
+    border-radius: .5rem;
+    border: 1px solid #000;
+    padding: .5rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .85rem;
+    margin: auto;
+    width: 50%;
+    input {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 1rem;
+        font-size: 1rem;
+        margin: auto;
+        background: transparent;
+        z-index: 2;
+    }
+    h4 {
+        font-size: 1rem;
+        font-weight: 300;
     }
 `
 

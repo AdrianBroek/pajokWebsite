@@ -6,9 +6,6 @@ const Overlay = ({open , setOpen, setCurrent}) => {
   const handleClick = () => {
     setOpen(false)
   }
-
-  open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
-
   const {pathname} = useLocation()
 
   useEffect(()=> {

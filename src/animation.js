@@ -51,10 +51,9 @@ export const titleAnim = {
 }
 
 export const showImg = {
-    hidden : {opacity: 0, scale: 1.2},
+    hidden : {scale: 1},
     show: {
-        opacity: 1,
-        scale: 1,
+        scale: 1.15,
         transition: {duration: .5, ease: "easeOut"}
     }
 }
@@ -193,7 +192,8 @@ export const pathAnimate = {
         fill: '#0ec717',
         transition: { 
             duration: .5,
-            ease: "easeInOut"
+            ease: "easeInOut",
+            fill: { delay: .5 }
         }
     }
 }

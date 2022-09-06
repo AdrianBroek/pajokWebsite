@@ -9,7 +9,7 @@ import UserContext from './fetchData/data'
 import Overlay from './Overlay'
 
 const PhotoOpen = () => {
-    const [formattedDate, setFormattedDate] = useState(false)
+    // const [formattedDate, setFormattedDate] = useState(false)
     const navigate = useNavigate();
     const {pathname} = useLocation()
     let result = /[^/]*$/.exec(pathname)[0];
@@ -18,6 +18,7 @@ const PhotoOpen = () => {
 
     useEffect(()=>{
         setOpen(true)
+        // open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
     }, [openDetail])
 
     useEffect(() => {
@@ -35,42 +36,44 @@ const PhotoOpen = () => {
 
 
 
-    useEffect(()=> {
-        if (openDetail) {
-            let date = new Date(openDetail.photo.createdAt)
-            console.log(date)
-            // Get year, month, and day part from the date
-            let year = date.toLocaleString("default", { year: "numeric" });
-            let month = date.toLocaleString("default", { month: "2-digit" });
-            let day = date.toLocaleString("default", { day: "2-digit" });
+    // useEffect(()=> {
+    //     if (openDetail) {
+    //         let date = new Date(openDetail.photo.createdAt)
+    //         console.log(date)
+    //         // Get year, month, and day part from the date
+    //         let year = date.toLocaleString("default", { year: "numeric" });
+    //         let month = date.toLocaleString("default", { month: "2-digit" });
+    //         let day = date.toLocaleString("default", { day: "2-digit" });
 
-            // Generate yyyy-mm-dd date string
-            setFormattedDate(day + "-" + month + "-" + year) 
-            // console.log(formattedDate);  // Prints: 04-05-2022
-        }
-    }, [copiedObject])
+    //         // Generate yyyy-mm-dd date string
+    //         setFormattedDate(day + "-" + month + "-" + year) 
+    //         // console.log(formattedDate);  // Prints: 04-05-2022
+    //     }
+    // }, [copiedObject])
 
     // console.log(formattedDate)
 
     return (
         <>
         {openDetail
-         && formattedDate
           && (
             <Picture onClick={() => navigate(-1)}>
                 <div className="imgCont">
                     <img src={openDetail.photo.url}/>
+                    {/* <p className="date">{formattedDate}</p> */}
                 </div>
                 <div className="photoDescription">
                     <div className="container">
-                        <div>Model: 
+                        <div className="modelName">
+                            <p>Model: </p>
+                            <ul>
                             {openDetail.model.map((model) => (
-                                <h3>{model}</h3>
+                                <li><h3>{model}</h3></li>
                             ))}
+                            </ul>
                         </div>
                         <div className="line" />
-                        <p>{openDetail.photoDescription}</p>
-                        <p>{formattedDate}</p>
+                        <p className="desc">{openDetail.photoDescription}</p>
                     </div>
                 </div>
             </Picture>
@@ -86,22 +89,39 @@ const Picture = styled.section`
     transform: translate(-50%, -50%);
     width: 100%;
     height: auto;
-    max-height: 90%;
+    max-height: 100%;
     z-index: 99;
     display: flex;
     justify-content: center;
     color: #fff;
+    overflow-y: scroll;
     .imgCont {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
     .photoDescription {
         padding: 0 1rem 1rem 1rem;
+        max-width: 50%;
         .container {
             background: #000;
             padding: 1rem;
             width: 100%;
+            .modelName {
+                p {
+                    font-weight: 500;
+                    font-size: .9rem;
+                }
+                ul li {
+                    list-style: none;
+                    h3 {
+                        &:before {
+                            content: '- '
+                        } 
+                    }
+                }
+            }
             .line {
                 width: 90%;
                 margin: auto;
@@ -113,19 +133,44 @@ const Picture = styled.section`
     }
     img {
         max-width: 100%;
-        max-height: 100%;
+        max-height: 90%;
         object-fit: contain;
     }
     h3,p {
         color: #fff;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         flex-direction: column;
         .photoDescription {
             padding: 0;
+            max-width: 100%;
+            .container {
+                max-height: 350px;
+                overflow-y: auto;
+                /* width */
+                ::-webkit-scrollbar {
+                width: 5px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                background: #f5f5f5;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                background: #555;
+                }
+            }
         }
-        .imgCont {
-            max-height: 80vh;
+    }
+    @media screen and (max-width: 501px) {
+        .photoDescription {
+            .container {
+                .desc {
+                    font-size: .95rem;
+                }
+            }
         }
     }
 `
