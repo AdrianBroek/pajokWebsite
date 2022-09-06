@@ -19,8 +19,6 @@ import { useScroll } from '../components/useScroll'
 
 
 const PhotoPage = () => {
-
-    //end of graph
     const [element1, controls1] = useScroll()
     const [element2, controls2] = useScroll()
     const [element3, controls3] = useScroll()

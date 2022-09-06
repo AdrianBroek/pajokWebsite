@@ -5,8 +5,6 @@ import {showImg} from '../animation'
 import { useLocation, useNavigate } from "react-router-dom";
 // import user context
 import UserContext from './fetchData/data'
-// overlay
-import Overlay from './Overlay'
 
 const PhotoOpen = () => {
     // const [formattedDate, setFormattedDate] = useState(false)
@@ -102,7 +100,7 @@ const Picture = styled.section`
         position: relative;
     }
     .photoDescription {
-        padding: 0 1rem 1rem 1rem;
+        padding: 2.5rem 1rem 1rem 1rem;
         max-width: 50%;
         .container {
             background: #000;

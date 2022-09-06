@@ -6,9 +6,12 @@ import PhotoOpen from "./PhotoOpen";
 import { useNavigate, useLocation } from "react-router-dom";
 // import user context
 import UserContext from './fetchData/data'
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import PhotoCover from './PhotoCover'
 
 
 const PhotoGrid = ({open, setOpen, item, index, photos}) => {
+
     const {pathname} = useLocation()
     const navigate = useNavigate()
     const { openDetail, setOpenDetail } = useContext(UserContext)
@@ -20,16 +23,17 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
     }
 
     open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
-
-
+    
     return (
-        <Picture>
+        <Picture onClick={(e) => photoClickHandler(e, index)}>
             <div className="imgContainer">
-            <motion.img 
+            <LazyLoadImage
                 key={item.id}
                 src={item.photo.url} 
-                onClick={(e) => photoClickHandler(e, index)}
             />
+            <PhotoCover
+            item={item} />
+
             </div>
         </Picture>
     )
@@ -37,18 +41,21 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
 
 const Picture = styled(motion.div)`
     height: 100%;
-    /* min-height: 40vw; */
+    min-height: 250px;
+    max-height: 700px;
     max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
     .imgContainer {
         height: 100%;
         width: 100%;
         overflow: hidden;
         border-radius: .5rem;
         box-shadow: 0 10px 10px -5px;
+        background-color: #9e9e9e00;
     }
     img {
         transition: all .3s ease;

@@ -197,3 +197,14 @@ export const pathAnimate = {
         }
     }
 }
+
+export const showCover = {
+    hidden: {
+        opacity: 0,
+        y: 0
+    },
+    show: {
+        opacity: 1,
+        y: -20
+    }
+}
