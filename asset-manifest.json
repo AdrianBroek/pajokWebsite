@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/pajokWebsite/static/js/main.412bf9e6.js",
+    "main.js": "/pajokWebsite/static/js/main.f54311c0.js",
     "static/js/787.64dd0c0d.chunk.js": "/pajokWebsite/static/js/787.64dd0c0d.chunk.js",
     "static/media/background.jpg": "/pajokWebsite/static/media/background.127cebbf187ba5b2bc4e.jpg",
     "static/media/message.gif": "/pajokWebsite/static/media/message.2d282eb3644f1851858f.gif",
@@ -24,10 +24,10 @@
     "static/media/thumbs-up.svg": "/pajokWebsite/static/media/thumbs-up.5fd475c798470b2359d78ed83a9ddc64.svg",
     "static/media/facebook-brands.svg": "/pajokWebsite/static/media/facebook-brands.c6089f12d8bb287d9dcefca86bac3740.svg",
     "static/media/arrow-up.svg": "/pajokWebsite/static/media/arrow-up.fb05bd7c9472f83952252dce2038749c.svg",
-    "main.412bf9e6.js.map": "/pajokWebsite/static/js/main.412bf9e6.js.map",
+    "main.f54311c0.js.map": "/pajokWebsite/static/js/main.f54311c0.js.map",
     "787.64dd0c0d.chunk.js.map": "/pajokWebsite/static/js/787.64dd0c0d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.412bf9e6.js"
+    "static/js/main.f54311c0.js"
   ]
 }
