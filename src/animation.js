@@ -198,6 +198,20 @@ export const pathAnimate = {
     }
 }
 
+export const pathAnimate2 = {
+    hidden: {
+        pathLength: 0,
+    },
+    visible: {
+        pathLength: 1,
+        transition: { 
+            duration: 10,
+            ease: "easeInOut",
+            pathLength: { type: "spring", duration: 1.5, bounce: 0 },
+        }
+    }
+}
+
 export const showCover = {
     hidden: {
         opacity: 0,
@@ -205,6 +219,6 @@ export const showCover = {
     },
     show: {
         opacity: 1,
-        y: -20
+        // y: -20
     }
 }

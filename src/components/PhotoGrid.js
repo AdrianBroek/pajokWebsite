@@ -25,16 +25,15 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
     open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
     
     return (
-        <Picture
-        
-        onClick={(e) => photoClickHandler(e, index)}>
+        <Picture onClick={(e) => photoClickHandler(e, index)}>
             <div className="imgContainer">
-            <LazyLoadImage
-                key={item.id}
-                src={item.photo.url} 
-            />
-            <PhotoCover
-            item={item} />
+                <LazyLoadImage
+                    key={item.id}
+                    src={item.photo.url}
+                />
+                <PhotoCover
+                    item={item} 
+                />
 
             </div>
         </Picture>

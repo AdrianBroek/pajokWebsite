@@ -92,7 +92,6 @@ const Picture = styled.section`
     display: flex;
     justify-content: center;
     color: #fff;
-    overflow-y: scroll;
     .imgCont {
         display: flex;
         justify-content: center;
