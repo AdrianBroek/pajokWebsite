@@ -51,7 +51,6 @@ const ContactPage = () => {
             setTimeout(()=> {
                 setSuccess(false)
             }, 4000)
-            
         }
     }   
     , [success])

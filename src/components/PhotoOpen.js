@@ -138,6 +138,10 @@ const Picture = styled.section`
     }
     @media screen and (max-width: 1024px) {
         flex-direction: column;
+        overflow-y: auto;
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
         .photoDescription {
             padding: 0;
             max-width: 100%;

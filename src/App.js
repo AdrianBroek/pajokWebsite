@@ -8,6 +8,7 @@ import VideoPage from './pages/VideoPage'
 import ContactPage from './pages/ContactPage'
 import OmniePage from './pages/AboutMe'
 import PhotoOpen from './components/PhotoOpen'
+import NoPage from './pages/NoPage'
 // photo pages
 import CityPhoto from './components/photos/CityPhoto'
 import FashionPhoto from './components/photos/FashionPhoto'
@@ -51,6 +52,7 @@ function App() {
       <AnimateSharedLayout>
       <UserProvider>
       <Routes location={location} key={location.pathname}>
+      <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
         
