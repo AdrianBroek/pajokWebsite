@@ -3,12 +3,21 @@ import {motion, useAnimationControls } from 'framer-motion'
 import styled from 'styled-components'
 // social
 import Socials from './Socials';
-// animations
-import {HambLine1, HambLine2} from '../animation'
 // location
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+// styles
+import {Logo} from '../style/styles'
+//logo
+import pajokLogoWhite from '../images/pajok_logo_w.png'
+
 
 const Nav = ({open, setOpen}) => {
+    const [shownav, setShownav] = useState(false)
+    window.addEventListener('scroll', function(e) {
+        let scroll_position = window.scrollY;
+        scroll_position > 100 ? setShownav(true) : setShownav(false)
+        }
+    );
     const [home, setHome] = useState(false)
     const {pathname} = useLocation()
 
@@ -16,45 +25,25 @@ const Nav = ({open, setOpen}) => {
         () => pathname == '/' ? setHome(!home) : setHome(false),
         [pathname])
     return (
-        <NavBar>
-            <Hamburger 
-            onClick={()=> setOpen(!open)}
-            whileTap={{
-                scale: 0.8,
+        <NavBar
+            style={{ 
+                background: shownav ? '#fff' : 'transparent',
+                boxShadow: shownav ? '1px 3px 5px rgb(0 0 0 / 16%)' : 'none'
+            }}>
+            <div />
+            <Link to="/">
+            <Logo 
+            style={{ 
+                opacity: shownav ? '1' : '0',
+                transition: '.2s ease-in'          
             }}
-            >
-                <HamburgLine 
-                variants={HambLine1}
-                animate={open ? 'open' : 'close'}
-                />
-                <HamburgLine 
-                variants={HambLine2}
-                animate={open ? 'open' : 'close'}
-                />
-                <HamburgLine />
-            </Hamburger>
+            src={pajokLogoWhite}/>
+            </Link>
             <Socials />
         </NavBar>       
     )
 }
 
-const Hamburger = styled(motion.div)`
-    display: flex;
-    flex-direction: column;
-    row-gap: .2rem;
-    padding: 0 1rem;
-    cursor: pointer;
-    padding: 2rem;
-    position: relative;
-    width: fit-content;
-`
-
-const HamburgLine = styled(motion.div)`
-    width: 20px;
-    height: 2px;
-    background-color: #000;
-    border-radius: 1rem;
-`
 const NavBar = styled(motion.div)`
     position: fixed;
     top: 0;
@@ -65,8 +54,10 @@ const NavBar = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 3;
+    transition: all .18s ease-in;
 `
+
+
 
 
 

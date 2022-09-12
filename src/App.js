@@ -24,6 +24,9 @@ import {AnimatePresence, AnimateSharedLayout} from 'framer-motion'
 import Nav from './components/Nav'
 // menu
 import Menu from './components/Menu'
+// Hamburger
+import Hamburger from './components/Hamburger'
+
 // footer
 import Footer from './components/Footer'
 // context
@@ -36,8 +39,6 @@ function App() {
 
   // menu state 
   const [open, setOpen] = useState(false)
-  // image state
-  const [current, setCurrent] = useState('')
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -45,6 +46,7 @@ function App() {
       <GlobalStyles />
       <Nav open={open} setOpen={setOpen}/>
       <Menu open={open}/>
+      <Hamburger open={open} setOpen={setOpen}/>
       <AnimatePresence exitBeforeEnter
       onExitComplete={()=> {
         window.scrollTo(0,0)
@@ -52,7 +54,7 @@ function App() {
       <AnimateSharedLayout>
       <UserProvider>
       <Routes location={location} key={location.pathname}>
-      <Route path="*" element={<NoPage />} />
+        <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
         

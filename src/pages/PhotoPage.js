@@ -145,8 +145,10 @@ const LinkCont = styled.div`
     justify-content: center;
     row-gap: 5rem;
     flex-direction: column;
-    width: 100%;
-
+    width: 85%;
+    @media screen and (max-width: 768px){
+        width: 100%;
+    }
 `
 const Title = styled.div`
     margin-top: 5rem;
