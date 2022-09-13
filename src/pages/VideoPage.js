@@ -46,7 +46,7 @@ const VideoPage = () => {
         </Hide>
         
         </LinkCont> */}
-        {/* <div style={{padding:'35% 0 0 0',position: 'relative',width:'60%',height:'auto'}}>
+        <div style={{padding:'35% 0 0 0',position: 'relative',width:'60%',height:'auto'}}>
 
         <iframe 
         style={{
@@ -64,7 +64,7 @@ const VideoPage = () => {
         <a href="https://vimeo.com/729598207">Anhelika Video</a> from 
         <a href="https://vimeo.com/user115069247"> Pajok </a>
          on <a href="https://vimeo.com">Vimeo</a>.
-        </p> */}
+        </p> 
         
 
         </PageLayout>

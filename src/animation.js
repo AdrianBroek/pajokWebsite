@@ -27,6 +27,29 @@ export const HideParent = {
     }
 }
 
+export const HideParent2 = {
+    hidden: {
+        opacity: 0,
+        y: 100
+    },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: .35,
+            when: "beforeChildren",
+            staggerChildren: .2
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            duration: .5,
+            ease: 'easeIn'
+        }
+    }
+}
+
 export const scrollReveal = {
     hidden: { opacity: 0, scale: 1.2, transition: { duration: 0.5 } },
     show: {
@@ -39,6 +62,18 @@ export const scrollReveal = {
   };
 
 export const titleAnim = {
+    hidden: {y: 100, opacity: 0},
+    show: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: .5, 
+            ease: 'easeOut'
+        }
+    }
+}
+
+export const titleAnim2 = {
     hidden: {y: 100, opacity: 0},
     show: {
         y: 0,

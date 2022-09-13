@@ -73,7 +73,7 @@ const CityPhoto = () => {
                             />
                         ))}
                     </ImgCont>
-                    <Overlay className='overlay' open={open} setOpen={setOpen} />
+                    <Overlay zindex='2' className='overlay' open={open} setOpen={setOpen} />
                 </PageLayout>
                 </PageContainer>
                 

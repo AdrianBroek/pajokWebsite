@@ -61,7 +61,7 @@ const CityPhoto = () => {
                     <h3>{singleObject.description}</h3>
                     </Desc>
                     <Segregate grid={grid} setGrid={setGrid}/>
-                    <Overlay open={open} setOpen={setOpen} />
+                    <Overlay zindex='2' open={open} setOpen={setOpen} />
                     <ImgCont layout style={{gridTemplateColumns: grid}}>
                         {singleObject.photoModule.map((item, index) => (
                             <PhotoGrid 

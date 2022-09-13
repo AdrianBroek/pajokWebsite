@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 
-const Overlay = ({open , setOpen, setCurrent}) => {
+const Overlay = ({zindex, open , setOpen, setCurrent}) => {
   const handleClick = () => {
     setOpen(false)
   }
@@ -14,6 +14,7 @@ const Overlay = ({open , setOpen, setCurrent}) => {
 
   return (
     <OverlayStyle 
+      style={{zIndex: zindex ? zindex : '1'}}
       className={ open ? 'overlay open' : "overlay"} 
       onClick={() => handleClick()}>
     </OverlayStyle>

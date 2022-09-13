@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage'
 import OmniePage from './pages/AboutMe'
 import PhotoOpen from './components/PhotoOpen'
 import NoPage from './pages/NoPage'
+import Prices from './pages/Prices'
 // photo pages
 import CityPhoto from './components/photos/CityPhoto'
 import FashionPhoto from './components/photos/FashionPhoto'
@@ -74,6 +75,7 @@ function App() {
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
+        <Route path="/cennik" element={<Prices />} />
       </Routes>
       </UserProvider>
       </AnimateSharedLayout>
