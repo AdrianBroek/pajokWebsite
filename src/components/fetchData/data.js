@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 const UserContext = createContext()
 
 export function UserProvider({children}){
+    const api_key = process.env.REACT_APP_GRAPH_KEY
     const {pathname} = useLocation()
     // state
     const [open, setOpen] = useState(false)
@@ -22,7 +23,7 @@ export function UserProvider({children}){
         fashion: '',
         wedding: ''
     })
-    const endpoint  = 'https://api-eu-central-1.hygraph.com/v2/cl6rxv2tg0ogt01ujc798fpc0/master'
+    const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
     {
         photos {

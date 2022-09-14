@@ -24,12 +24,12 @@ import {Icon} from '../style/styles'
 import {PageAnimation,HideParent, svgAnimate, pathAnimate, buttonAnim} from '../animation'
 
 const ContactPage = () => {
-    const api_key = process.env.REACT_APP_API_KEY
+    const api_key = process.env.REACT_APP_MAIL_KEY
     const [load, setLoad] = useState(false)
     const [success, setSuccess] = useState(false)
     const [agree, setAgreed] = useState(false)
     const form = useRef();
-    const check = useRef()
+    const check = useRef();
 
     const sendEmail = (e) => {
       setLoad(true)
