@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 //pages
@@ -38,9 +38,14 @@ const queryClient = new QueryClient()
 function App() {
   const location = useLocation()
 
+  
   // menu state 
   const [open, setOpen] = useState(false)
   
+  useEffect(()=> {
+    window.scrollTo(0,0)
+  }, [location.pathname])
+
   return (
     <QueryClientProvider client={queryClient}>
     <div className="App">
@@ -48,10 +53,12 @@ function App() {
       <Nav open={open} setOpen={setOpen}/>
       <Menu open={open}/>
       <Hamburger open={open} setOpen={setOpen}/>
-      <AnimatePresence exitBeforeEnter
-      onExitComplete={()=> {
-        window.scrollTo(0,0)
-      }}>
+      <AnimatePresence 
+        exitBeforeEnter
+        onExitComplete={()=> {
+          window.scrollTo(0,0)
+        }}
+      >
       <AnimateSharedLayout>
       <UserProvider>
       <Routes location={location} key={location.pathname}>

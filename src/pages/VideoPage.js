@@ -60,13 +60,11 @@ const VideoPage = () => {
         frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen>
         </iframe>
         </div>
-        <p>
+        <motion.p variants={titleAnim}>
         <a href="https://vimeo.com/729598207">Anhelika Video</a> from 
         <a href="https://vimeo.com/user115069247"> Pajok </a>
          on <a href="https://vimeo.com">Vimeo</a>.
-        </p> 
-        
-
+        </motion.p> 
         </PageLayout>
         </PageContainer>
     )

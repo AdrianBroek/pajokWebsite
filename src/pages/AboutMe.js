@@ -191,7 +191,7 @@ const Copied = styled(motion.div)`
     align-items: center;
     justify-content: center;
     column-gap: 1rem;
-    top: 10%;
+    top: 15%;
     right: 2.5%;
     border-radius: .5rem;
     padding: .5rem;
