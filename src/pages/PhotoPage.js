@@ -154,7 +154,6 @@ const Title = styled.div`
     margin-top: 5rem;
     h1{
         @media screen and (max-width: 768px){
-            font-size: 15vw;
             padding: 3vw;
             margin-left: 3vw;
         }
@@ -179,8 +178,6 @@ const ImgSlider = styled.img`
     object-position: center;
     top: 0;
     left: 0;
-    border-radius: .5rem;
-    box-shadow: 0 10px 10px -5px;
 `
 
 const LinkContainer = styled(Hide)`
@@ -192,6 +189,7 @@ const LinkContainer = styled(Hide)`
     justify-content: flex-start;
     position: relative;
     box-shadow: 0 10px 10px -5px;
+    border-radius: .5rem;
     h3 {
         color: #fff;
         font-size: 4rem;

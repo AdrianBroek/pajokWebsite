@@ -55,8 +55,8 @@ const Picture = styled(motion.div)`
         width: 100%;
         overflow: hidden;
         border-radius: .5rem;
-        box-shadow: 0 10px 10px -5px;
         background-color: #9e9e9e00;
+        box-shadow: 0 10px 10px -5px;
     }
     img {
         transition: all .3s ease;

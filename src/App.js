@@ -76,6 +76,7 @@ function App() {
         <Route path="/o-mnie" element={<OmniePage />} />
         <Route path="/cennik" element={<Prices />} />
       </Routes>
+      
       </UserProvider>
       </AnimateSharedLayout>
       <Footer />
