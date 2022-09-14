@@ -71,7 +71,6 @@ function App() {
         <Route path="/photo/Slubne/*" element={<WeddingPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
-        
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
