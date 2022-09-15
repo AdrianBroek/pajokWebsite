@@ -94,8 +94,9 @@ const ImgCont = styled(motion.div)`
     padding: 2.5rem;
     row-gap: 1rem;
     column-gap: 1rem;
-    @media screen and (max-width: 767.99px) {
-
+    grid-template-columns: 30% 30% 30%;
+    @media screen and (max-width: 501px) {
+        grid-template-columns: 45% 45%;
     }
     @media screen and (max-width: 501.99px) {
         padding: .5rem;

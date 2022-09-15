@@ -19,7 +19,16 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Jost', sans-serif;
         overflow-x: hidden;
     }
-
+    .vimeoVideo {
+        padding: 35% 0 0 0;
+        position: relative;
+        width:60%;
+        height:auto;
+        @media screen and (max-width: 768px){
+            padding: 45% 0 0 0;
+            width: 90%;
+        }
+    }
     h1 {
         font-family: 'Assistant', sans-serif;
         text-transform: uppercase;
@@ -41,6 +50,11 @@ const GlobalStyles = createGlobalStyle`
     }
     .even {
         margin-bottom: 3rem;
+    }
+    .flex {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
     }
     /* width */
     ::-webkit-scrollbar {

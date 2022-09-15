@@ -46,25 +46,23 @@ const VideoPage = () => {
         </Hide>
         
         </LinkCont> */}
-        <div style={{padding:'35% 0 0 0',position: 'relative',width:'60%',height:'auto'}}>
+        <div className="vimeoVideo" 
+        style={{
 
+            }}
+        >
         <iframe 
         style={{
             position:'absolute',
             top:0,
             left:0,
             width:'100%',
-            height:'100%'
+            height:'100%',
         }}
         src="https://player.vimeo.com/video/729598207?h=dc9c020d1b" 
         frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen>
         </iframe>
         </div>
-        <motion.p variants={titleAnim}>
-        <a href="https://vimeo.com/729598207">Anhelika Video</a> from 
-        <a href="https://vimeo.com/user115069247"> Pajok </a>
-         on <a href="https://vimeo.com">Vimeo</a>.
-        </motion.p> 
         </PageLayout>
         </PageContainer>
     )

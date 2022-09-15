@@ -3,8 +3,11 @@ import styled from 'styled-components'
 //logo
 import pajokLogo from '../images/pajok_logo.png'
 // styles
-import {Logo} from '../style/styles'
+import {Logo, Icon} from '../style/styles'
 import { Link } from "react-router-dom";
+// icons
+import telIcon from '../images/icons/telephone.png'
+import email from '../images/icons/email.png'
 
 const Footer = () => {
 
@@ -18,8 +21,15 @@ const Footer = () => {
                 </div>
                 <div className='footer-info'>
                     <h2>Kontakt</h2>
-                    <h5>+48 510 894 764</h5>
-                    <h5>lucaskrzyzak@gmail.com</h5>
+                    <div className="flex">
+                        <IconStyle
+                         src={telIcon}/>
+                        <h5>+48 510 894 764</h5>
+                    </div>
+                    <div className="flex">
+                        <IconStyle src={email}/>
+                        <h5><a href="mailto:lucaskrzyzak@gmail.com">lucaskrzyzak@gmail.com</a></h5>
+                    </div>
                 </div>
                 <div className='footer-map'>
                     <h2>Mapa strony</h2>
@@ -53,6 +63,11 @@ const Footer = () => {
     )
 }
 
+const IconStyle = styled(Icon)`
+    max-width: 18px;
+    filter: invert(98%) sepia(28%) saturate(3%) hue-rotate(95deg) brightness(120%) contrast(100%);
+`
+
 const FooterStyle = styled.section`
     width: 100%;
     /* height: 25vh; */
@@ -82,16 +97,22 @@ const FooterStyle = styled.section`
         .footer-map {
             .footer-map-items {
                 width: 40%;
-                h5 {
+                h5, a {
                     display: inline-block;
                     padding: 0 1rem 0 0;
+                    margin-bottom: .5rem;
                 }
             }
         }
         .footer-info {
-
+            text-align: left;
+            .flex {
+                justify-content: flex-start;
+                column-gap: 1rem;
+                margin-bottom: .5rem;
+            }
         }
-        h5, h2 {
+        h5, h2, a {
             color: white;
             font-weight: 300;
         }
@@ -99,9 +120,9 @@ const FooterStyle = styled.section`
             font-weight: 600;
             margin-bottom: 1rem;
         }
-        h5 {
+        h5, a {
             font-size: 1rem;
-            margin-bottom: .5rem;
+
         }
         @media screen and (max-width: 768px){
             .footer-logo, .footer-info {
