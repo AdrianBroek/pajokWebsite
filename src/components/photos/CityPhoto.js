@@ -30,7 +30,7 @@ const CityPhoto = () => {
     const { photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
     const [singleObject, setSingleObject] = useState(photoData.city)
     // state
-    const [grid, setGrid] = useState('30% 30% 30%')
+    const [grid, setGrid] = useState()
 
     // location
     const {pathname} = useLocation()

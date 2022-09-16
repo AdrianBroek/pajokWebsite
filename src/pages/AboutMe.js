@@ -64,14 +64,23 @@ const OmniePage = () => {
                 </AvContainer>
                 <div>
                     <div></div>
-                    <h1> O mnie </h1>
+                    <h1>O mnie</h1>
                     <div></div>
                 </div>
                 <DescriptionAM>
-                    <InfoCont>
+                    <p>
+                    Cześć, nazywam się Łukasz. Odkąd pamiętam, 
+                    zawsze fotografia i film przeplatały się w moim życiu. 
+                    Jestem fanem niebanalnych kadrów. Lubię również 
+                    wykonywać portrety ludziom oraz 
+                    dokumentować ważne wydarzenia z ich życia. 
+                    Stale podnoszę sobie poprzeczkę i szlifować 
+                    swoje umiejętności
+                    </p>
+                    {/* <InfoCont>
                         <IconAM src={id} />
                         <h3>
-                            Łukasz Krzyżak
+                            Cześć nazywam się Łukasz
                         </h3>
                        
                     </InfoCont>
@@ -87,7 +96,7 @@ const OmniePage = () => {
                     <InfoCont>
                         <IconAM src={sociale} />
                         <h3>
-                        Wejdź na moje sociale i obczaj moją pracę!                        
+                            Wejdź na moje sociale i obczaj moją pracę!                        
                         </h3>
                     </InfoCont>
                     <Underline />
@@ -95,17 +104,17 @@ const OmniePage = () => {
                     <InfoCont>
                         <IconAM src={share} />
                         <h3>
-                        Jeśli jesteś zadowolony ze współpracy ze mną, poleć mnie znajomemu!
+                            Jeśli jesteś zadowolony ze współpracy ze mną, poleć mnie znajomemu!
                         </h3>
-                    </InfoCont>
+                    </InfoCont> */}
                 </DescriptionAM>
 
                 <WriteToMe>
                 <h2>Napisz do mnie!</h2>
                     <LinkBtn 
-                    onClick={clickForLink}
-                    whileHover="hover"
-                    variants={buttonAnim}
+                        onClick={clickForLink}
+                        whileHover="hover"
+                        variants={buttonAnim}
                     >
                         <ImageContainer>
                         <h3>lucaskrzyzak@gmail.com</h3>
@@ -120,7 +129,7 @@ const OmniePage = () => {
                         
                         <h5>Skopiowano</h5>
                         <Icon
-                        src={like} 
+                            src={like} 
                     />
                     </Copied> 
                 </WriteToMe>
@@ -170,9 +179,9 @@ const DescriptionAM = styled(Description)`
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
-    padding: 5rem 2rem;
+    padding: 2rem 2rem;
     @media screen and (max-width: 768px){
-        padding: 5rem .5rem;
+        padding: 1rem .5rem;
         max-width: 90%;
     }
 `
