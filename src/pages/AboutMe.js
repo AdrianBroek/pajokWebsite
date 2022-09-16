@@ -69,9 +69,16 @@ const OmniePage = () => {
                 </div>
                 <DescriptionAM>
                     <p>
-                    Cześć, nazywam się Łukasz. Odkąd pamiętam, 
-                    zawsze fotografia i film przeplatały się w moim życiu. 
-                    Jestem fanem niebanalnych kadrów. Lubię również 
+                    Cześć, nazywam się Łukasz.
+                    </p> 
+
+                    <p>
+                    Odkąd pamiętam, fotografia i film zawsze przeplatały się w moim życiu.
+                    Jestem fanem niebanalnych kadrów. 
+                    </p>
+                    
+                    <p> 
+                    Lubię również 
                     wykonywać portrety ludziom oraz 
                     dokumentować ważne wydarzenia z ich życia. 
                     Stale podnoszę sobie poprzeczkę i szlifować 
@@ -178,7 +185,7 @@ const InfoCont = styled(motion.div)`
 const DescriptionAM = styled(Description)`
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    row-gap: 1rem;
     padding: 2rem 2rem;
     @media screen and (max-width: 768px){
         padding: 1rem .5rem;
