@@ -56,6 +56,7 @@ const MainPage = () => {
                         }}
                         whileHover="hover">
                         <ImageContainer>
+                            <h6>Zdjęcia</h6>
                             <Icon src={photo_icon}/>
                         </ImageContainer>
                     </Linkbutton>
@@ -68,6 +69,7 @@ const MainPage = () => {
                         }}
                         whileHover="hover">
                         <ImageContainer>
+                            <h6>Wideo</h6>
                             <Icon src={video_icon}/>
                         </ImageContainer>
                     </Linkbutton>
@@ -80,10 +82,10 @@ const MainPage = () => {
 }
 
 const PageContainerMain = styled(motion.PageContainer)`
-        .btnContainer {
-            display: flex;
-            column-gap: 1rem;
-        }
+    .btnContainer {
+        display: flex;
+        column-gap: 1rem;
+    }
     &:before {
         content: '';
         top: 0;
@@ -103,6 +105,12 @@ const PageContainerMain = styled(motion.PageContainer)`
         opacity: .35;
         position: absolute;
         z-index: -1;
+    }
+    @media screen and (max-width: 501px){
+        .btnContainer {
+            flex-direction: column;
+            row-gap: 1.5rem;
+        }
     }
 `
 

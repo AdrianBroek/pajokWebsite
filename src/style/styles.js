@@ -82,7 +82,7 @@ export const ImageContainer = styled.div`
     width: 100%;
     align-items: center;
     justify-content: center;
-    column-gap: 2.5rem;
+    column-gap: 1rem;
     h3 {
         color: #fff;
     }
