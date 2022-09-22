@@ -132,7 +132,8 @@ const PhotoPage = () => {
 
 const PageContainerPhotos = styled(PageContainer)`
     width: 80%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 const PageLayoutPhotos = styled(PageLayout)`

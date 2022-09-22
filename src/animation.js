@@ -37,8 +37,8 @@ export const HideParent2 = {
         y: 0,
         transition: {
             duration: .5,
-            when: "beforeChildren",
-            staggerChildren: .12
+            // when: "beforeChildren",
+            staggerChildren: .13
         },
     },
     exit: {

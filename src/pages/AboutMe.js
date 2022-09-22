@@ -81,8 +81,8 @@ const OmniePage = () => {
                     Lubię również 
                     wykonywać portrety ludziom oraz 
                     dokumentować ważne wydarzenia z ich życia. 
-                    Stale podnoszę sobie poprzeczkę i szlifować 
-                    swoje umiejętności
+                    Stale podnoszę sobie poprzeczkę i szlifowuję 
+                    swoje umiejętności.
                     </p>
                     {/* <InfoCont>
                         <IconAM src={id} />

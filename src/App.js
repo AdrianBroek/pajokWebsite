@@ -10,6 +10,7 @@ import OmniePage from './pages/AboutMe'
 import PhotoOpen from './components/PhotoOpen'
 import NoPage from './pages/NoPage'
 import Prices from './pages/Prices'
+import MoveUp from './components/MoveUp'
 // photo pages
 import CityPhoto from './components/photos/CityPhoto'
 import FashionPhoto from './components/photos/FashionPhoto'
@@ -37,7 +38,6 @@ const queryClient = new QueryClient()
 
 function App() {
   const location = useLocation()
-
   
   // menu state 
   const [open, setOpen] = useState(false)
@@ -53,6 +53,7 @@ function App() {
       <Nav open={open} setOpen={setOpen}/>
       <Menu open={open}/>
       <Hamburger open={open} setOpen={setOpen}/>
+      <MoveUp />
       <AnimatePresence 
         exitBeforeEnter
         onExitComplete={()=> {
@@ -65,7 +66,6 @@ function App() {
         <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        
         <Route path="/photo/Miasto" element={<CityPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>

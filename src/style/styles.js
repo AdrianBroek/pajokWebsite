@@ -7,7 +7,7 @@ export const PageContainer = styled.article`
     width: 100%;
     position: relative;
     margin-top: 5rem;
-    
+    margin-bottom: 5rem;
 `
 
 export const PageLayout = styled(motion.section)`
