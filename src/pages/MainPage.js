@@ -2,7 +2,7 @@ import React from 'react'
 // styled components
 import styled from 'styled-components'
 // images
-import background from '../images/background2.jpg'
+import background from '../images/background2.webp'
 import pajoklogo from '../images/pajok_logo.png'
 import pajokLogoWhite from '../images/pajok_logo_w.png'
 import photo_icon from '../images/camera.png'
@@ -116,10 +116,11 @@ const Container = styled(motion.article)`
 
 const Linkbutton = styled(LinkBtn)`
     background: #1A1919;
-    position: relative;
     img {
         max-width: 40px;
-        filter: invert(98%) sepia(28%) saturate(3%) hue-rotate(95deg) brightness(120%) contrast(100%);
+    }
+    h3 {
+        color: #fff;
     }
 `
 

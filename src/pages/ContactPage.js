@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
-import background from '../images/contact/background.jpg'
+import background from '../images/contact/background.webp'
 //icons
 import PaperPlane from '../images/icons/paper-plane.png'
 // styles
@@ -39,7 +39,7 @@ const ContactPage = () => {
         }, (error) => {
             console.log(error.text);
         });
-      e.target.reset();
+        e.target.reset();
     };
 
     useEffect(() => {
@@ -64,7 +64,6 @@ const ContactPage = () => {
         exit='exit'
         >
             <ItemContainer>
-            {/* <Logo src={pajokLogoWhite} /> */}
 
             <ContactCont>
                 <div className='pCont'>
@@ -326,7 +325,6 @@ const Form = styled.form`
         .agreedSvg {
             max-width: 20px;
             min-width: 20px;
-            
         }
     }
 `

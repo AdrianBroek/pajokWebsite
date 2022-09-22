@@ -30,6 +30,11 @@ export const LinkBtn = styled(motion.div)`
     min-width: 160px;
     border-radius: .5rem;
     cursor: pointer;
+    color: #fff;
+    background: #1A1919;
+    img {
+        filter: invert(98%) sepia(28%) saturate(3%) hue-rotate(95deg) brightness(120%) contrast(100%);
+    }
 `
 
 export const Description = styled.div`
@@ -78,5 +83,8 @@ export const ImageContainer = styled.div`
     align-items: center;
     justify-content: center;
     column-gap: 2.5rem;
+    h3 {
+        color: #fff;
+    }
 `
 

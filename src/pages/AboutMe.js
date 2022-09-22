@@ -122,10 +122,13 @@ const OmniePage = () => {
                         onClick={clickForLink}
                         whileHover="hover"
                         variants={buttonAnim}
+                        whileTap={{
+                            scale: 0.95,
+                        }}
                     >
                         <ImageContainer>
-                        <h3>lucaskrzyzak@gmail.com</h3>
-                        <Icon src={copySvg} />
+                            <h3>lucaskrzyzak@gmail.com</h3>
+                            <Icon src={copySvg} />
                         </ImageContainer>
                     </LinkBtn>
 
