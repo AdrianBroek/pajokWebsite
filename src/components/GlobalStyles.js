@@ -29,6 +29,15 @@ const GlobalStyles = createGlobalStyle`
             width: 90%;
         }
     }
+    .invisible {
+        background: transparent;
+    }
+    .mediumDark {
+        background: rgba(0,0,0,0.35);
+    }
+    .dark {
+        background: rgba(0,0,0,0.95);
+    }
     h1 {
         font-family: 'Assistant', sans-serif;
         text-transform: uppercase;

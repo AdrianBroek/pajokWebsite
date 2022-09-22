@@ -18,6 +18,9 @@ export const PageLayout = styled(motion.section)`
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
+    .overlay.open{
+        background: rgba(0,0,0,0.95) !important;
+    }
 `
 
 export const LinkBtn = styled(motion.div)`

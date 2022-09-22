@@ -34,6 +34,8 @@ import Footer from './components/Footer'
 // context
 import {UserProvider} from './components/fetchData/data'
 
+import Overlay from './components/Overlay'
+
 const queryClient = new QueryClient()
 
 function App() {
@@ -50,10 +52,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
     <div className="App">
       <GlobalStyles />
-      <Nav open={open} setOpen={setOpen}/>
-      <Menu open={open}/>
-      <Hamburger open={open} setOpen={setOpen}/>
       <MoveUp />
+      <Nav open={open} setOpen={setOpen}/>
+      <Menu open={open} setOpen={setOpen}/>
+      <Hamburger open={open} setOpen={setOpen}/>
+      <Overlay open={open} setOpen={setOpen}/>
       <AnimatePresence 
         exitBeforeEnter
         onExitComplete={()=> {

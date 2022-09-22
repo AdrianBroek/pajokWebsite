@@ -134,10 +134,14 @@ const PageContainerPhotos = styled(PageContainer)`
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    
 `
 
 const PageLayoutPhotos = styled(PageLayout)`
     margin: 2rem 0;
+    .overlay.open {
+        background: rgba(0,0,0,0.95);
+    }
 `
 
 const LinkCont = styled.div`

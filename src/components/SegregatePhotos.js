@@ -67,7 +67,7 @@ const SegregateStyle = styled.div`
     column-gap: 2rem;
     font-family: 'Jost', sans-serif;
     .overlay.open {
-        background-color: transparent;
+        background-color: transparent !important;
     }
     h4, p, .block  {
         font-weight: 300;

@@ -34,7 +34,7 @@ const MoveUpStyle = styled(motion.div)`
     border: 1px solid red;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
+    z-index: 2;
     box-shadow: 0 10px 10px -5px;
 `
 

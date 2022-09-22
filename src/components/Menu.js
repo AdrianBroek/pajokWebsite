@@ -2,16 +2,18 @@ import React from "react";
 import NavItem from './NavItems'
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import {MenuAnim} from '../animation'
+import { MenuAnim } from '../animation'
+import Overlay from "./Overlay";
 
-const Menu = ({open}) => {
+const Menu = ({open, setOpen}) => {
+    console.log(open)
     return (
         <MenuStyle
-        variants={MenuAnim}
-        animate={open ? "show" : "hidden"}
-        initial='hidden'
+            variants={MenuAnim}
+            animate={open ? "show" : "hidden"}
+            initial='hidden'
         >
-            <NavItem open={open}/>
+            <NavItem open={open} />
         </MenuStyle>
     )
 }
