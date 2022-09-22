@@ -1,13 +1,9 @@
 import React, {useRef, useState, useEffect} from "react";
-import pajokLogoWhite from '../images/pajok_logo_w.png'
 import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
-import abstract from '../images/contact/abstract2.jpg'
-import background from '../images/background.jpg'
+import background from '../images/contact/background.jpg'
 //icons
-import sendPNG from '../images/gifs/png/message.png'
-import sendGIF from '../images/gifs/message.gif'
 import PaperPlane from '../images/icons/paper-plane.png'
 // styles
 import {
@@ -234,12 +230,14 @@ const SendBtn = styled(motion.div)`
     border: 1px solid #000;
     padding: .5rem;
     background: #fff;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: .85rem;
     margin: auto;
     width: 50%;
+    background-color: #1A1919;
     input {
         cursor: pointer;
         position: absolute;
@@ -257,7 +255,10 @@ const SendBtn = styled(motion.div)`
     }
     h4 {
         font-size: 1rem;
-        font-weight: 300;
+        font-weight: 500;
+    }
+    img {
+        filter: invert(93%) sepia(100%) saturate(27%) hue-rotate(103deg) brightness(108%) contrast(106%);
     }
 `
 

@@ -2,14 +2,14 @@ import React from 'react'
 // styled components
 import styled from 'styled-components'
 // images
-import background from '../images/background.jpg'
+import background from '../images/background2.jpg'
 import pajoklogo from '../images/pajok_logo.png'
 import pajokLogoWhite from '../images/pajok_logo_w.png'
 import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
 import video_gif from '../images/gifs/video.gif'
 // animations
-import { PageAnimation,buttonAnim } from '../animation'
+import { PageAnimation,buttonAnim} from '../animation'
 import { motion } from 'framer-motion'
 
 // defined styles
@@ -29,7 +29,6 @@ import {
 import {Link} from 'react-router-dom'
 // images
 const MainPage = () => {
-
     return(
         <Container
         variants={PageAnimation}
@@ -44,32 +43,36 @@ const MainPage = () => {
             </ImageContainer>
             <Line />
             <Description>
-            <h3>Lorem ipsum dolor sit amet consectetur 
-                adipisicing elit. Minima, distinctio.Lorem ipsum dolor sit amet consectetur 
-                adipisicing elit. Minima, distinctio.
-            </h3>
+                <h3>
+                    Fotograf i filmowiec z Krakowa
+                </h3>
             </Description>
-            <Link to="/photo">
-                <Linkbutton
-                variants={buttonAnim}
-                whileHover= "hover">
-                <ImageContainer>
-                    <h3>Foto</h3>
-                    <Icon src={photo_icon}/>
-                </ImageContainer>
-                </Linkbutton>
-            </Link>
-            <Link to="/video">
-                <Linkbutton 
-                variants={buttonAnim}
-                whileHover= "hover">
-                <ImageContainer>
-                    <h3>Wideo</h3>
-                    <Icon src={video_icon}/>
-                </ImageContainer>
-                </Linkbutton>
-            </Link>
-
+            <div className='btnContainer'>
+                <Link to="/photo">
+                    <Linkbutton
+                        variants={buttonAnim}
+                        whileTap={{
+                            scale: 0.95,
+                        }}
+                        whileHover="hover">
+                        <ImageContainer>
+                            <Icon src={photo_icon}/>
+                        </ImageContainer>
+                    </Linkbutton>
+                </Link>
+                <Link to="/video">
+                    <Linkbutton
+                        variants={buttonAnim}
+                        whileTap={{
+                            scale: 0.95,
+                        }}
+                        whileHover="hover">
+                        <ImageContainer>
+                            <Icon src={video_icon}/>
+                        </ImageContainer>
+                    </Linkbutton>
+                </Link>
+            </div>
             </PageLayout>
         </PageContainerMain>
         </Container>
@@ -77,6 +80,10 @@ const MainPage = () => {
 }
 
 const PageContainerMain = styled(motion.PageContainer)`
+        .btnContainer {
+            display: flex;
+            column-gap: 1rem;
+        }
     &:before {
         content: '';
         top: 0;
@@ -108,7 +115,12 @@ const Container = styled(motion.article)`
 `
 
 const Linkbutton = styled(LinkBtn)`
-    background: #ffffff7a;
+    background: #1A1919;
+    position: relative;
+    img {
+        max-width: 40px;
+        filter: invert(98%) sepia(28%) saturate(3%) hue-rotate(95deg) brightness(120%) contrast(100%);
+    }
 `
 
 const LogoMainPage = styled(Logo)`

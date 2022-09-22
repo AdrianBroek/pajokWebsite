@@ -24,7 +24,6 @@ export const PageLayout = styled(motion.section)`
 `
 
 export const LinkBtn = styled(motion.div)`
-    border: 1.5px solid #000;
     width: fit-content;
     text-align: center;
     padding: 1rem;
