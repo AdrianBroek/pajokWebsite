@@ -158,8 +158,10 @@ const LinkCont = styled.div`
 `
 const Title = styled.div`
     margin-top: 5rem;
-    h1{
-        @media screen and (max-width: 768px){
+    
+    @media screen and (max-width: 768px){
+        margin-top: 1rem;
+        h1{
             padding: 3vw;
             margin-left: 3vw;
         }
