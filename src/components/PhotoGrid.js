@@ -42,7 +42,7 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
 
 const Picture = styled(motion.div)`
     height: 100%;
-    min-height: 250px;
+    min-height: 550px;
     max-height: 700px;
     max-width: 100%;
     display: flex;
@@ -71,6 +71,9 @@ const Picture = styled(motion.div)`
             width: 90vw;
             box-shadow: none;
         }
+    }
+    @media screen and (max-width: 768px){
+        min-height: 350px;
     }
 `
 

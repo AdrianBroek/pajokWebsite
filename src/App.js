@@ -53,10 +53,11 @@ function App() {
     <div className="App">
       <GlobalStyles />
       <MoveUp />
+      <Overlay open={open} setOpen={setOpen}/>
       <Nav open={open} setOpen={setOpen}/>
       <Menu open={open} setOpen={setOpen}/>
       <Hamburger open={open} setOpen={setOpen}/>
-      <Overlay open={open} setOpen={setOpen}/>
+      
       <AnimatePresence 
         exitBeforeEnter
         onExitComplete={()=> {

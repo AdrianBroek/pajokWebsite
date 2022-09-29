@@ -61,8 +61,6 @@ export function UserProvider({children}){
             fashion: objectData[2] })
     }, [objectData, pathname])
 
-    console.log(photoData)
-
     return (
         <UserContext.Provider 
         value={{

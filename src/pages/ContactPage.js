@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
-import background from '../images/contact/background.webp'
+import background from '../images/contact/background-min.webp'
 //icons
 import PaperPlane from '../images/icons/paper-plane.png'
 // styles

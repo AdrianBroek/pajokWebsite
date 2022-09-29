@@ -2,7 +2,7 @@ import React from 'react'
 // styled components
 import styled from 'styled-components'
 // images
-import background from '../images/background2.webp'
+import background from '../images/background2-min.webp'
 import pajoklogo from '../images/pajok_logo.png'
 import pajokLogoWhite from '../images/pajok_logo_w.png'
 import photo_icon from '../images/camera.png'
