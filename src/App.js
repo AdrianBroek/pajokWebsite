@@ -69,7 +69,7 @@ function App() {
         <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/Miasto" element={<CityPhoto />}>
+        <Route path="/photo/biznesowe" element={<CityPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/photo/Portrety" element={<PortraitPhoto />}>

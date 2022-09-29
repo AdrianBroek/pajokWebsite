@@ -45,6 +45,7 @@ const CityPhoto = () => {
         // copiedObject ? console.log(copiedObject) : console.log('nie2')
     }, [singleObject])
 
+
     return (
         <motion.div >
         {singleObject && (
