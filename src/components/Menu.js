@@ -6,7 +6,6 @@ import { MenuAnim } from '../animation'
 import Overlay from "./Overlay";
 
 const Menu = ({open, setOpen}) => {
-    console.log(open)
     return (
         <MenuStyle
             variants={MenuAnim}

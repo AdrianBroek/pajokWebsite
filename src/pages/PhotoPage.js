@@ -12,7 +12,7 @@ import CirclePhoto from '../components/CirclePhoto'
 // imgForSliders
 import fashionPhoto from '../images/photoPageImgs/webp/fashion3.webp'
 import portraitPhoto from '../images/photoPageImgs/webp/portrait3.webp'
-import cityPhoto from '../images/photoPageImgs/webp/city4.webp'
+import cityPhoto from '../images/photoPageImgs/webp/business.webp'
 import weddingPhoto from '../images/photoPageImgs/webp/wedding2.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
@@ -95,14 +95,14 @@ const PhotoPage = () => {
             display: 'flex',
             alignItems: 'center'
          }} 
-        to="/photo/miasto">
+        to="/photo/biznesowe">
             <CatTitle 
             variants={titleAnim}
-            >Miasto</CatTitle>
+            >Biznesowe</CatTitle>
         </Link>
         </LinkContainer>
 
-        <LinkContainer
+        {/* <LinkContainer
         variants={scrollReveal}
         animate={controls3}
         initial="hidden"
@@ -121,7 +121,8 @@ const PhotoPage = () => {
             variants={titleAnim}
             >Ślubne</CatTitle>
         </Link>
-        </LinkContainer>
+        </LinkContainer> */}
+
         </LinkCont>
 
         </PageLayoutPhotos>
