@@ -12,10 +12,11 @@ import NoPage from './pages/NoPage'
 import Prices from './pages/Prices'
 import MoveUp from './components/MoveUp'
 // photo pages
-import CityPhoto from './components/photos/CityPhoto'
+import BusinessPhoto from './components/photos/BusinessPhoto'
 import FashionPhoto from './components/photos/FashionPhoto'
 import WeddingPhoto from './components/photos/WeddingPhoto'
 import PortraitPhoto from './components/photos/PortraitPhoto'
+import StudioPhoto from './components/photos/StudioPhoto'
 // global styles
 import GlobalStyles from './components/GlobalStyles';
 // router
@@ -70,7 +71,7 @@ function App() {
         <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/biznesowe" element={<CityPhoto />}>
+        <Route path="/photo/biznesowe" element={<BusinessPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/photo/Portrety" element={<PortraitPhoto />}>
@@ -80,6 +81,9 @@ function App() {
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/photo/Slubne/*" element={<WeddingPhoto />}>
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        <Route path="/photo/Studio/*" element={<StudioPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/video" element={<VideoPage />} />

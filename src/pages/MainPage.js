@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // images
 import background from '../images/background2-min.webp'
 import pajoklogo from '../images/pajok_logo.png'
-import pajokLogoWhite from '../images/pajok_logo_w.png'
+import pajokLogoWhite from '../images/Logo_pw.png'
 import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
 import video_gif from '../images/gifs/video.gif'

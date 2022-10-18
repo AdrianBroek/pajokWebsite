@@ -21,7 +21,8 @@ export function UserProvider({children}){
         city: '',
         portrait: '',
         fashion: '',
-        wedding: ''
+        wedding: '',
+        studio: ''
     })
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
@@ -58,7 +59,8 @@ export function UserProvider({children}){
             city: objectData[0],
             portrait: objectData[1], 
             wedding: objectData[3],
-            fashion: objectData[2] })
+            fashion: objectData[2],
+            studio: objectData[4] })
     }, [objectData, pathname])
 
     return (

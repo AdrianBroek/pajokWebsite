@@ -14,6 +14,7 @@ import fashionPhoto from '../images/photoPageImgs/webp/fashion3.webp'
 import portraitPhoto from '../images/photoPageImgs/webp/portrait.webp'
 import cityPhoto from '../images/photoPageImgs/webp/business.webp'
 import weddingPhoto from '../images/photoPageImgs/webp/wedding2.webp'
+import studioPhoto from '../images/photoPageImgs/webp/studio.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
 
@@ -99,6 +100,29 @@ const PhotoPage = () => {
             <CatTitle 
             variants={titleAnim}
             >Biznesowe</CatTitle>
+        </Link>
+        </LinkContainer>
+
+        <LinkContainer
+        variants={scrollReveal}
+        animate={controls3}
+        initial="hidden"
+        ref={element3}>
+        <ImgSlider 
+        src={studioPhoto}
+        />
+        <Link 
+        style={{
+            zIndex: 1,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center'
+         }} 
+        to="/photo/studio">
+            <CatTitle 
+            variants={titleAnim}
+            >Studio</CatTitle>
         </Link>
         </LinkContainer>
 

@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 // styles
 import {Logo} from '../style/styles'
 //logo
-import pajokLogoWhite from '../images/pajok_logo_w.png'
+import pajokLogoWhite from '../images/Logo_pw.png'
 
 
 const Nav = ({open, setOpen}) => {
