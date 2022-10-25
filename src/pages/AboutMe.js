@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
 // styles
 import styled from 'styled-components'
+import axios from "axios";
+import { useQuery } from "react-query";
+// graph
+import { gql } from "graphql-request";
 import {
     PageContainer,
     PageLayout,
@@ -16,18 +20,37 @@ from '../style/styles'
 import { motion } from 'framer-motion'
 import { glow, buttonAnim, PageAnimation } from '../animation'
 
-
 // images
-import avatar from '../images/aboutMe/avatar2.jpg'
+// import avatar from '../images/aboutMe/avatar2.jpg'
 import copySvg from '../images/aboutMe/file.png'
 import like from '../images/aboutMe/thumbs-up.svg'
-import way from '../images/aboutMe/location.png'
-import id from '../images/aboutMe/id-card.png'
-import sociale from '../images/aboutMe/share.png'
-import share from '../images/aboutMe/wifi.png'
-
 
 const OmniePage = () => {
+    const [avatar, setAvatar] = useState()
+    const api_key = process.env.REACT_APP_GRAPH_KEY
+    const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
+    const QUERY = gql`
+    {
+        aboutMePhotos {
+            id
+            photo {
+              url
+            }
+        }
+    }
+    `
+     // graph api
+     const { data, isLoading, error } = useQuery("launches", () => {
+        return axios({
+          url: endpoint,
+          method: "POST",
+          data: {
+            query: QUERY
+          }
+        }).then(res => setAvatar(res.data.data.aboutMePhotos[0].photo.url));
+    });
+
+
     const [copy, setCopy] = useState(false)
     const clickForLink = () => {
         if (!copy) {
@@ -84,36 +107,6 @@ const OmniePage = () => {
                     Stale podnoszę sobie poprzeczkę i szlifowuję 
                     swoje umiejętności.
                     </p>
-                    {/* <InfoCont>
-                        <IconAM src={id} />
-                        <h3>
-                            Cześć nazywam się Łukasz
-                        </h3>
-                       
-                    </InfoCont>
-                    <Underline />
-                    <InfoCont>
-                        <IconAM src={way} />
-                        <h3>
-                            Robię zdjęcia i umawiam się w <b>Krakowie</b> i okolicach.
-                        </h3>
-                    </InfoCont>
-                    <Underline />
-
-                    <InfoCont>
-                        <IconAM src={sociale} />
-                        <h3>
-                            Wejdź na moje sociale i obczaj moją pracę!                        
-                        </h3>
-                    </InfoCont>
-                    <Underline />
-
-                    <InfoCont>
-                        <IconAM src={share} />
-                        <h3>
-                            Jeśli jesteś zadowolony ze współpracy ze mną, poleć mnie znajomemu!
-                        </h3>
-                    </InfoCont> */}
                 </DescriptionAM>
 
                 <WriteToMe>
@@ -236,7 +229,7 @@ const AvContainer = styled(motion.div)`
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #44D62C;
+    border: 2px solid #44D62C;
     @media screen and (max-width: 400px){
         max-width: 90%;
         height: auto;

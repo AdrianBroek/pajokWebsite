@@ -62,15 +62,17 @@ const PhotoOpen = () => {
                 </div>
                 <div className="photoDescription">
                     <div className="container">
-                        <div className="modelName">
-                            <p>Model: </p>
+                        <div className="modelName" style={{padding: openDetail.model.length > 0 ? '1rem' : ''}}>
+                            {openDetail.model.length > 0 && (
+                                <p>Model: </p>
+                            )}
                             <ul>
-                            {openDetail.model.map((model) => (
-                                <li><h3>{model}</h3></li>
-                            ))}
+                                {openDetail.model.map((model) => (
+                                    <li><h3>{model}</h3></li>
+                                ))}
                             </ul>
                         </div>
-                        <div className="line" />
+                        {/* <div className="line" /> */}
                         <p className="desc">{openDetail.photoDescription}</p>
                     </div>
                 </div>
@@ -103,7 +105,6 @@ const Picture = styled.section`
         max-width: 50%;
         .container {
             background: #000;
-            padding: 1rem;
             width: 100%;
             .modelName {
                 p {
