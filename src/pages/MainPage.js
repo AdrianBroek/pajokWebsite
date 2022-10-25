@@ -43,9 +43,9 @@ const MainPage = () => {
             </ImageContainer>
             <Line />
             <Description>
-                <h3>
+                {/* <h3>
                     Fotograf i filmowiec z Krakowa
-                </h3>
+                </h3> */}
             </Description>
             <div className='btnContainer'>
                 <Link to="/photo">
