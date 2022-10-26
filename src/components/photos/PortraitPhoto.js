@@ -26,7 +26,7 @@ import {
 // import user context
 import UserContext from '../fetchData/data'
 
-const CityPhoto = () => {
+const PortraitPhoto = () => {
     const { photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
     const [singleObject, setSingleObject] = useState(photoData.portrait)
     // state
@@ -41,8 +41,9 @@ const CityPhoto = () => {
     }, [pathname, photoData])
 
     useEffect(() => {
-        singleObject ? setCopiedObject(singleObject.photoModule) : console.log('nie')
-        // copiedObject ? console.log(copiedObject) : console.log('nie2')
+        if(singleObject){
+            setCopiedObject(singleObject.photoModule)
+        }
     }, [singleObject])
 
     return (
@@ -50,10 +51,6 @@ const CityPhoto = () => {
         {singleObject && (
                 <PageContainer>
                 <PageLayout 
-                    // variants={HideParent}
-                    // initial="hidden"
-                    // animate="show"
-                    // exit="exit"
                 >
                     <h1>{singleObject.title}</h1>
                     <Line />
@@ -70,6 +67,7 @@ const CityPhoto = () => {
                                 setOpen={setOpen}
                                 item={item}
                                 index={index}
+                                key={item.id}
                             />
                         ))}
                     </ImgCont>
@@ -108,4 +106,4 @@ const Desc = styled(Description)`
     max-width: 90%;
 `
 
-export default CityPhoto
+export default PortraitPhoto

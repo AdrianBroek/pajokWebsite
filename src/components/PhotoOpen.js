@@ -67,8 +67,8 @@ const PhotoOpen = () => {
                                 <p>Model: </p>
                             )}
                             <ul>
-                                {openDetail.model.map((model) => (
-                                    <li><h3>{model}</h3></li>
+                                {openDetail.model.map((model, index) => (
+                                    <li key={index}><h3>{model}</h3></li>
                                 ))}
                             </ul>
                         </div>
@@ -114,6 +114,7 @@ const Picture = styled.section`
                 ul li {
                     list-style: none;
                     h3 {
+                        font-size: 1rem;
                         &:before {
                             content: '- '
                         } 

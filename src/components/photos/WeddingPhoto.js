@@ -41,8 +41,9 @@ const CityPhoto = () => {
     }, [pathname, photoData])
 
     useEffect(() => {
-        singleObject ? setCopiedObject(singleObject.photoModule) : console.log('nie')
-        // copiedObject ? console.log(copiedObject) : console.log('nie2')
+        if(singleObject){
+            setCopiedObject(singleObject.photoModule)
+        }
     }, [singleObject])
     
     return (

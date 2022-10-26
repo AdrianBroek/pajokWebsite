@@ -5,7 +5,6 @@ import {showCover} from '../animation'
 
 
 const PhotoCover = ({item}) => {
-    console.log(item.model.length)
     return (
         <>
 
@@ -13,7 +12,7 @@ const PhotoCover = ({item}) => {
             variants={showCover}        
             whileHover='show'
             initial='hidden'
-            class="photoCover">
+            className="photoCover">
             <div className='container'>
                 {item.model.length > 0 && (
                     <div style={{columnGap: '.25rem'}}>
@@ -25,8 +24,8 @@ const PhotoCover = ({item}) => {
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg">
                     <path 
-                    fill-rule="evenodd" 
-                    clip-rule="evenodd" 
+                    fillRule="evenodd" 
+                    clipRule="evenodd" 
                     d="M24.5 23.98C28.354 23.98 31.5 20.832 31.5 16.9133C31.5 
                     12.9946 28.354 9.84668 24.5 9.84668C20.646 9.84668 
                     17.5 12.9946 17.5 16.9133C17.5 20.832 20.646 23.98 24.5 
@@ -36,8 +35,8 @@ const PhotoCover = ({item}) => {
                     33.5 11.904 33.5 16.9133Z" 
                     fill="#fff"/>
                     <path 
-                    fill-rule="evenodd" 
-                    clip-rule="evenodd" 
+                    fillRule="evenodd" 
+                    clipRule="evenodd" 
                     d="M18.6254 29.7991C18.3971 29.3313 17.8814 29.0785 
                     17.3786 29.2021C11.9745 30.5301 6.5 33.238 6.5 
                     37.3116V39.845C6.5 40.9495 7.39543 41.845 8.5 
@@ -63,7 +62,7 @@ const PhotoCover = ({item}) => {
                 )}
 
                 {item.model.map((model)=>(
-                    <p>{model}</p>
+                    <p key={item.id}>{model}</p>
                 ))}
                
                 

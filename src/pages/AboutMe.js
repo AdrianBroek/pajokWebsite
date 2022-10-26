@@ -163,21 +163,6 @@ const PageContainerAboutMe = styled(PageContainer)`
     margin: 5rem 0;
 `
 
-
-const InfoCont = styled(motion.div)`
-    display: grid;
-    align-items: center;
-    justify-content: space-around;
-    grid-template-columns: 15% 85%;
-    text-align: left;
-    h3 {
-    }
-    @media screen and (max-width: 501px){
-        grid-template-columns: 15% 80%;
-        justify-content: space-between;
-    }
-`
-
 const DescriptionAM = styled(Description)`
     display: flex;
     flex-direction: column;
@@ -187,14 +172,6 @@ const DescriptionAM = styled(Description)`
         padding: 1rem .5rem;
         max-width: 90%;
     }
-`
-
-const IconAM = styled(Icon)`
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-    object-fit: contain;
-    max-width: 40px;
 `
 
 const Copied = styled(motion.div)`
@@ -219,8 +196,8 @@ const Copied = styled(motion.div)`
 `
 
 const Avatar = styled.img`
+    max-height: 100%;
     max-width: 100%;
-    height: 100%;
     object-fit: contain;
 `
 
@@ -233,14 +210,7 @@ const AvContainer = styled(motion.div)`
     @media screen and (max-width: 400px){
         max-width: 90%;
         height: auto;
+        max-height: 300px;
     }
-`
-
-const Underline = styled(Line)`
-    width: 100%;
-    margin: auto;
-    height: 1px;
-    border-radius: 20px;
-    background: #000;
 `
 export default OmniePage

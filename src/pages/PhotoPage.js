@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState, useRef, useContext} from 'react'
 // defined styles
 import {PageLayout,PageContainer, Hide, Line} from '../style/styles'
 // routes
@@ -18,140 +18,150 @@ import studioPhoto from '../images/photoPageImgs/webp/studio.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
 
+import UserContext from '../components/fetchData/data'
 
 const PhotoPage = () => {
+    const { photoData } = useContext(UserContext)
+    // console.log(photoData)
+
     const [element1, controls1] = useScroll()
     const [element2, controls2] = useScroll()
     const [element3, controls3] = useScroll()
 
     return(
-    <PageContainerPhotos>
+        <>
+        {photoData && (
+            <PageContainerPhotos>
     
-    <PageLayoutPhotos 
-        variants={HideParent}
-        animate='show'
-        initial='hidden'
-        exit='exit'
-    >
-        <Title>
-            <h1>Fotografia</h1>
-            <LinePhoto />
-        </Title>
+            <PageLayoutPhotos 
+                variants={HideParent}
+                animate='show'
+                initial='hidden'
+                exit='exit'
+            >
+                <Title>
+                    <h1>Fotografia</h1>
+                    <LinePhoto />
+                </Title>
+        
+                <LinkCont>
 
-        <LinkCont>
 
-        <LinkContainer>
-            <ImgSlider src={portraitPhoto} />
-            <Link
-             style={{
-                zIndex: 1,
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center'
-             }} 
-             to="/photo/portrety">
-                <CatTitle 
-                variants={titleAnim}
-                >
-                    Portrety
-                </CatTitle>
-            </Link>
-        </LinkContainer>
-
-        <LinkContainer
-        variants={scrollReveal}
-        animate={controls1}
-        initial="hidden"
-        ref={element1}>
-        <ImgSlider src={fashionPhoto}/>
-        <Link 
-        style={{
-            zIndex: 1,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center'
-         }} 
-         to="/photo/moda">
-            <CatTitle 
-            variants={titleAnim}
-            >Fashion</CatTitle>
-        </Link>
-        </LinkContainer>
-
-        <LinkContainer
-        variants={scrollReveal}
-        animate={controls2}
-        initial="hidden"
-        ref={element2}>
-        <ImgSlider 
-        src={cityPhoto}
-        />
-        <Link 
-        style={{
-            zIndex: 1,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center'
-         }} 
-        to="/photo/biznesowe">
-            <CatTitle 
-            variants={titleAnim}
-            >Biznesowe</CatTitle>
-        </Link>
-        </LinkContainer>
-
-        <LinkContainer
-        variants={scrollReveal}
-        animate={controls3}
-        initial="hidden"
-        ref={element3}>
-        <ImgSlider 
-        src={studioPhoto}
-        />
-        <Link 
-        style={{
-            zIndex: 1,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center'
-         }} 
-        to="/photo/studio">
-            <CatTitle 
-            variants={titleAnim}
-            >Studio</CatTitle>
-        </Link>
-        </LinkContainer>
-
-        {/* <LinkContainer
-        variants={scrollReveal}
-        animate={controls3}
-        initial="hidden"
-        ref={element3}>
-        <ImgSlider src={weddingPhoto}/>
-        <Link
-        style={{
-            zIndex: 1,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center'
-         }} 
-        to="/photo/slubne">
-            <CatTitle
-            variants={titleAnim}
-            >Ślubne</CatTitle>
-        </Link>
-        </LinkContainer> */}
-
-        </LinkCont>
-
-        </PageLayoutPhotos>
-        {/* <CirclePhoto /> */}
-        </PageContainerPhotos>
+        
+                <LinkContainer>
+                    <ImgSlider src={portraitPhoto} />
+                    <Link
+                     style={{
+                        zIndex: 1,
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center'
+                     }} 
+                     to="/photo/portrety">
+                        <CatTitle 
+                        variants={titleAnim}
+                        >
+                            Portrety
+                        </CatTitle>
+                    </Link>
+                </LinkContainer>
+        
+                <LinkContainer
+                variants={scrollReveal}
+                animate={controls1}
+                initial="hidden"
+                ref={element1}>
+                <ImgSlider src={fashionPhoto}/>
+                <Link 
+                style={{
+                    zIndex: 1,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                 }} 
+                 to="/photo/moda">
+                    <CatTitle 
+                    variants={titleAnim}
+                    >Fashion</CatTitle>
+                </Link>
+                </LinkContainer>
+        
+                <LinkContainer
+                variants={scrollReveal}
+                animate={controls2}
+                initial="hidden"
+                ref={element2}>
+                <ImgSlider 
+                src={cityPhoto}
+                />
+                <Link 
+                style={{
+                    zIndex: 1,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                 }} 
+                to="/photo/biznesowe">
+                    <CatTitle 
+                    variants={titleAnim}
+                    >Biznesowe</CatTitle>
+                </Link>
+                </LinkContainer>
+        
+                <LinkContainer
+                variants={scrollReveal}
+                animate={controls3}
+                initial="hidden"
+                ref={element3}>
+                <ImgSlider 
+                src={studioPhoto}
+                />
+                <Link 
+                style={{
+                    zIndex: 1,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                 }} 
+                to="/photo/studio">
+                    <CatTitle 
+                    variants={titleAnim}
+                    >Studio</CatTitle>
+                </Link>
+                </LinkContainer>
+        
+                {/* <LinkContainer
+                variants={scrollReveal}
+                animate={controls3}
+                initial="hidden"
+                ref={element3}>
+                <ImgSlider src={weddingPhoto}/>
+                <Link
+                style={{
+                    zIndex: 1,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                 }} 
+                to="/photo/slubne">
+                    <CatTitle
+                    variants={titleAnim}
+                    >Ślubne</CatTitle>
+                </Link>
+                </LinkContainer> */}
+        
+                </LinkCont>
+        
+                </PageLayoutPhotos>
+                
+                </PageContainerPhotos>
+        )}
+    </>
     )
 }
 

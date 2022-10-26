@@ -39,6 +39,7 @@ const Segregate = ({grid, setGrid}) => {
                 {loaded.map((item, index) => (
                         
                         <div 
+                        key={item.key}
                         className='block'
                         onClick={() => segregate(item.grid, index)}
                         >
@@ -73,7 +74,8 @@ const SegregateStyle = styled.div`
         font-weight: 300;
     }
     p {
-        font-size: 1.15rem;
+        font-weight: 500;
+        font-size: 1rem;
         padding: 0 .5rem;
     }
     .cont {

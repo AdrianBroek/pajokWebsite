@@ -45,8 +45,8 @@ const Price = styled(motion.div)`
     align-items: center;
     .ball {
         background-color: #000;
-        width: 10px;
-        height: 10px;
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
         margin-right: 1rem;
     }

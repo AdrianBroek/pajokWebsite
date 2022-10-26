@@ -20,9 +20,9 @@ const NavItem = ({open}) => {
     return (
     <Menu variants={HideMenuItems} initial='hidden' animate={open ? 'show' : 'hidden'}>
             {pages_nav.map((page) => (
-                <Hide>
+                <Hide key={page.key}>
                 <motion.div whileHover={{ x: 5 }} variants={titleAnim}>
-                <Link style={{width: 'fit-content',display: 'block'}} key={page.url} to={page.url}>
+                <Link style={{width: 'fit-content',display: 'block'}} to={page.url}>
                     <MenuItem> {page.title}</MenuItem>
                     {pathname == page.url ? <MenuLine initial={{width: '0'}} animate={{width: '100%'}} /> : ''}
                    

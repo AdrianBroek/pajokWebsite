@@ -19,7 +19,7 @@ const PhotoGrid = ({open, setOpen, item, index, photos}) => {
     function photoClickHandler(e, index) {
         setOpenDetail(item)
         navigate(`${pathname}/${item.id}`)
-        console.log(openDetail)
+        // console.log(openDetail)
     }
 
     open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
