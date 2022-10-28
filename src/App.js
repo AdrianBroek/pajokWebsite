@@ -13,10 +13,11 @@ import Prices from './pages/Prices'
 import MoveUp from './components/MoveUp'
 // photo pages
 import BusinessPhoto from './components/photos/BusinessPhoto'
-import FashionPhoto from './components/photos/FashionPhoto'
+import StreetPhoto from './components/photos/StreetPhoto'
 import WeddingPhoto from './components/photos/WeddingPhoto'
 import PortraitPhoto from './components/photos/PortraitPhoto'
 import StudioPhoto from './components/photos/StudioPhoto'
+import Photo from './components/photos/Photo'
 // global styles
 import GlobalStyles from './components/GlobalStyles';
 // router
@@ -71,13 +72,16 @@ function App() {
         <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/photo/biznesowe" element={<BusinessPhoto />}>
+        <Route path="/photo/:id/*" element={ <Photo />} >
+          <Route path=":id" element={ <PhotoOpen />} />
+        </Route>
+        {/* <Route path="/photo/biznesowe" element={<BusinessPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/photo/Portrety" element={<PortraitPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
-        <Route path="/photo/Moda" element={<FashionPhoto />}>
+        <Route path="/photo/Street" element={<StreetPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/photo/Slubne/*" element={<WeddingPhoto />}>
@@ -85,7 +89,7 @@ function App() {
         </Route>
         <Route path="/photo/Studio/*" element={<StudioPhoto />}>
           <Route path=":id" element={ <PhotoOpen />} />
-        </Route>
+        </Route> */}
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />

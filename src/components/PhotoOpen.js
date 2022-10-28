@@ -12,11 +12,16 @@ const PhotoOpen = () => {
     const {pathname} = useLocation()
     let result = /[^/]*$/.exec(pathname)[0];
     // console.log(result)
-    const { openDetail, setOpenDetail, setOpen, open, copiedObject, setCopiedObject } = useContext(UserContext)
+    const { singleObject, objectData, openDetail, setOpenDetail, setOpen, open, copiedObject, setCopiedObject } = useContext(UserContext)
+
+    console.log(singleObject)
 
     useEffect(()=>{
         setOpen(true)
         // open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
+        // console.log(openDetail)
+        // console.log(objectData)
+        // console.log(open)
     }, [openDetail])
 
     useEffect(() => {
@@ -29,7 +34,7 @@ const PhotoOpen = () => {
                 (item) => item.id === result)
             setOpenDetail(objectCopy[0])
         }
-        
+        // console.log(openDetail)
     }, [copiedObject])
 
 

@@ -17,6 +17,7 @@ export function UserProvider({children}){
     const [openDetail, setOpenDetail] = useState()
     const [objectData, setObjectData] = useState([])
     const [copiedObject, setCopiedObject] = useState()
+    const [singleObject, setSingleObject] = useState()
     const [photoData, setPhotoData] = useState({
         city: '',
         portrait: '',
@@ -24,6 +25,7 @@ export function UserProvider({children}){
         wedding: '',
         studio: ''
     })
+    // console.log(objectData)
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
     {
@@ -31,6 +33,10 @@ export function UserProvider({children}){
             title
             url
             description
+            backgroundPhoto {
+                id
+                url
+            }
             photoModule {
                 id
                 model
@@ -66,8 +72,11 @@ export function UserProvider({children}){
     return (
         <UserContext.Provider 
         value={{
+            objectData,
             photoData,
             openDetail,
+            singleObject,
+            setSingleObject,
             setOpenDetail,
             open,
             setOpen,

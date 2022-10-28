@@ -10,19 +10,19 @@ import {motion} from 'framer-motion'
 // koleczka
 import CirclePhoto from '../components/CirclePhoto'
 // imgForSliders
-import fashionPhoto from '../images/photoPageImgs/webp/fashion3.webp'
+import fashionPhoto from '../images/photoPageImgs/webp/street.webp'
 import portraitPhoto from '../images/photoPageImgs/webp/portrait.webp'
 import cityPhoto from '../images/photoPageImgs/webp/business.webp'
 import weddingPhoto from '../images/photoPageImgs/webp/wedding2.webp'
 import studioPhoto from '../images/photoPageImgs/webp/studio.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
-
+import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../components/fetchData/data'
 
 const PhotoPage = () => {
-    const { photoData } = useContext(UserContext)
-    // console.log(photoData)
+    const { objectData } = useContext(UserContext)
+    // console.log(objectData)
 
     const [element1, controls1] = useScroll()
     const [element2, controls2] = useScroll()
@@ -30,9 +30,8 @@ const PhotoPage = () => {
 
     return(
         <>
-        {photoData && (
+        {objectData && (
             <PageContainerPhotos>
-    
             <PageLayoutPhotos 
                 variants={HideParent}
                 animate='show'
@@ -43,125 +42,34 @@ const PhotoPage = () => {
                     <h1>Fotografia</h1>
                     <LinePhoto />
                 </Title>
-        
-                <LinkCont>
-
-
-        
-                <LinkContainer>
-                    <ImgSlider src={portraitPhoto} />
-                    <Link
-                     style={{
-                        zIndex: 1,
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center'
-                     }} 
-                     to="/photo/portrety">
-                        <CatTitle 
-                        variants={titleAnim}
-                        >
-                            Portrety
-                        </CatTitle>
-                    </Link>
-                </LinkContainer>
-        
-                <LinkContainer
-                variants={scrollReveal}
-                animate={controls1}
-                initial="hidden"
-                ref={element1}>
-                <ImgSlider src={fashionPhoto}/>
-                <Link 
-                style={{
-                    zIndex: 1,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                 }} 
-                 to="/photo/moda">
-                    <CatTitle 
-                    variants={titleAnim}
-                    >Fashion</CatTitle>
-                </Link>
-                </LinkContainer>
-        
-                <LinkContainer
-                variants={scrollReveal}
-                animate={controls2}
-                initial="hidden"
-                ref={element2}>
-                <ImgSlider 
-                src={cityPhoto}
-                />
-                <Link 
-                style={{
-                    zIndex: 1,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                 }} 
-                to="/photo/biznesowe">
-                    <CatTitle 
-                    variants={titleAnim}
-                    >Biznesowe</CatTitle>
-                </Link>
-                </LinkContainer>
-        
-                <LinkContainer
-                variants={scrollReveal}
-                animate={controls3}
-                initial="hidden"
-                ref={element3}>
-                <ImgSlider 
-                src={studioPhoto}
-                />
-                <Link 
-                style={{
-                    zIndex: 1,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                 }} 
-                to="/photo/studio">
-                    <CatTitle 
-                    variants={titleAnim}
-                    >Studio</CatTitle>
-                </Link>
-                </LinkContainer>
-        
-                {/* <LinkContainer
-                variants={scrollReveal}
-                animate={controls3}
-                initial="hidden"
-                ref={element3}>
-                <ImgSlider src={weddingPhoto}/>
-                <Link
-                style={{
-                    zIndex: 1,
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                 }} 
-                to="/photo/slubne">
-                    <CatTitle
-                    variants={titleAnim}
-                    >Ślubne</CatTitle>
-                </Link>
-                </LinkContainer> */}
-        
-                </LinkCont>
-        
-                </PageLayoutPhotos>
-                
-                </PageContainerPhotos>
+                    <LinkCont>
+                        {objectData.map((item)=>(
+                        <LinkContainer key={uuidv4()}
+                        >        
+                            <ImgSlider src={item.backgroundPhoto.url} />
+                            <Link 
+                            style={{
+                                zIndex: 1,
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'center'
+                            }} 
+                            to={item.url}>
+                                <CatTitle 
+                                // variants={titleAnim}
+                                >
+                                    {item.title}
+                                </CatTitle>
+                            </Link>
+                        </LinkContainer>
+    
+                        ))}
+                    </LinkCont>
+            </PageLayoutPhotos>
+        </PageContainerPhotos>
         )}
-    </>
+        </> 
     )
 }
 

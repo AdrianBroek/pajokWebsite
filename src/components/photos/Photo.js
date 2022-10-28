@@ -26,28 +26,37 @@ import {
 // import user context
 import UserContext from '../fetchData/data'
 
-const CityPhoto = () => {
-    const { photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
-    const [singleObject, setSingleObject] = useState(photoData.fashion)
-    // state
-    const [grid, setGrid] = useState()
-
+const Photos = () => {
+    const { objectData, singleObject, setSingleObject, photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
     // location
     const {pathname} = useLocation()
+    
+    const [copy, setCopy] = useState(objectData)
 
     useEffect(() => {
-        setSingleObject(photoData.fashion)
-       
-    }, [pathname, photoData])
+        setCopy(objectData)
+
+        if(copy){
+            let subWord = pathname.split('/')[2]
+            const singleData = copy.filter((e) => {
+                return e.title.toLowerCase().includes(subWord)
+            })
+            setSingleObject(singleData[0])
+        }
+    }, [objectData,copy])
+    
+    // state
+    const [grid, setGrid] = useState()
 
     useEffect(() => {
         if(singleObject){
             setCopiedObject(singleObject.photoModule)
         }
+        // console.log(singleObject)
     }, [singleObject])
 
     return (
-        <motion.div >
+        <motion.div className="test">
         {singleObject && (
                 <PageContainer>
                 <PageLayout 
@@ -62,7 +71,7 @@ const CityPhoto = () => {
                     <h3>{singleObject.description}</h3>
                     </Desc>
                     <Segregate grid={grid} setGrid={setGrid}/>
-                    <Overlay zindex='2' open={open} setOpen={setOpen} />
+
                     <ImgCont layout style={{gridTemplateColumns: grid}}>
                         {singleObject.photoModule.map((item, index) => (
                             <PhotoGrid 
@@ -75,7 +84,7 @@ const CityPhoto = () => {
                             />
                         ))}
                     </ImgCont>
-
+                    <Overlay zindex='2' className='overlay' open={open} setOpen={setOpen} />
                 </PageLayout>
                 </PageContainer>
                 
@@ -110,4 +119,4 @@ const Desc = styled(Description)`
     max-width: 90%;
 `
 
-export default CityPhoto
+export default Photos
