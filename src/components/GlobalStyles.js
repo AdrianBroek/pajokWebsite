@@ -20,14 +20,17 @@ const GlobalStyles = createGlobalStyle`
         overflow-x: hidden;
     }
     .vimeoVideo {
-        padding: 35% 0 0 0;
-        position: relative;
-        width:60%;
-        height:auto;
+        width: 100%;
+        .content{
+            iframe {
+            height: 500px;
+            width: 100%;
+        }
         @media screen and (max-width: 768px){
-            padding: 45% 0 0 0;
             width: 90%;
         }
+        }
+        
     }
     .invisible {
         background: transparent;

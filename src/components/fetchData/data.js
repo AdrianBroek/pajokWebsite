@@ -18,13 +18,6 @@ export function UserProvider({children}){
     const [objectData, setObjectData] = useState([])
     const [copiedObject, setCopiedObject] = useState()
     const [singleObject, setSingleObject] = useState()
-    const [photoData, setPhotoData] = useState({
-        city: '',
-        portrait: '',
-        fashion: '',
-        wedding: '',
-        studio: ''
-    })
     // console.log(objectData)
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
@@ -60,20 +53,10 @@ export function UserProvider({children}){
         }).then(res => setObjectData(res.data.data.photos));
     });
 
-    useEffect(()=>{
-        setPhotoData({
-            city: objectData[0],
-            portrait: objectData[1], 
-            wedding: objectData[3],
-            fashion: objectData[2],
-            studio: objectData[4] })
-    }, [objectData, pathname])
-
     return (
         <UserContext.Provider 
         value={{
             objectData,
-            photoData,
             openDetail,
             singleObject,
             setSingleObject,

@@ -7,14 +7,6 @@ import {HideParent, titleAnim, scrollReveal} from '../animation'
 // styled
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
-// koleczka
-import CirclePhoto from '../components/CirclePhoto'
-// imgForSliders
-import fashionPhoto from '../images/photoPageImgs/webp/street.webp'
-import portraitPhoto from '../images/photoPageImgs/webp/portrait.webp'
-import cityPhoto from '../images/photoPageImgs/webp/business.webp'
-import weddingPhoto from '../images/photoPageImgs/webp/wedding2.webp'
-import studioPhoto from '../images/photoPageImgs/webp/studio.webp'
 // scroll
 import { useScroll } from '../components/useScroll'
 import { v4 as uuidv4 } from 'uuid';

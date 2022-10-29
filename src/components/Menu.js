@@ -3,7 +3,6 @@ import NavItem from './NavItems'
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MenuAnim } from '../animation'
-import Overlay from "./Overlay";
 
 const Menu = ({open, setOpen}) => {
     return (

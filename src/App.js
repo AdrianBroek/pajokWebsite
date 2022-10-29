@@ -11,12 +11,7 @@ import PhotoOpen from './components/PhotoOpen'
 import NoPage from './pages/NoPage'
 import Prices from './pages/Prices'
 import MoveUp from './components/MoveUp'
-// photo pages
-import BusinessPhoto from './components/photos/BusinessPhoto'
-import StreetPhoto from './components/photos/StreetPhoto'
-import WeddingPhoto from './components/photos/WeddingPhoto'
-import PortraitPhoto from './components/photos/PortraitPhoto'
-import StudioPhoto from './components/photos/StudioPhoto'
+// photo page
 import Photo from './components/photos/Photo'
 // global styles
 import GlobalStyles from './components/GlobalStyles';
@@ -68,6 +63,7 @@ function App() {
       >
       <AnimateSharedLayout>
       <UserProvider>
+        
       <Routes location={location} key={location.pathname}>
         <Route path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
@@ -75,21 +71,6 @@ function App() {
         <Route path="/photo/:id/*" element={ <Photo />} >
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
-        {/* <Route path="/photo/biznesowe" element={<BusinessPhoto />}>
-          <Route path=":id" element={ <PhotoOpen />} />
-        </Route>
-        <Route path="/photo/Portrety" element={<PortraitPhoto />}>
-          <Route path=":id" element={ <PhotoOpen />} />
-        </Route>
-        <Route path="/photo/Street" element={<StreetPhoto />}>
-          <Route path=":id" element={ <PhotoOpen />} />
-        </Route>
-        <Route path="/photo/Slubne/*" element={<WeddingPhoto />}>
-          <Route path=":id" element={ <PhotoOpen />} />
-        </Route>
-        <Route path="/photo/Studio/*" element={<StudioPhoto />}>
-          <Route path=":id" element={ <PhotoOpen />} />
-        </Route> */}
         <Route path="/video" element={<VideoPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />

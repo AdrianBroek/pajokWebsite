@@ -3,11 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 // images
 import background from '../images/background2-min.webp'
-import pajoklogo from '../images/pajok_logo.png'
 import pajokLogoWhite from '../images/Logo_pw.png'
 import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
-import video_gif from '../images/gifs/video.gif'
 // animations
 import { PageAnimation,buttonAnim} from '../animation'
 import { motion } from 'framer-motion'

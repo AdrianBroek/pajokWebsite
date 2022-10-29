@@ -74,7 +74,6 @@ const SegregateStyle = styled.div`
         font-weight: 300;
     }
     p {
-        font-weight: 500;
         font-size: 1rem;
         padding: 0 .5rem;
     }

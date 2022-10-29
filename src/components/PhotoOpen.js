@@ -155,6 +155,13 @@ const Picture = styled.section`
             .container {
                 max-height: 350px;
                 overflow-y: auto;
+                .desc {
+                    padding: 1rem;
+                    padding-top: 0;
+                    font-style: italic;
+                    font-weight: 100;
+                    font-size: 1.15rem;
+                }
                 /* width */
                 ::-webkit-scrollbar {
                 width: 5px;
