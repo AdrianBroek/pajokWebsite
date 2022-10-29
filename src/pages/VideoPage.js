@@ -39,7 +39,6 @@ const VideoPage = () => {
         }).then(res => setVideos(res.data.data.videoPages));
     });
 
-
     // useEffect(()=> {
     //     axios.get('https://api.vimeo.com/users/115069247/videos')
     //     .then(data => {

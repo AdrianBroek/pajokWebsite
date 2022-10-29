@@ -23,8 +23,11 @@ const NavItem = ({open}) => {
                 <Hide key={page.key}>
                 <motion.div whileHover={{ x: 5 }} variants={titleAnim}>
                 <Link style={{width: 'fit-content',display: 'block'}} to={page.url}>
-                    <MenuItem> {page.title}</MenuItem>
-                    {pathname == page.url ? <MenuLine initial={{width: '0'}} animate={{width: '100%'}} /> : ''}
+                    <MenuItem className={pathname == page.url ? 'active' : ''}>
+                         {page.title}
+                         {pathname == page.url ? <MenuLine initial={{width: '0'}} animate={{width: '100%'}} /> : ''}
+                    </MenuItem>
+                    
                    
                 </Link>
                 </motion.div>
@@ -40,6 +43,10 @@ const MenuItem = styled.h3`
     font-size: 1.2rem;
     font-weight: 300;
     font-family: 'Jost', sans-serif;
+    transition: all .3s ease-in;
+    &.active {
+        font-weight: 500;
+    }
 `
 
 const Menu = styled(motion.div)`
@@ -47,8 +54,9 @@ const Menu = styled(motion.div)`
 `
 const MenuLine = styled(motion.div)`
     width: 0;
-    background: black;
-    height: 1px;
+    background: #4b494942;
+    box-shadow: 5px 2px 3px rgb(0 0 0 / 50%);
+    border-bottom: .1px solid #4b4949bb;
     transition: .3s ease-out;
 `
 

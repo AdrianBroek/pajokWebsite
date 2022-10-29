@@ -192,7 +192,13 @@ const ContactContainer = styled(PageContainer)`
             @media screen and (max-width: 768px){
                 font-size: 10vw;
             }
+            text-shadow: 
+            0px 3px 0px #706e6e2f,
+            0px 14px 10px rgb(0 0 0 / 15%),
+            0px 24px 2px rgb(0 0 0 / 10%), 
+            0px 34px 30px rgb(0 0 0 / 10%);
         }
+        
         img {
             max-width: 100%;
             width: 100%;
