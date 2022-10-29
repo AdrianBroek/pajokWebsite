@@ -176,6 +176,7 @@ const ContactContainer = styled(PageContainer)`
     .background {
         width: 100%;
         max-height: 350px;
+        min-height: 350px;
         position: relative;
         &:before{
             font-family: 'Assistant', sans-serif;

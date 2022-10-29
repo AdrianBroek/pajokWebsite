@@ -28,6 +28,11 @@ const GlobalStyles = createGlobalStyle`
         }
         @media screen and (max-width: 768px){
             width: 90%;
+            margin: auto;
+            iframe {
+            height: 50vw;
+            width: 100%;
+        }
         }
         }
         
