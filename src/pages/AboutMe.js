@@ -197,7 +197,8 @@ const Copied = styled(motion.div)`
 const Avatar = styled.img`
     max-height: 100%;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    min-height: 100%;
 `
 
 const AvContainer = styled(motion.div)`
