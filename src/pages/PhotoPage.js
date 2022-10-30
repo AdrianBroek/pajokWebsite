@@ -11,6 +11,7 @@ import {motion} from 'framer-motion'
 import { useScroll } from '../components/useScroll'
 import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../components/fetchData/data'
+import TextShadow from '../components/TextShadow'
 
 const PhotoPage = () => {
     const { objectData } = useContext(UserContext)
@@ -31,7 +32,7 @@ const PhotoPage = () => {
                 exit='exit'
             >
                 <Title>
-                    <h1>Fotografia</h1>
+                    <TextShadow text='Fotografia'/>
                     <LinePhoto />
                 </Title>
                     <LinkCont>
@@ -95,10 +96,6 @@ const Title = styled.div`
     
     @media screen and (max-width: 768px){
         margin-top: 1rem;
-        h1{
-            padding: 3vw;
-            margin-left: 3vw;
-        }
     }
 `
 

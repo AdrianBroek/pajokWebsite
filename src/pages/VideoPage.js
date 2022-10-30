@@ -15,6 +15,8 @@ import { Routes, Route, useLocation, HistoryRouterProps } from "react-router-dom
 import { useQuery } from "react-query";
 // graph
 import { gql } from "graphql-request";
+// shadow
+import TextShadow from '../components/TextShadow'
 
 
 const VideoPage = () => {
@@ -58,7 +60,7 @@ const VideoPage = () => {
                 
                 {videos && (
                     <>
-                    <h1>Wideo</h1>
+                    <TextShadow text='Wideo' />
                     <Line />
                         <div className="vimeoVideo">
                             {videos.map((link)=> (

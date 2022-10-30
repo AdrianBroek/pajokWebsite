@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {motion} from 'framer-motion'
 import {HideParent2, titleAnim} from '../animation'
 import {PageLayout,PageContainer, Line, Hide} from '../style/styles'
+import TextShadow from "../components/TextShadow";
 
 const Prices = () => {
 
@@ -14,7 +15,7 @@ const Prices = () => {
         animate='show'
         initial='hidden'
         >
-        <h1>Cennik</h1>
+        <TextShadow text='Cennik'/>
         <Line />
         <Hide>
             <Price variants={titleAnim}>

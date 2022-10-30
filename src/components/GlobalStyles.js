@@ -15,13 +15,12 @@ const GlobalStyles = createGlobalStyle`
         user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     }
     body {
-        /* font-family: 'Joan', serif; */
         font-family: 'Jost', sans-serif;
         overflow-x: hidden;
     }
     .vimeoVideo {
         width: 100%;
-        .content{
+        .content {
             iframe {
             height: 500px;
             width: 100%;
@@ -30,9 +29,9 @@ const GlobalStyles = createGlobalStyle`
             width: 90%;
             margin: auto;
             iframe {
-            height: 50vw;
-            width: 100%;
-        }
+                height: 50vw;
+                width: 100%;
+            }
         }
         }
         
@@ -50,11 +49,6 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Assistant', sans-serif;
         text-transform: uppercase;
         font-size: 5rem;
-        text-shadow: 
-            0px 3px 0px #706e6e2f,
-            0px 14px 10px rgb(0 0 0 / 15%),
-            0px 24px 2px rgb(0 0 0 / 10%), 
-            0px 34px 30px rgb(0 0 0 / 10%);
 
         @media screen and (max-width: 768px){
             font-size: 10vw;

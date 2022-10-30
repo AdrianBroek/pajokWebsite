@@ -16,7 +16,7 @@ from '../style/styles'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import {Icon} from '../style/styles'
-
+import TextShadow from '../components/TextShadow'
 import {PageAnimation,HideParent, svgAnimate, pathAnimate, buttonAnim} from '../animation'
 
 const ContactPage = () => {
@@ -55,7 +55,8 @@ const ContactPage = () => {
 
     <ContactContainer>
         <div className="background">
-            <img src={background} alr='' />
+            <img src={background} alt='' />
+            <TextShadow text='Kontakt' />
         </div>
         <PageLayoutContact
         variants={HideParent}
@@ -83,7 +84,7 @@ const ContactPage = () => {
                         <span className="content-name">E-mail</span></label>
                     </InputContainer>
                     <div className="agreement" onClick={() => setAgreed(!agree)}>
-                        <input checked={agree} required type="checkbox"/>
+                        <input readOnly checked={agree} required type="checkbox"/>
                         <div className="svgContainer" whileTap={{
                                     scale: 0.95,
                                 }}>
@@ -178,27 +179,12 @@ const ContactContainer = styled(PageContainer)`
         max-height: 350px;
         min-height: 350px;
         position: relative;
-        &:before{
-            font-family: 'Assistant', sans-serif;
-            text-transform: uppercase;
-            z-index: 1;
-            content: 'Kontakt';
-            font-size: 5rem;
-            font-weight: 600;
+        .text-shadow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            @media screen and (max-width: 768px){
-                font-size: 10vw;
-            }
-            text-shadow: 
-            0px 3px 0px #706e6e2f,
-            0px 14px 10px rgb(0 0 0 / 15%),
-            0px 24px 2px rgb(0 0 0 / 10%), 
-            0px 34px 30px rgb(0 0 0 / 10%);
         }
-        
         img {
             max-width: 100%;
             width: 100%;

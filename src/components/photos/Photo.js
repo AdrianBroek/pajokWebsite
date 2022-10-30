@@ -23,6 +23,8 @@ import {
     showImg
 } from '../../animation'
 
+import TextShadow from "../TextShadow";
+
 // import user context
 import UserContext from '../fetchData/data'
 
@@ -65,7 +67,7 @@ const Photos = () => {
                     // animate="show"
                     // exit="exit"
                 >
-                    <h1>{singleObject.title}</h1>
+                    <TextShadow text={singleObject.title}/>
                     <Line />
                     <Desc>
                     <h3>{singleObject.description}</h3>

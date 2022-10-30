@@ -15,6 +15,7 @@ import {
     ImageContainer
 }
 from '../style/styles'
+import TextShadow from "../components/TextShadow";
 
 // animations
 import { motion } from 'framer-motion'
@@ -86,9 +87,7 @@ const OmniePage = () => {
                     <Avatar src={avatar}/>
                 </AvContainer>
                 <div>
-                    <div></div>
-                    <h1>O mnie</h1>
-                    <div></div>
+                    <TextShadow text='O mnie'/>
                 </div>
                 <DescriptionAM>
                     <p>
