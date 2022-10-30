@@ -87,6 +87,9 @@ const SegregateStyle = styled.div`
         .itemCont {
             display: flex;
             justify-content: space-between;
+            p {
+                font-weight: 400;
+            }
             img {
                 max-width: 11px;
                 margin-right: 0.5rem;

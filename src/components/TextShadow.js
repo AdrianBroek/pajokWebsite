@@ -19,18 +19,18 @@ const CategoryName = styled.div`
     }
     p {
         position: absolute;
-        top: 55%;
+        top: 45%;
         left: 1.5%;
         width: 100%;
         font-family: 'Assistant',sans-serif;
         text-transform: uppercase;
         font-size: 5rem;
         font-weight: 600;
-        transform: rotateX(180deg) skewX(-10deg);
+        transform: rotateX(130deg) skewX(-10deg);
         -webkit-text-fill-color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
-        background-image: linear-gradient(0, #77777741 0, transparent 70%);
+        background-image: linear-gradient(0, #77777741 0, transparent 80%);
         line-height: 0.75;
         @media screen and (max-width: 768px){
             font-size: 10vw;

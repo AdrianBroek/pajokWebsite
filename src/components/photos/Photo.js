@@ -74,9 +74,9 @@ const Photos = () => {
                     </Desc>
                     <Segregate grid={grid} setGrid={setGrid}/>
 
-                    <ImgCont layout style={{gridTemplateColumns: grid}}>
+                    <ImgCont style={{gridTemplateColumns: grid}}>
                         {singleObject.photoModule.map((item, index) => (
-                            <PhotoGrid 
+                            <PhotoGrid
                                 photos={singleObject}
                                 open={open}
                                 setOpen={setOpen}

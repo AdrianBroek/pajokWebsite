@@ -1,6 +1,6 @@
 const pages_nav = [
     {
-        title: 'Home',
+        title: 'Strona główna',
         url: '/',
         active: false,
         key: 1
@@ -24,13 +24,13 @@ const pages_nav = [
         key: 4
     },
     {
-        title: 'Foto',
+        title: 'Zdjęcia',
         url: '/photo',
         active: false,
         key: 5
     },
     {
-        title: 'Wideo',
+        title: 'Filmy',
         url: '/video',
         active: false,
         key: 6

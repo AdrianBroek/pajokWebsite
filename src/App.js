@@ -55,13 +55,8 @@ function App() {
       <Menu open={open} setOpen={setOpen}/>
       <Hamburger open={open} setOpen={setOpen}/>
       
-      <AnimatePresence 
-        exitBeforeEnter
-        onExitComplete={()=> {
-          window.scrollTo(0,0)
-        }}
-      >
-      <AnimateSharedLayout>
+
+
       <UserProvider>
         
       <Routes location={location} key={location.pathname}>
@@ -78,9 +73,8 @@ function App() {
       </Routes>
       
       </UserProvider>
-      </AnimateSharedLayout>
+
       <Footer />
-      </AnimatePresence>
     </div>
     </QueryClientProvider>
   );

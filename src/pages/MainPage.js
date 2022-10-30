@@ -67,7 +67,7 @@ const MainPage = () => {
                         }}
                         whileHover="hover">
                         <ImageContainer>
-                            <h6>Wideo</h6>
+                            <h6>Filmy</h6>
                             <Icon src={video_icon}/>
                         </ImageContainer>
                     </Linkbutton>
