@@ -13,11 +13,13 @@ export function UserProvider({children}){
     const api_key = process.env.REACT_APP_GRAPH_KEY
     const {pathname} = useLocation()
     // state
+    const [object, setObject] = useState([])
     const [open, setOpen] = useState(false)
     const [openDetail, setOpenDetail] = useState()
     const [objectData, setObjectData] = useState([])
     const [copiedObject, setCopiedObject] = useState()
     const [singleObject, setSingleObject] = useState()
+    const [news, setNews] = useState([])
     // console.log(objectData)
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
@@ -39,7 +41,22 @@ export function UserProvider({children}){
                 }
                 photoDescription
             }
+        }
+        newss {
+          article {
+            html
           }
+          coverPhoto {
+            url
+          }
+          tagList {
+            tag
+          }
+          slug
+          title
+          date
+          id
+      }
     }
     `
     // graph api
@@ -50,8 +67,17 @@ export function UserProvider({children}){
           data: {
             query: QUERY
           }
-        }).then(res => setObjectData(res.data.data.photos));
+        })
+        .then(res => setObject(res.data.data))
     });
+
+    useEffect(()=> {
+      setObjectData(object.photos)
+    }, [object])
+
+    useEffect(()=> {
+      setNews(object.newss)
+    }, [object])
 
     return (
         <UserContext.Provider 
@@ -64,7 +90,8 @@ export function UserProvider({children}){
             open,
             setOpen,
             copiedObject, 
-            setCopiedObject
+            setCopiedObject,
+            news
         }}>
 
         {children}

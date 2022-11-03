@@ -11,6 +11,8 @@ import PhotoOpen from './components/PhotoOpen'
 import NoPage from './pages/NoPage'
 import Prices from './pages/Prices'
 import MoveUp from './components/MoveUp'
+import News from './components/News'
+import New from './components/New'
 // photo page
 import Photo from './components/photos/Photo'
 // global styles
@@ -32,6 +34,8 @@ import Footer from './components/Footer'
 import {UserProvider} from './components/fetchData/data'
 
 import Overlay from './components/Overlay'
+// helmet
+import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient()
 
@@ -48,6 +52,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
     <div className="App">
+    <HelmetProvider>
       <GlobalStyles />
       <MoveUp />
       <Overlay open={open} setOpen={setOpen}/>
@@ -70,11 +75,14 @@ function App() {
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
         <Route path="/cennik" element={<Prices />} />
+        <Route path="/aktualnosci" element={<News />} />
+        <Route path="/aktualnosci/:id" element={<New />}/>
       </Routes>
       
       </UserProvider>
 
       <Footer />
+    </HelmetProvider>
     </div>
     </QueryClientProvider>
   );

@@ -48,8 +48,6 @@ const VideoPage = () => {
     //     })
     // }, [])
 
-    console.log(videos)
-
     return(
         <PageContainer>
             <PageLayout 

@@ -35,6 +35,12 @@ const pages_nav = [
         active: false,
         key: 6
     },
+    {
+        title: 'Aktualności',
+        url: '/aktualnosci',
+        active: false,
+        key: 7
+    }
 ]
 
 export default pages_nav
