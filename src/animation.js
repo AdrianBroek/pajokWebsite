@@ -257,3 +257,25 @@ export const showCover = {
         // y: -20
     }
 }
+
+export const btnSlideUp = {
+    stop: {
+        boxShadow: 0,
+        y: 0,
+
+    },
+    work: {
+        y: -3,
+        scale: 1.01,
+        boxShadow: 'rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px'
+    }
+}
+
+export const ImgHover = {
+    initial: {
+        scale: 1
+    },
+    work: {
+        scale: 1.01,
+    }
+}

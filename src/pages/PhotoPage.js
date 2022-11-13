@@ -3,7 +3,7 @@ import React, {useEffect, useState, useRef, useContext} from 'react'
 import {PageLayout,PageContainer, Hide, Line} from '../style/styles'
 // routes
 import {Link} from 'react-router-dom'
-import {HideParent, titleAnim, scrollReveal} from '../animation'
+import {HideParent, titleAnim, scrollReveal, ImgHover} from '../animation'
 // styled
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
@@ -50,7 +50,8 @@ const PhotoPage = () => {
                             }} 
                             to={item.url}>
                                 <CatTitle 
-                                // variants={titleAnim}
+                                variants={titleAnim}
+                                whileHover='show'
                                 >
                                     {item.title}
                                 </CatTitle>
@@ -67,10 +68,10 @@ const PhotoPage = () => {
 }
 
 const PageContainerPhotos = styled(PageContainer)`
-    width: 80%;
+    width: 100%;
+    max-width: 1640px;
     margin-left: auto;
     margin-right: auto;
-    
 `
 
 const PageLayoutPhotos = styled(PageLayout)`
@@ -84,9 +85,8 @@ const LinkCont = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    row-gap: 5rem;
     flex-direction: column;
-    width: 85%;
+    width: 100%;
     @media screen and (max-width: 768px){
         width: 100%;
     }
@@ -105,11 +105,9 @@ const LinePhoto = styled(Line)`
 
 const CatTitle = styled(motion.h3)`
     margin-left: 5rem;
-    padding: 2rem;
-    background: #000;
 `
 
-const ImgSlider = styled.img`
+const ImgSlider = styled(motion.img)`
     width: 100%;
     max-height: 100%;
     height: 100%;
@@ -118,6 +116,8 @@ const ImgSlider = styled.img`
     object-position: center;
     top: 0;
     left: 0;
+    display: block;
+    transition: .15s ease-in;
 `
 
 const LinkContainer = styled(Hide)`
@@ -128,15 +128,16 @@ const LinkContainer = styled(Hide)`
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    box-shadow: 0 10px 10px -5px;
-    border-radius: .5rem;
     h3 {
         color: #fff;
         font-size: 4rem;
+        border-bottom: 1px solid white;
+        text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
         @media screen and (max-width: 1024px){
             font-size: 6vw;
-            padding: 3vw;
             margin-left: 3vw;
+            font-weight: lighter;
+            font-family: 'Raleway', sans-serif;
         }
     }
 `

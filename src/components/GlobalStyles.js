@@ -49,10 +49,13 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Assistant', sans-serif;
         text-transform: uppercase;
         font-size: 5rem;
-
+        font-weight: lighter;
         @media screen and (max-width: 768px){
             font-size: 10vw;
         }
+    }
+    h2 {
+        font-family: 'Roboto', sans-serif;
     }
     a, p, span, h3 {
         font-size: 1.5rem;

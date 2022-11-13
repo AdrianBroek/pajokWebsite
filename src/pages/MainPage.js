@@ -2,12 +2,13 @@ import React from 'react'
 // styled components
 import styled from 'styled-components'
 // images
-import background from '../images/background2-min.webp'
+import background from '../images/mainPage/background.jpg'
+import backgroundMobile from '../images/mainPage/background2.webp'
 import pajokLogoWhite from '../images/Logo_pw.png'
 import photo_icon from '../images/camera.png'
 import video_icon from '../images/video.png'
 // animations
-import { PageAnimation,buttonAnim} from '../animation'
+import { PageAnimation, btnSlideUp} from '../animation'
 import { motion } from 'framer-motion'
 
 // defined styles
@@ -35,54 +36,68 @@ const MainPage = () => {
         exit="exit"
         >
         <PageContainerMain>
-            <PageLayout>
-            <ImageContainer>
-                <LogoMainPage src={pajokLogoWhite} />
-            </ImageContainer>
-            <Line />
-            <Description>
-                {/* <h3>
-                    Fotograf i filmowiec z Krakowa
-                </h3> */}
-            </Description>
-            <div className='btnContainer'>
-                <Link to="/photo">
-                    <Linkbutton
-                        variants={buttonAnim}
-                        whileTap={{
-                            scale: 0.95,
-                        }}
-                        whileHover="hover">
-                        <ImageContainer>
-                            <h6>Zdjęcia</h6>
-                            <Icon src={photo_icon}/>
-                        </ImageContainer>
-                    </Linkbutton>
-                </Link>
-                <Link to="/video">
-                    <Linkbutton
-                        variants={buttonAnim}
-                        whileTap={{
-                            scale: 0.95,
-                        }}
-                        whileHover="hover">
-                        <ImageContainer>
-                            <h6>Filmy</h6>
-                            <Icon src={video_icon}/>
-                        </ImageContainer>
-                    </Linkbutton>
-                </Link>
+            <div className='description'>
+                <h2>Łukasz Pająk</h2>
+                <h5>Photography & Videography</h5>
+                    <motion.div variants={btnSlideUp} whileHover='work' className="button">
+                        <Link className='btn' to='/photo'>
+                            <div>
+                                <p>Zobacz zdjęcia</p>
+                            </div>
+                        </Link>
+                    </motion.div>
             </div>
-            </PageLayout>
         </PageContainerMain>
         </Container>
     )
 }
 
-const PageContainerMain = styled(motion.PageContainer)`
-    .btnContainer {
+const PageContainerMain = styled(PageContainer)`
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    .description {
+        margin-left: 20vw;
+        font-family: 'Raleway', sans-serif;
         display: flex;
-        column-gap: 1rem;
+        flex-direction: column;
+        row-gap: 1.25rem;
+        @media screen and (max-width: 1024px){
+            margin-left: 15vw;
+        }
+        @media screen and (max-width: 768px){
+            margin-left: 10vw;
+        }
+        @media screen and (max-width: 600px){
+            margin: auto;
+        }
+        h2 {
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1;
+            @media screen and (max-width: 600px){
+                font-size: 2rem;
+            }
+        }
+        h5 {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+        .btn {
+            div{
+                border: 1px solid #000;
+                padding: 1rem;
+                text-align: center;
+                p {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                }
+            }
+
+        }
     }
     &:before {
         content: '';
@@ -93,51 +108,23 @@ const PageContainerMain = styled(motion.PageContainer)`
         background-color: transparent;
         display: block;
         background-image: url(${background});
-        -webkit-filter: grayscale(100%);
-        filter: blur(5px);
         background-repeat: no-repeat;
         /* background-attachment: fixed; */
         background-position: center;
         background-size: cover;
         /* object-position: 0%; */
-        opacity: .35;
         position: absolute;
         z-index: -1;
-    }
-    @media screen and (max-width: 501px){
-        .btnContainer {
-            flex-direction: column;
-            row-gap: 1.5rem;
+        @media screen and (max-width: 500px){
+            background-position: left;
+            background-image: url(${backgroundMobile});
         }
     }
 `
 
 const Container = styled(motion.article)`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-`
-
-const Linkbutton = styled(LinkBtn)`
-    background: #1A1919;
-    img {
-        max-width: 40px;
-    }
-    h3 {
-        color: #fff;
-    }
-`
-
-const LogoMainPage = styled(Logo)`
-    max-width: 500px;
-    max-height: 400px;
-    object-fit: fill;
-    margin: -5rem 0;
-    @media screen and (max-width: 768px){
-        max-width: 60vw;
-    }
 `
 
 export default MainPage

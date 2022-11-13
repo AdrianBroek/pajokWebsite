@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-export const PageContainer = styled.article`
+export const PageContainer = styled(motion.article)`
     height: 100%;
     min-height: 80vh;
     width: 100%;
@@ -87,4 +87,3 @@ export const ImageContainer = styled.div`
         color: #fff;
     }
 `
-

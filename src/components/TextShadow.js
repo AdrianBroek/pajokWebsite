@@ -25,7 +25,7 @@ const CategoryName = styled.div`
         font-family: 'Assistant',sans-serif;
         text-transform: uppercase;
         font-size: 5rem;
-        font-weight: 600;
+        font-weight: 300;
         transform: rotateX(130deg) skewX(-10deg);
         -webkit-text-fill-color: transparent;
         background-clip: text;
