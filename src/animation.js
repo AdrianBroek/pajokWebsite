@@ -279,3 +279,10 @@ export const ImgHover = {
         scale: 1.01,
     }
 }
+
+
+export const Slide = {
+    hidden: { opacity: 0, x: 10 },
+    show: {x: 0, opacity: 1, transition: {duration : .5, staggerChildren: .099}},
+    exit: {opacity: 0, y: 10, transition: {duration: .15}}
+}
