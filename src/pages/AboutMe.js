@@ -84,6 +84,7 @@ const OmniePage = () => {
                 variants={glow}
                 animate='show'
                 >
+                    <AvatarBlur src={avatar}/>
                     <Avatar src={avatar}/>
                 </AvContainer>
                 <div>
@@ -199,6 +200,18 @@ const Avatar = styled.img`
     max-width: 100%;
     object-fit: cover;
     min-height: 100%;
+    position: relative;
+`
+
+const AvatarBlur = styled.img`
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120%;
+    height: 120%;
+    object-fit: fill;
 `
 
 const AvContainer = styled(motion.div)`
@@ -207,6 +220,9 @@ const AvContainer = styled(motion.div)`
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #44D62C;
+    position: relative;
+    display: flex;
+    justify-content: center;
     @media screen and (max-width: 400px){
         max-width: 90%;
         height: auto;

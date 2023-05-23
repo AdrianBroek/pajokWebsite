@@ -20,19 +20,19 @@ const Prices = () => {
         <Hide>
             <Price variants={titleAnim}>
                 <div className="ball"></div>
-                <p>10 zdjęć - 150zł</p>
+                <p>10 zdjęć - 300zł</p>
             </Price>
         </Hide>
         <Hide>
             <Price variants={titleAnim}>
                 <div className="ball"></div>
-                <p>15 zdjęć - 200zł</p>
+                <p>15 zdjęć - 400zł</p>
             </Price>
         </Hide>
         <Hide>
             <Price variants={titleAnim}>
                 <div className="ball"></div>
-                <p>20 zdjęć - 250zł</p>
+                <p>20 zdjęć - 500zł</p>
             </Price>
         </Hide>
 
