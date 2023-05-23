@@ -4,9 +4,6 @@ import styled from 'styled-components'
 // images
 import background from '../images/mainPage/background.jpg'
 import backgroundMobile from '../images/mainPage/background2.webp'
-import pajokLogoWhite from '../images/Logo_pw.png'
-import photo_icon from '../images/camera.png'
-import video_icon from '../images/video.png'
 // animations
 import { PageAnimation, btnSlideUp} from '../animation'
 import { motion } from 'framer-motion'
@@ -30,10 +27,10 @@ import {Link} from 'react-router-dom'
 const MainPage = () => {
     return(
         <Container
-        variants={PageAnimation}
-        initial="hidden"
-        animate="show"
-        exit="exit"
+            variants={PageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
         >
         <PageContainerMain>
             <div className='description'>

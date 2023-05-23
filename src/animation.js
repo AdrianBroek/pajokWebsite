@@ -68,7 +68,9 @@ export const titleAnim = {
         opacity: 1,
         transition: {
             duration: .5, 
-            ease: 'easeOut'
+            ease: 'easeOut',
+            // when: "beforeChildren",
+            // staggerChildren: .1
         }
     }
 }
