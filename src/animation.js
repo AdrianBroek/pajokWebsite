@@ -122,9 +122,9 @@ export const HideMenuItems = {
     show: {
         opacity: 1,
         transition: {
-            duration: .5,
+            duration: .15,
             // when: "beforeChildren",
-            staggerChildren: .1
+            staggerChildren: .035
         },
     }
 }

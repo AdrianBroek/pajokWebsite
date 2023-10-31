@@ -163,7 +163,7 @@ const CatTitle = styled(motion.div)`
     }
     @media screen and (max-width: 1024px){
         height: 100%;
-        margin: 2rem 0 0 3vw;
+        margin: 0;
     }
     div {
         width: 100%;
@@ -193,16 +193,22 @@ const LinkContainer = styled(Hide)`
     @media screen and (min-width: 1024px){
         align-items: flex-end;
     }
+    @media screen and (max-width: 1024px){
+        height: 100vw;
+
+    }
     h3 {
         width: fit-content;
         color: #fff;
         font-size: 2rem;
-        border-bottom: 1px solid white;
-        text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+        text-shadow: 1px 5px 6px rgba(0,0,0,0.15);
         @media screen and (max-width: 1024px){
-            font-size: 6vw;
-            margin-left: 3vw;
-            font-weight: lighter;
+            font-size: 5vw;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #000;
+            padding: 1rem;
+            font-weight: 300;
             font-family: 'Raleway', sans-serif;
         }
     }

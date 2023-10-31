@@ -58,7 +58,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
     }
     a, p, span, h3 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         color: #000;
         font-weight: 300;
         @media screen and (max-width: 601px){

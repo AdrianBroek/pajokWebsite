@@ -39,7 +39,14 @@ const MainPage = () => {
                     <motion.div variants={btnSlideUp} whileHover='work' className="button">
                         <Link className='btn' to='/photo'>
                             <div>
-                                <p>Zobacz zdjęcia</p>
+                                <p>Zdjęcia</p>
+                            </div>
+                        </Link>
+                    </motion.div>
+                    <motion.div variants={btnSlideUp} whileHover='work' className="button">
+                        <Link className='btn' to='/video'>
+                            <div>
+                                <p>Wideo</p>
                             </div>
                         </Link>
                     </motion.div>
@@ -89,7 +96,7 @@ const PageContainerMain = styled(PageContainer)`
                 padding: 1rem;
                 text-align: center;
                 p {
-                    font-size: 1.1rem;
+                    font-size: .9rem;
                     font-weight: 600;
                 }
             }
