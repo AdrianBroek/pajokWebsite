@@ -22,7 +22,7 @@ const NavItem = ({open}) => {
         {pages_nav.map((page) => (
             <HideItem key={page.key} className={pathname == page.url ? 'active' : ''}>
                 <motion.div whileHover={{ x: 5 }} variants={titleAnim}>
-                    <Link style={{width: 'fit-content',display: 'block'}} to={page.url}>
+                    <Link style={{width: '100%',display: 'block'}} to={page.url}>
                         <MenuItem className={pathname == page.url ? 'active' : ''}>
                                 {page.title}
                                 {/* {pathname == page.url ? <MenuLine initial={{width: '0'}} animate={{width: '100%'}} /> : ''} */}

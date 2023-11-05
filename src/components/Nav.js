@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 // styles
 import {Logo} from '../style/styles'
 //logo
-import pajokLogoWhite from '../images/Logo_pw.png'
+import pajokLogoWhite from '../images/pajok_logo.png'
 
 
 const Nav = ({open, setOpen}) => {
@@ -31,13 +31,15 @@ const Nav = ({open, setOpen}) => {
                 boxShadow: shownav ? '1px 3px 5px rgb(0 0 0 / 16%)' : 'none'
             }}>
             <div />
-            <Link to="/">
+            <Link to="/" style={{height: '80%'}}>
             <Logo 
-            style={{ 
-                opacity: shownav ? '1' : '0',
-                transition: '.2s ease-in'          
-            }}
-            src={pajokLogoWhite}/>
+                style={{ 
+                    opacity: shownav ? '1' : '0',
+                    transition: '.2s ease-in' ,
+                    maxHeight: "100%"         
+                }}
+                src={pajokLogoWhite} 
+            />
             </Link>
             <Socials />
         </NavBar>       

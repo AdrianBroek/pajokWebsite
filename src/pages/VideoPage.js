@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 // defined styles
 import {PageLayout,PageContainer, Line} from '../style/styles'
 // routes
@@ -17,6 +17,8 @@ import { useQuery } from "react-query";
 import { gql } from "graphql-request";
 // shadow
 import TextShadow from '../components/TextShadow'
+// video component
+import Video from '../components/Video'
 
 
 const VideoPage = () => {
@@ -38,15 +40,11 @@ const VideoPage = () => {
           data: {
             query: QUERY
           }
-        }).then(res => setVideos(res.data.data.videoPages));
+        }).then(res => setVideos(res.data.data.videoPages[0].embedVimeoLink));
     });
 
-    // useEffect(()=> {
-    //     axios.get('https://api.vimeo.com/users/115069247/videos')
-    //     .then(data => {
-    //         console.log(data)
-    //     })
-    // }, [])
+    // console.log(videos)
+    // const 
 
     return(
         <PageContainer>
@@ -61,8 +59,11 @@ const VideoPage = () => {
                     <TextShadow text='Wideo' />
                     <Line />
                         <div className="vimeoVideo">
-                            {videos.map((link)=> (
-                                <div className="content" dangerouslySetInnerHTML={{__html: link.embedVimeoLink}}></div>
+                            
+                            {videos && videos.map((link,index)=> (
+                                <div key={index}>
+                                    <Video video={link} />
+                                </div>
                             ))}
                         </div>
                     </>
@@ -103,6 +104,5 @@ const LinkCont = styled.div`
 const LinePhoto = styled(Line)`
     width: 100%;
 `
-
 
 export default VideoPage

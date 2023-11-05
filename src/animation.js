@@ -288,3 +288,16 @@ export const Slide = {
     show: {x: 0, opacity: 1, transition: {duration : .5, staggerChildren: .099}},
     exit: {opacity: 0, y: 10, transition: {duration: .15}}
 }
+
+export const LoadingSkeleton = {
+    hidden: { duration: '2s', 
+    animationFillMode: 'forwards', 
+    animationIterationCount: "infinite", 
+    AnimationTimeline: "linear", 
+    backgroundColor: "linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%)", 
+    height: 70, 
+    position: 'relative',
+    backgroundPosition: "-800 0"   
+},
+    loading: {backgroundPosition: "800 0"}
+}

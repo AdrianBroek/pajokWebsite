@@ -73,7 +73,6 @@ export const Line = styled.div`
     width: 90%;
     background: #f5f5f5;
     margin-bottom: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 7px;
 `
 export const Hide = styled(motion.div)`
     overflow: hidden;
