@@ -43,9 +43,16 @@ const PhotoOpen = () => {
         // set new photo as open detail
         const filteredIndex = allphotos[activeId]
         setOpenDetail(filteredIndex)
+        // console.log(filteredIndex)
+        const newURL = `/photo/biznesowe/${filteredIndex.id}`;
+        window.history.pushState({}, '', newURL);
     }
 
-    
+    function navigateBack() {
+        const lastSlashIndex = pathname.lastIndexOf('/');
+        const newUrl = pathname.substring(0, lastSlashIndex);
+        navigate(newUrl)
+    }
 
 
     useEffect(() => {
@@ -69,7 +76,7 @@ const PhotoOpen = () => {
           && (
             
             <Picture >
-                <button onClick={() => navigate(-1)} className="escape">
+                <button onClick={() => navigateBack()} className="escape">
                     <img src={x} alt="escape photo button"/>
                 </button>
                 <div id="left" className="arrow left" onClick={(e)=>changePhoto(e)}>

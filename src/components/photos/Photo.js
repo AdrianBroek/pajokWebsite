@@ -53,7 +53,7 @@ const Photos = () => {
     useEffect(() => {
         // Pobierz dane z localStorage podczas montowania komponentu
         const gls = JSON.parse(localStorage.getItem('grid-options'))[0];
-        console.log(gls.grid)
+        // console.log(gls.grid)
         if (gls && gls.grid) {
             setGrid(gls.grid);
         }
