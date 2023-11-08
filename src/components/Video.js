@@ -10,18 +10,19 @@ const Video = ({video}) => {
 
     return (
         <Content>
-        {!loaded ? 
-        <Loader
-            // variants={LoadingSkeleton}
-            // animate='loading'
-            // initial='hidden'
-        >
-            <p className="title"></p>
-            <p className="author"></p>
-            <p className="video"></p>
-            <p className="duration"></p>
-        </Loader>:""}
+        
         <div className="container">
+            {!loaded ? 
+            <Loader
+                // variants={LoadingSkeleton}
+                // animate='loading'
+                // initial='hidden'
+            >
+                <p className="title"></p>
+                <p className="author"></p>
+                <p className="video"></p>
+                <p className="duration"></p>
+            </Loader>:""}
             <iframe
                 src={video}
                 loading="lazy"
@@ -39,11 +40,11 @@ const Video = ({video}) => {
 
 const Loader = styled(motion.div)`
     position: absolute;
-    top: 50%;
+    top: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 100%;
     max-height: 750px;
     background: #ffffff;
     padding: 0.5rem;
@@ -60,7 +61,7 @@ const Loader = styled(motion.div)`
         border-radius: .25rem;
     }
     .author {
-        top: 10%;
+        top: 15%;
         width: 20%;
         height: 20px;
         
@@ -68,7 +69,7 @@ const Loader = styled(motion.div)`
     .video {
         top: 30%;
         width: 97%;
-        height: 200px;
+        height: 55%;
         
     }
     .duration {
@@ -85,9 +86,11 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
     .container {
+        position: relative;
         border: none;
         height: 100%;
-        padding-top: 56.25%;
+        padding-top: 40%;
+        width: 100%;
         iframe {
             position: absolute;
             top: 0;
@@ -95,7 +98,7 @@ const Content = styled.div`
             transform: translateX(-50%);
             bottom: 0;
             right: 0;
-            width: 80%;
+            width: 100%;
             height: 100%;
             border: 0;
         }

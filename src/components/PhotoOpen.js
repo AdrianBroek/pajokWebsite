@@ -3,26 +3,50 @@ import styled from "styled-components";
 import {motion} from 'framer-motion'
 import {showImg} from '../animation'
 import { useLocation, useNavigate } from "react-router-dom";
+import leftArrow from '../images/icons/up-arrow left.png'
+import rightArrow from '../images/icons/up-arrow right.png'
 // import user context
 import UserContext from './fetchData/data'
+import { AnimatePresence } from "framer-motion";
+import x from "../images/icons/x.png"
 
 const PhotoOpen = () => {
-    // const [formattedDate, setFormattedDate] = useState(false)
     const navigate = useNavigate();
     const {pathname} = useLocation()
     let result = /[^/]*$/.exec(pathname)[0];
-    // console.log(result)
-    const { singleObject, objectData, openDetail, setOpenDetail, setOpen, open, copiedObject, setCopiedObject } = useContext(UserContext)
 
-    console.log(singleObject)
+    const { singleObject, objectData, openDetail, setOpenDetail, setOpen, open, copiedObject, setCopiedObject } = useContext(UserContext)
 
     useEffect(()=>{
         setOpen(true)
-        // open ? document.body.style.overflowY='hidden' : document.body.style.overflowY='unset'
-        // console.log(openDetail)
-        // console.log(objectData)
-        // console.log(open)
+        // console.log(singleObject)
     }, [openDetail])
+
+    const changePhoto = (e) => {
+        let activeId
+        const allphotos = singleObject.photoModule
+        // check index of active photoOpen
+        const checkActiveId = allphotos.findIndex((el)=> el.id == openDetail.id)
+
+        if(e.target.parentNode.id == 'left') {
+            activeId = checkActiveId - 1
+            if(activeId < 0){
+                activeId = allphotos.length - 1
+            }
+            
+        }else if(e.target.parentNode.id == 'right') {
+            activeId = checkActiveId + 1
+            if(activeId > allphotos.length - 1){
+                activeId = 0
+            }
+        }
+        // set new photo as open detail
+        const filteredIndex = allphotos[activeId]
+        setOpenDetail(filteredIndex)
+    }
+
+    
+
 
     useEffect(() => {
         result = /[^/]*$/.exec(pathname)[0];
@@ -38,42 +62,40 @@ const PhotoOpen = () => {
     }, [copiedObject])
 
 
-
-    // useEffect(()=> {
-    //     if (openDetail) {
-    //         let date = new Date(openDetail.photo.createdAt)
-    //         console.log(date)
-    //         // Get year, month, and day part from the date
-    //         let year = date.toLocaleString("default", { year: "numeric" });
-    //         let month = date.toLocaleString("default", { month: "2-digit" });
-    //         let day = date.toLocaleString("default", { day: "2-digit" });
-
-    //         // Generate yyyy-mm-dd date string
-    //         setFormattedDate(day + "-" + month + "-" + year) 
-    //         // console.log(formattedDate);  // Prints: 04-05-2022
-    //     }
-    // }, [copiedObject])
-
-    // console.log(formattedDate)
-
     return (
         <>
+        <AnimatePresence>
         {openDetail
           && (
-            <Picture onClick={() => navigate(-1)}>
+            
+            <Picture >
+                <button onClick={() => navigate(-1)} className="escape">
+                    <img src={x} alt="escape photo button"/>
+                </button>
+                <div id="left" className="arrow left" onClick={(e)=>changePhoto(e)}>
+                    <img src={leftArrow} />
+                </div>
+                <div id="right" className="arrow right" onClick={(e)=>changePhoto(e)}>
+                    <img src={rightArrow} />
+                </div>
                 <div className="imgCont">
-                    <img src={openDetail.photo.url}/>
-                    {/* <p className="date">{formattedDate}</p> */}
+                    <motion.img 
+                        key={openDetail.photo.url}
+                        src={openDetail.photo.url}
+                        initial={{ x: 0, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -0, opacity: 0 }}
+                    />
                 </div>
                 <div className="photoDescription">
                     <div className="container">
                         <div className="modelName" style={{padding: openDetail.model.length > 0 ? '1rem' : ''}}>
                             {openDetail.model.length > 0 && (
-                                <p>Model: </p>
+                                <h3>Model: </h3>
                             )}
                             <ul>
                                 {openDetail.model.map((model, index) => (
-                                    <li key={index}><h3>{model}</h3></li>
+                                    <li key={index}><h4>{model}</h4></li>
                                 ))}
                             </ul>
                         </div>
@@ -83,6 +105,7 @@ const PhotoOpen = () => {
                 </div>
             </Picture>
         )}
+        </AnimatePresence>
         </>
     )
 }
@@ -99,7 +122,36 @@ const Picture = styled.section`
     display: flex;
     justify-content: center;
     color: #fff;
+    .escape {
+        background: transparent;
+        border: none;
+        padding: .5rem;
+        filter: invert(100%) sepia(0%) saturate(24%) hue-rotate(114deg) brightness(108%) contrast(108%);
+    }
+    .escape,.arrow {
+        position: absolute;
+        cursor: pointer;
+        width: 50;
+        height: 50px;
+        z-index: 1;
+        top: 0;
+        right: 0;
+       
+    }
+    .arrow {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 80px;
+        height: 80px;
+        &.left {
+            left: 5%;
+        }
+        &.right {
+            right: 5%;
+        }
+    }
     .imgCont {
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -108,18 +160,24 @@ const Picture = styled.section`
     .photoDescription {
         padding: 2.5rem 1rem 1rem 1rem;
         max-width: 50%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: fit-content;
         .container {
-            background: #000;
-            width: 100%;
+            background: #0000008c;
+            /* width: 100%; */
             .modelName {
-                p {
+                h3 {
                     font-weight: 500;
-                    font-size: .9rem;
+                    font-size: 1rem;
                 }
                 ul li {
                     list-style: none;
-                    h3 {
+                    
+                    h4 {
                         font-size: 1rem;
+                        font-weight: 400;
                         &:before {
                             content: '- '
                         } 

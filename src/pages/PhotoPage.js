@@ -199,15 +199,17 @@ const LinkContainer = styled(Hide)`
     }
     h3 {
         width: fit-content;
-        color: #fff;
+        color: #000;
         font-size: 2rem;
         text-shadow: 1px 5px 6px rgba(0,0,0,0.15);
+        background-color: #f5f5f5;
+        padding: 1rem;
         @media screen and (max-width: 1024px){
             font-size: 5vw;
             margin: 0;
-            background-color: #f5f5f5;
+            
             color: #000;
-            padding: 1rem;
+            
             font-weight: 300;
             font-family: 'Raleway', sans-serif;
         }

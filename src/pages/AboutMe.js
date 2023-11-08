@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useMemo} from "react";
 // styles
 import styled from 'styled-components'
 import axios from "axios";
@@ -51,6 +51,7 @@ const OmniePage = () => {
         }).then(res => setAvatar(res.data.data.aboutMePhotos[0].photo.url));
     });
 
+    const backgroundImg = useMemo(()=> avatar, [avatar])
 
     const [copy, setCopy] = useState(false)
     const clickForLink = () => {
@@ -81,11 +82,11 @@ const OmniePage = () => {
              animate="show"
              exit="exit" >
                 <AvContainer
-                variants={glow}
+                // variants={glow}
                 animate='show'
                 >
-                    <AvatarBlur src={avatar}/>
-                    <Avatar src={avatar}/>
+                    <AvatarBlur src={backgroundImg}/>
+                    <Avatar src={backgroundImg}/>
                 </AvContainer>
                 <div>
                     <TextShadow text='O mnie'/>

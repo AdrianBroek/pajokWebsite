@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, {useRef, useState, useEffect, useMemo} from "react";
 import like from '../images/aboutMe/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
@@ -50,12 +50,17 @@ const ContactPage = () => {
         }
     }   
     , [success])
+
+    const backgroundImg = useMemo(()=>{
+        return require('../images/contact/background-min.webp');
+
+    }, [])
   
     return (
 
     <ContactContainer>
         <div className="background">
-            <img src={background} alt='' />
+            <img src={backgroundImg} alt='contact page background image' />
             <TextShadow text='Kontakt' />
         </div>
         <PageLayoutContact

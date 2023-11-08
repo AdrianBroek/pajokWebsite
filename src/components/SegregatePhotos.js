@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect, useMemo} from 'react'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
 // import items
@@ -16,9 +16,34 @@ const Segregate = ({grid, setGrid}) => {
     const [active, setActive] = useState(1)
     const [open, setOpen] = useState(false)
 
-    function segregate(grid, index) {
+    // get grid option from local storage if exist
+
+    
+    
+    
+
+    // const changeLS = useMemo(()=> {
+    //     const gls = localStorage.getItem('grid-options')
+    //     const glsP = JSON.parse(gls)[0]
+    //     console.log(glsP)
+    //     // if(gls != undefined){
+    //     //     setGrid(glsP)
+    //     // }
+    // }, [segregate])
+
+    // save grid option to local storage
+    // const ls = localStorage.setItem('grid-options', grid)
+
+    function segregate(grid,text, index) {
         setActive(index)
         setTimeout(() => setGrid(grid), [100])
+        let gridArray = []
+        let gridObject = {
+            grid: grid.toString(),
+            text: text.toString()
+        }
+        gridArray.push(gridObject)
+        localStorage.setItem('grid-options', JSON.stringify(gridArray))
     }
 
     return (
@@ -41,7 +66,7 @@ const Segregate = ({grid, setGrid}) => {
                         <div 
                         key={item.key}
                         className='block'
-                        onClick={() => segregate(item.grid, index)}
+                        onClick={() => segregate(item.grid, item.text, index)}
                         >
                             <div className="">
                                 {item.text}
@@ -88,7 +113,7 @@ const SegregateStyle = styled.div`
             display: flex;
             justify-content: space-between;
             p {
-                font-weight: 400;
+                font-weight: 300;
             }
             img {
                 max-width: 11px;
