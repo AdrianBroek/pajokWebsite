@@ -16,27 +16,12 @@ const Segregate = ({grid, setGrid}) => {
     const [active, setActive] = useState(1)
     const [open, setOpen] = useState(false)
 
-    // get grid option from local storage if exist
-
-    
-    
-    
-
-    // const changeLS = useMemo(()=> {
-    //     const gls = localStorage.getItem('grid-options')
-    //     const glsP = JSON.parse(gls)[0]
-    //     console.log(glsP)
-    //     // if(gls != undefined){
-    //     //     setGrid(glsP)
-    //     // }
-    // }, [segregate])
-
-    // save grid option to local storage
-    // const ls = localStorage.setItem('grid-options', grid)
-
     function segregate(grid,text, index) {
         setActive(index)
-        setTimeout(() => setGrid(grid), [100])
+        setTimeout(() => setGrid({
+            grid: grid,
+            text: text
+        }), [100])
         let gridArray = []
         let gridObject = {
             grid: grid.toString(),
@@ -52,7 +37,7 @@ const Segregate = ({grid, setGrid}) => {
             <Overlay open={open} setOpen={setOpen} />
             <div className="cont" onClick={() => setOpen(!open)}>
             <div className="itemCont">
-                <p>{loaded[active].text}</p>
+                <p>{grid.text}</p>
                 <motion.img className='noselect' variants={arrowRotate} initial='set' animate={open ? 'go' : 'set'} src={arrow}></motion.img>
             </div>
             <motion.div 

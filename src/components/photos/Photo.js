@@ -48,15 +48,18 @@ const Photos = () => {
     }, [objectData,copy])
     
     // state
-    const [grid, setGrid] = useState(null)
+    const [grid, setGrid] = useState({
+        grid: '30% 30% 30%',
+        text: 'triple-view',
+    })
 
     useEffect(() => {
         // Pobierz dane z localStorage podczas montowania komponentu
         const gls = JSON.parse(localStorage.getItem('grid-options'));
         // console.log(gls.grid)
         if(gls!=undefined){
-            if (gls[0] && gls[0].grid) {
-                setGrid(gls[0].grid);
+            if (gls[0]) {
+                setGrid(gls[0]);
             }
         }
         
@@ -86,7 +89,7 @@ const Photos = () => {
                     </Desc>
                     <Segregate grid={grid} setGrid={setGrid}/>
 
-                    <ImgCont style={{gridTemplateColumns: grid}}>
+                    <ImgCont style={{gridTemplateColumns: grid.grid}}>
                         {singleObject.photoModule.map((item, index) => (
                             <PhotoGrid
                                 photos={singleObject}
