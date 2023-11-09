@@ -47,35 +47,35 @@ const Loader = styled(motion.div)`
     height: 100%;
     max-height: 750px;
     background: #ffffff;
-    padding: 0.5rem;
+    padding: 1rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
     .title,.author,.duration,.video {
-        position: absolute;
+        /* position: absolute; */
         background-color: #f5f5f5;
         border-radius: .25rem;
     }
     .title {
-        top: 2%;
         width: 80%;
-        height: 20px;
+        height: 10%;
         border-radius: .25rem;
     }
     .author {
-        top: 15%;
         width: 20%;
-        height: 20px;
+        height: 10%;
         
     }
     .video {
-        top: 30%;
         width: 97%;
-        height: 55%;
+        height: 50%;
         
     }
     .duration {
-        top: 90%;
         width: 97%;
-        height: 20px;
+        height: 10%;
     }
 `
 
