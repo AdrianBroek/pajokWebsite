@@ -38,11 +38,7 @@ const Prices = () => {
         // .then(res => console.log(res.data.data.pricess.pricess));
 
     });
-
-    // useEffect(()=> {
-    //     console.log(prices)
-    // }, [prices])
-
+    
     return (
         <PageContainer>
         <PageLayout 

@@ -79,7 +79,6 @@ const PhotoCoverStyle = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: .5rem;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;

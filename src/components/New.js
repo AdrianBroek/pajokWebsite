@@ -27,7 +27,7 @@ const New = () => {
         }
     }, [news])
 
-    // console.log(post[0].title)
+    // console.log(post[0])
 
     return(
         <PageContainer>
@@ -39,21 +39,21 @@ const New = () => {
                 {post && (
                     <PostContainer>
                         {post.map((item)=>(
-                            <>
+                            <div key={item.id}>
                                 <Helmet>
                                     <title>{item.title}</title>
                                     <meta name='description' content={item.MetaDescription} />
                                 </Helmet>
                                 <PostCover>
                                     <img className='bg' src={item.coverPhoto.url}></img>
-                                    <img src={item.coverPhoto.url}></img>
+                                    <img className='main' src={item.coverPhoto.url}></img>
                                 </PostCover>
                                 <Content>
                                     <h2 className='title'>{item.title}</h2>
 
                                     <div className='htmlContent' dangerouslySetInnerHTML={{__html: item.article.html}}></div>
                                 </Content>
-                            </>
+                            </div>
                         ))}
                     </PostContainer>
                 )}
@@ -96,6 +96,7 @@ const PostCover = styled.div`
     img {
         max-width: 100%;
         height: auto;
+        max-height: 750px;
         position: relative;
         &.bg{
             filter: blur(10px);
@@ -105,6 +106,9 @@ const PostCover = styled.div`
             width: 120%;
             height: 120%;
             object-fit: fill;
+        }
+        &.main{
+            object-fit: contain;
         }
     }
 `

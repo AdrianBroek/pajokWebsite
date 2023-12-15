@@ -6,6 +6,8 @@ import {PageLayout,PageContainer, Hide} from '../style/styles'
 import styled from 'styled-components'
 // links
 import pages_nav from '../pages_nav_info'
+// style
+import * as palette from '../components/style-variables'
 
 const NavItem = ({open}) => {
     const {pathname} = useLocation()
@@ -53,21 +55,14 @@ const MenuItem = styled.h3`
 const Menu = styled(motion.div)`
     margin: 5rem 0;
 `
-const MenuLine = styled(motion.div)`
-    width: 0;
-    background: #4b494942;
-    /* box-shadow: 5px 2px 3px rgb(0 0 0 / 50%); */
-    border-bottom: .1px solid #4b4949bb;
-    transition: .3s ease-out;
-`
 
 const HideItem = styled(motion.div)`
     overflow: hidden;
     &:hover {
-        background-color: #f5f5f5;
+        background-color: ${palette.SEC_TEXT_COLOR};
     }
     &.active {
-        background: #ebebeb;
+        background: ${palette.SEC_COLOR};
     }
 `
 

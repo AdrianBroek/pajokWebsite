@@ -31,7 +31,7 @@ const HambContainer = styled(motion.div)`
     position: fixed;
     z-index: 2;
     top: 0;
-    height: 100px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +51,7 @@ const HamburgerStyle = styled(motion.div)`
 const HamburgLine = styled(motion.div)`
     width: 20px;
     height: 2px;
-    background-color: #000;
+    background-color: #fff;
     border-radius: 1rem;
 `
 

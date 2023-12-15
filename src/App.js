@@ -36,6 +36,7 @@ import {UserProvider} from './components/fetchData/data'
 import Overlay from './components/Overlay'
 // helmet
 import { HelmetProvider } from 'react-helmet-async';
+import AddPrice from './pages/TryToAddPrice'
 
 const queryClient = new QueryClient()
 
@@ -65,7 +66,7 @@ function App() {
       <UserProvider>
         
       <Routes location={location} key={location.pathname}>
-        <Route path="*" element={<NoPage />} />
+        <Route meta path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/photo" element={<PhotoPage />} />
         <Route path="/photo/:id/*" element={ <Photo />} >
@@ -77,6 +78,7 @@ function App() {
         <Route path="/cennik" element={<Prices />} />
         <Route path="/aktualnosci" element={<News />} />
         <Route path="/aktualnosci/:id" element={<New />}/>
+        <Route path='/user/add' element={<AddPrice />}/>
       </Routes>
       
       </UserProvider>

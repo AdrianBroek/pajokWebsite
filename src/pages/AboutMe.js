@@ -20,6 +20,8 @@ import TextShadow from "../components/TextShadow";
 // animations
 import { motion } from 'framer-motion'
 import { glow, buttonAnim, PageAnimation } from '../animation'
+// styles
+import * as palette from '../components/style-variables'
 
 // images
 // import avatar from '../images/aboutMe/avatar2.jpg'
@@ -28,14 +30,21 @@ import like from '../images/aboutMe/thumbs-up.svg'
 
 const OmniePage = () => {
     const [avatar, setAvatar] = useState()
+    const [text, setText] = useState()
     const api_key = process.env.REACT_APP_GRAPH_KEY
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
     {
-        aboutMePhotos {
-            id
+        aboutMePages {
             photo {
-              url
+              photoAboutMePage {
+                photo {
+                  url
+                }
+                aboutMeText {
+                    html
+                }
+              }
             }
         }
     }
@@ -48,10 +57,17 @@ const OmniePage = () => {
           data: {
             query: QUERY
           }
-        }).then(res => setAvatar(res.data.data.aboutMePhotos[0].photo.url));
+        }).then((res) => {
+            // console.log(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].photo.url)
+            // console.log(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
+            setAvatar(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].photo.url)
+            setText(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
+            }
+        );
     });
 
     const backgroundImg = useMemo(()=> avatar, [avatar])
+    const pageText = useMemo(()=> text, [text])
 
     const [copy, setCopy] = useState(false)
     const clickForLink = () => {
@@ -66,7 +82,6 @@ const OmniePage = () => {
             setTimeout(()=> {
                 setCopy(false)
             }, 2500)
-            
         }
     }   
     , [copy])
@@ -91,27 +106,13 @@ const OmniePage = () => {
                 <div>
                     <TextShadow text='O mnie'/>
                 </div>
+                <Line />
                 <DescriptionAM>
-                    <p>
-                    Cześć, nazywam się Łukasz.
-                    </p> 
-
-                    <p>
-                    Odkąd pamiętam, fotografia i film zawsze przeplatały się w moim życiu.
-                    Jestem fanem niebanalnych kadrów. 
-                    </p>
-                    
-                    <p> 
-                    Lubię również 
-                    wykonywać portrety ludziom oraz 
-                    dokumentować ważne wydarzenia z ich życia. 
-                    Stale podnoszę sobie poprzeczkę i szlifowuję 
-                    swoje umiejętności.
-                    </p>
+                    <div dangerouslySetInnerHTML={{ __html: pageText }} />
                 </DescriptionAM>
-
+                
                 <WriteToMe>
-                <h2>Napisz do mnie!</h2>
+                <h4><strong>Napisz do mnie!</strong></h4>
                     <LinkBtn 
                         onClick={clickForLink}
                         whileHover="hover"
@@ -161,7 +162,7 @@ const WriteToMe = styled(motion.div)`
 `
 
 const PageContainerAboutMe = styled(PageContainer)`
-    margin: 5rem 0;
+    padding: 5rem 0;
 `
 
 const DescriptionAM = styled(Description)`
@@ -185,7 +186,7 @@ const Copied = styled(motion.div)`
     right: 2.5%;
     border-radius: .5rem;
     padding: .5rem;
-    background: rgb(70,130,180);
+    background: ${palette.SEC_COLOR};
     h5 {
         color: #fff;
         font-family: Arial, Helvetica, sans-serif;
@@ -220,7 +221,7 @@ const AvContainer = styled(motion.div)`
     height: 300px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #44D62C;
+    /* border: 2px solid #44D62C; */
     position: relative;
     display: flex;
     justify-content: center;

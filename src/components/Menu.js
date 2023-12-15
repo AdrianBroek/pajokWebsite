@@ -3,6 +3,7 @@ import NavItem from './NavItems'
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { MenuAnim } from '../animation'
+import * as palette from '../components/style-variables'
 
 const Menu = ({open, setOpen}) => {
     return (
@@ -22,7 +23,7 @@ const MenuStyle = styled(motion.section)`
     left: 0;
     height: 100%;
     width: 250px;
-    background: #fff;
+    background: ${palette.MAIN_COLOR};
     box-shadow: 1px 3px 5px rgba(0, 0, 0, .16);
     z-index: 2;
 `

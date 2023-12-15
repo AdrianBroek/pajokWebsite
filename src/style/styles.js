@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import * as palette from '../components/style-variables'
 
 export const PageContainer = styled(motion.article)`
     height: 100%;
     min-height: 80vh;
     width: 100%;
     position: relative;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: ${palette.MAIN_COLOR};
 `
 
 export const PageLayout = styled(motion.section)`
@@ -18,6 +20,7 @@ export const PageLayout = styled(motion.section)`
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
+    background-color: ${palette.MAIN_COLOR};
     .overlay.open{
         background: rgba(0,0,0,0.95) !important;
     }
@@ -28,10 +31,10 @@ export const LinkBtn = styled(motion.div)`
     text-align: center;
     padding: 1rem;
     min-width: 160px;
-    border-radius: .5rem;
     cursor: pointer;
     color: #fff;
-    background: #1A1919;
+    background: transparent;
+    border: 1px solid ${palette.SEC_COLOR};
     img {
         filter: invert(98%) sepia(28%) saturate(3%) hue-rotate(95deg) brightness(120%) contrast(100%);
     }
@@ -60,7 +63,7 @@ export const Logo = styled.img`
 export const Icon = styled(motion.img)`
     width: 100%;
     object-fit: cover;
-    max-width: 25px;
+    max-width: 18px;
 `
 
 
@@ -71,7 +74,7 @@ export const PajokThemeTxt = styled.h1`
 export const Line = styled.div`
     height: .5px;
     width: 90%;
-    background: #f5f5f5;
+    background: ${palette.GRAY_COLOR};
     margin-bottom: 1rem;
 `
 export const Hide = styled(motion.div)`

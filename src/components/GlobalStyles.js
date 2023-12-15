@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import * as palette from './style-variables'
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -15,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
         user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     }
     body {
-        font-family: 'Jost', sans-serif;
+        font-family: ${palette.JOST};
         overflow-x: hidden;
     }
     .vimeoVideo {
@@ -46,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
         background: rgba(0,0,0,0.95);
     }
     h1 {
-        font-family: 'Assistant', sans-serif;
+        font-family: ${palette.ASSISTANT};
         text-transform: uppercase;
         font-size: 5rem;
         font-weight: lighter;
@@ -55,15 +56,28 @@ const GlobalStyles = createGlobalStyle`
         }
     }
     h2 {
-        font-family: 'Roboto', sans-serif;
+        font-family: ${palette.ROBOTO};
     }
-    a, p, span, h3 {
+    h1,h2 {color: ${palette.WHITE_COLOR};}
+    a, p, span, h3, h4 {
         font-size: 1.25rem;
-        color: #000;
+        color: ${palette.MAIN_TEXT_COLOR};
         font-weight: 300;
         @media screen and (max-width: 601px){
-            font-size: 1.3rem;
+            font-size: 1.1rem;
         }
+    }
+    button {
+        border: none;
+        background-color: transparent;
+    }
+    .htmlContent {
+        li {
+            list-style-type: inside;
+        }
+    }
+    .filter-white {
+        filter: invert(95%) sepia(5%) saturate(18%) hue-rotate(140deg) brightness(104%) contrast(107%);
     }
     a {
         text-decoration: none;

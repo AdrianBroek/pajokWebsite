@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 // icons
 import telIcon from '../images/icons/telephone.png'
 import email from '../images/icons/email.png'
+// style
+import * as palette from '../components/style-variables'
 
 const Footer = () => {
 
@@ -70,10 +72,10 @@ const IconStyle = styled(Icon)`
 
 const FooterStyle = styled.section`
     width: 100%;
-    /* height: 25vh; */
+    border-top: 1px solid ${palette.GRAY_COLOR};
     display: flex;
     flex-direction: column;
-    background: #1a1919;
+    background: ${palette.MAIN_COLOR};
     .top {
         max-width: 1640px;
         padding: 2rem;

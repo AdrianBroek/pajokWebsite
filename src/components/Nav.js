@@ -9,6 +9,8 @@ import { Link, useLocation } from "react-router-dom";
 import {Logo} from '../style/styles'
 //logo
 import pajokLogoWhite from '../images/pajok_logo.png'
+// styles
+import * as palette from '../components/style-variables'
 
 
 const Nav = ({open, setOpen}) => {
@@ -27,8 +29,8 @@ const Nav = ({open, setOpen}) => {
     return (
         <NavBar
             style={{ 
-                background: shownav ? '#fff' : 'transparent',
-                boxShadow: shownav ? '1px 3px 5px rgb(0 0 0 / 16%)' : 'none'
+                background: shownav ? palette.MAIN_COLOR : 'transparent',
+                boxShadow: shownav ? '1px 13px 15px rgb(0 0 0 / 50%)' : 'none'
             }}>
             <div />
             <Link to="/" style={{height: '80%'}}>
@@ -51,7 +53,7 @@ const NavBar = styled(motion.div)`
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
+    height: 50px;
     z-index: 2;
     display: flex;
     align-items: center;

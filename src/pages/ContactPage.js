@@ -12,12 +12,13 @@ import {
 }
 from '../style/styles'
 
-
+import * as palette from '../components/style-variables'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import {Icon} from '../style/styles'
 import TextShadow from '../components/TextShadow'
 import {PageAnimation,HideParent, svgAnimate, pathAnimate, buttonAnim} from '../animation'
+import { Helmet } from "react-helmet-async";
 
 const ContactPage = () => {
     const api_key = process.env.REACT_APP_MAIL_KEY
@@ -63,6 +64,10 @@ const ContactPage = () => {
             <img src={backgroundImg} alt='contact page background image' />
             <TextShadow text='Kontakt' />
         </div>
+        <Helmet>
+            <title>Kontakt - Pajok - portfolio</title>
+            <meta name='description' content="Skontaktuj się z Pajok Photography - Twój fotograf w Krakowie! Z przyjemnością odpowiemy na Twoje pytania, omówimy szczegóły sesji zdjęciowej lub filmowej. Wybierz profesjonalizm i niezapomniane chwile. Wypełnij formularz kontaktowy i zacznij tworzyć wyjątkowe wspomnienia już dziś!" />
+        </Helmet>
         <PageLayoutContact
         variants={HideParent}
         animate='show'
@@ -178,7 +183,7 @@ const PageLayoutContact = styled(PageLayout)`
 `
 
 const ContactContainer = styled(PageContainer)`
-    margin-top: 0;
+    padding-top: 0;
     .background {
         width: 100%;
         max-height: 350px;
@@ -210,7 +215,7 @@ const Send = styled(motion.div)`
     right: 2.5%;
     border-radius: .5rem;
     padding: .5rem;
-    background: rgba(70,130,180, .5);
+    background: ${palette.SEC_COLOR};
     h5 {
         color: #fff;
         font-family: Arial, Helvetica, sans-serif;
@@ -223,8 +228,7 @@ const Send = styled(motion.div)`
 
 const SendBtn = styled(motion.div)`
     position: relative;
-    border-radius: .5rem;
-    border: 1px solid #000;
+    border: 1px solid ${palette.SEC_COLOR};
     padding: .5rem;
     background: #fff;
     color: #fff;
@@ -233,8 +237,8 @@ const SendBtn = styled(motion.div)`
     justify-content: center;
     column-gap: .85rem;
     margin: auto;
-    width: 50%;
-    background-color: #1A1919;
+    width: 120px;
+    background-color: transparent;
     input {
         cursor: pointer;
         position: absolute;
@@ -251,7 +255,7 @@ const SendBtn = styled(motion.div)`
         z-index: 2;
     }
     h4 {
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 500;
     }
     img {
@@ -261,7 +265,7 @@ const SendBtn = styled(motion.div)`
 
 
 const Load = styled(Send)`
-    background: rgba(70,130,180, .1);
+    background: ${palette.SEC_COLOR};
 `
 
 const ContactCont = styled.div`
@@ -299,7 +303,7 @@ const Form = styled.form`
                 display: block;
                 width: 80%;
                 height: 80%;
-                border: 1px solid black;
+                border: 1px solid ${palette.WHITE_COLOR};
                 border-radius: 0.25rem;
                 position: absolute;
                 top: 50%;
@@ -390,7 +394,7 @@ const InputContainer = styled.div`
             top: -2px;
             left: 0;
             height: 100%;
-            border-bottom: 2px solid #5fa8d3;
+            border-bottom: 2px solid ${palette.SEC_COLOR};
             transition: .3s ease;
             transform: translateX(-101%)
         }
@@ -410,11 +414,12 @@ const InputContainer = styled.div`
         width: 100%;
         height: 100%;
         padding: 1rem 0 0 .5rem;
+        color: ${palette.WHITE_COLOR};
     }
     input:focus + .label-name .content-name,
     input:valid + .label-name .content-name{
         transform: translateY(-150%);
-        color: #5fa8d3;
+        color: ${palette.SEC_COLOR};
         font-size: .8rem;
         bottom: 20px;
     }

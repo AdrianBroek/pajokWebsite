@@ -10,6 +10,8 @@ import arrow from '../images/icons/arrow-up.svg'
 import {Icon} from '../style/styles'
 // animation
 import {arrowRotate} from '../animation'
+// style
+import * as palette from './style-variables'
 
 const Segregate = ({grid, setGrid}) => {
     const [loaded, setLoaded] = useState(segregateList)
@@ -99,6 +101,8 @@ const SegregateStyle = styled.div`
             justify-content: space-between;
             p {
                 font-weight: 300;
+                font-size: .85rem;
+                color: ${palette.SEC_TEXT_COLOR}
             }
             img {
                 max-width: 11px;

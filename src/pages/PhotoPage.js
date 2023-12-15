@@ -90,8 +90,8 @@ const PageContainerPhotos = styled(PageContainer)`
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2.5rem;
-    margin-bottom: 0;
+    padding-top: 2.5rem;
+    padding-bottom: 0;
 `
 
 const PageLayoutPhotos = styled(PageLayout)`
@@ -200,12 +200,12 @@ const LinkContainer = styled(Hide)`
     h3 {
         width: fit-content;
         color: #000;
-        font-size: 2rem;
+        font-size: 1.35rem;
         text-shadow: 1px 5px 6px rgba(0,0,0,0.15);
         background-color: #f5f5f5;
         padding: 1rem;
         @media screen and (max-width: 1024px){
-            font-size: 5vw;
+            font-size: 3vw;
             margin: 0;
             
             color: #000;

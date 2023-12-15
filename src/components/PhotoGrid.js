@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import UserContext from './fetchData/data'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PhotoCover from './PhotoCover'
-
+import * as palette from '../components/style-variables'
 
 const PhotoGrid = ({open, setOpen, item, index, photos}) => {
 
@@ -54,9 +54,8 @@ const Picture = styled(motion.div)`
         height: 100%;
         width: 100%;
         overflow: hidden;
-        border-radius: .5rem;
         background-color: #9e9e9e00;
-        box-shadow: 0 10px 10px -5px;
+        box-shadow: ${palette.SHADOW1};
     }
     img {
         transition: all .3s ease;

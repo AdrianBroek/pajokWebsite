@@ -16,9 +16,11 @@ import { Routes, Route, useLocation, HistoryRouterProps, Link } from "react-rout
 // context
 import UserContext from './fetchData/data'
 
+import { Helmet } from "react-helmet-async";
+
 const News = () => {
     const {news} = useContext(UserContext)
-    console.log(news)
+    // console.log(news)
     return (
         <PageContainer>
         <PageLayout 
@@ -26,11 +28,14 @@ const News = () => {
         animate='show'
         initial='hidden'
         >
+            <Helmet>
+                <title>Pajok - portftolio - Aktualności</title>
+                <meta name='description' content="Odkryj najnowsze dzieła w portfolio fotografa Pajok oraz bądź na bieżąco z najświeższymi aktualnościami. Znajdź unikalne ujęcia w różnych stylach i zobacz, jak artysta zapisuje niezapomniane chwile. Wejdź teraz, aby doświadczyć świata fotografii w najnowszym wydaniu!" />
+            </Helmet>
             <TextShadow text='Aktualności' />
             <Line />
             {news && (
                 
-
             <NewsContainer>
                     {news.map((item, index)=>(
                         <Link key={index} to={item.slug}>
@@ -42,8 +47,8 @@ const News = () => {
                                 <h2>{item.title}</h2>
                                 <h6 className="date">{item.date.substring(0, 10)}</h6>
                                 <div className='tags'>
-                                    {item.tagList[0].tag.map((tag)=>(
-                                        <h6>#{tag},</h6>
+                                    {item.tagList[0].tag.map((tag, index)=>(
+                                        <h6 key={index}>#{tag},</h6>
                                     ))}
                                 </div>
                             </div>

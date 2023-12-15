@@ -49,7 +49,7 @@ const Photos = () => {
     
     // state
     const [grid, setGrid] = useState({
-        grid: '30% 30% 30%',
+        grid: '33% 33% 33%',
         text: 'triple-view',
     })
 
@@ -119,12 +119,9 @@ const ImgCont = styled(motion.div)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2.5rem;
-    row-gap: 1rem;
-    column-gap: 1rem;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 33% 33% 33%;
     @media screen and (max-width: 501px) {
-        grid-template-columns: 45% 45%;
+        grid-template-columns: 50% 50%;
     }
     @media screen and (max-width: 501.99px) {
         padding: .5rem;
