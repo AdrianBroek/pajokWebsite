@@ -26,6 +26,17 @@ export const PageLayout = styled(motion.section)`
     }
 `
 
+export const ComponentPageLayout = styled(motion.section)`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2rem;
+    background-color: ${palette.MAIN_COLOR};
+`
+
 export const LinkBtn = styled(motion.div)`
     width: fit-content;
     text-align: center;

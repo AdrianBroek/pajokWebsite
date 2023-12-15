@@ -109,6 +109,35 @@ const GlobalStyles = createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
     background: #555;
     }
+    
+    .swiper {
+    width: 100%;
+    height: 100%;
+    }
+
+    .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .swiper-button-prev,.swiper-button-next {
+    color: ${palette.SEC_COLOR}; 
+    }
+    .swiper-pagination-bullet {
+    background: ${palette.SEC_COLOR}; 
+    }
+
 `
 
 export default GlobalStyles

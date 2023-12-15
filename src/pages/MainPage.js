@@ -29,10 +29,12 @@ import { gql } from "graphql-request";
 import axios from "axios";
 import { useQuery } from "react-query";
 import playIcon from "../images/icons/play-button.png"
+import VideoComponent from '../components/VideoComponent'
 
 const MainPage = () => {
-
+    const [load, setLoad] = useState(false)
     const [mainData, setMainData] = useState('')
+    const [videos, setVideos] = useState()
     const [backgroundImage, setBackgroundImage] = useState()
     const [header, setHeader] = useState()
     const [description, setDescription] = useState()
@@ -47,6 +49,9 @@ const MainPage = () => {
             mainPageHeader
             mainPageDescription
         }
+        videoPages {
+            embedVimeoLink
+        }
       }
     `
     // graph api
@@ -58,20 +63,23 @@ const MainPage = () => {
             query: QUERY
             }
         })
-        .then(res => setMainData(res.data.data.mainPages[0]))
+        .then(res => {
+            setMainData(res.data.data)
+            setLoad(true)
+        })
     });
 
-    const spreadData = useMemo(()=> {
-        // console.log(mainData)
-        if (mainData.mainPhoto?.url) {
-            setBackgroundImage(mainData.mainPhoto.url);
-        } else {
-            console.log("url is undefined or null");
-        }        setHeader(mainData.mainPageDescription)
-        setDescription(mainData.mainPageHeader)
+    useEffect(()=> {   
+        if (load){   
+            setBackgroundImage(mainData.mainPages[0].mainPhoto.url);
+            setHeader(mainData.mainPages[0].mainPageDescription)
+            setDescription(mainData.mainPages[0].mainPageHeader)
+            setVideos(mainData.videoPages[0].embedVimeoLink)
+        }
     }, [mainData])
     
 
+    
     return(
         <Container
             variants={PageAnimation}
@@ -110,6 +118,7 @@ const MainPage = () => {
 
 
         </PageContainerMain>
+        <VideoComponent videos={videos}/>
         </Container>
     )
 
