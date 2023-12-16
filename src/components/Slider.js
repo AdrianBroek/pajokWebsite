@@ -13,7 +13,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination,Navigation } from 'swiper/modules';
 
-export default function SlickSlider(props) {
+export default function Slider(props) {
   
   console.log(props)
   return (
@@ -43,17 +43,8 @@ export default function SlickSlider(props) {
           },
         }}
       >
-        {/* <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
         {props.props?.map((video)=> (
-        <SwiperSlide>
+        <SwiperSlide style={{height: '400px', paddingBottom: '2rem'}}>
           <Iframe
             // className="noselect"
             frameBorder="none"
@@ -70,18 +61,6 @@ export default function SlickSlider(props) {
   );
 }
 
-const Video = styled.div`
-  height: 500px;
-  width: 100%;
-  background-color: red;
-  position: relative;
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-`
 const Iframe = styled.iframe`
   width:100%;
   height: 100%;

@@ -34,7 +34,7 @@ const ContactPage = () => {
   
       emailjs.sendForm('service_spv36b4', 'pajok_contact_form', form.current, api_key)
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             setLoad(false)
             setSuccess(true)
         }, (error) => {
@@ -309,7 +309,7 @@ const Form = styled.form`
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                z-index: -1;
+                z-index: 0;
             }
         }
         input[type="checkbox"] {
@@ -327,6 +327,7 @@ const Form = styled.form`
         .agreedSvg {
             max-width: 20px;
             min-width: 20px;
+            z-index: 1;
         }
     }
 `
@@ -385,7 +386,7 @@ const InputContainer = styled.div`
         height: 100%;
         pointer-events: none;
         font-size: 1rem;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid ${palette.WHITE_COLOR};
         overflow: hidden;
         &::after {
             content: '';

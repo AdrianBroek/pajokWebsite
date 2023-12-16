@@ -30,6 +30,8 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import playIcon from "../images/icons/play-button.png"
 import VideoComponent from '../components/VideoComponent'
+import CreativeExp from '../components/CreativeExp'
+import ContactMe from '../components/ContactMeComponent'
 
 const MainPage = () => {
     const [load, setLoad] = useState(false)
@@ -118,7 +120,9 @@ const MainPage = () => {
 
 
         </PageContainerMain>
+        <CreativeExp />
         <VideoComponent videos={videos}/>
+        <ContactMe />
         </Container>
     )
 

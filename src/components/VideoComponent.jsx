@@ -6,8 +6,6 @@ import {
     ComponentPageLayout,
     Line
 } from '../style/styles'
-import SlickSlider from "./SlickSlider";
-
 import Slider from "./Slider";
 
 const VideoComponent = ({videos}) => {
@@ -18,7 +16,7 @@ const VideoComponent = ({videos}) => {
                 <h1>Moje <span><strong>Prace</strong></span></h1>
             </Header>
             <VideoLine />
-            <SlickSlider props={videos}/>
+            <Slider props={videos}/>
         </VideoComponentLayout>
         
     )
@@ -27,6 +25,7 @@ const VideoComponent = ({videos}) => {
 const VideoComponentLayout = styled(ComponentPageLayout)`
     background-color: ${palette.TH_COLOR};
     padding: 4rem 0;
+    row-gap: 1rem;
 `
 
 const Header = styled.header`

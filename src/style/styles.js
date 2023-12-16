@@ -34,7 +34,7 @@ export const ComponentPageLayout = styled(motion.section)`
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
-    background-color: ${palette.MAIN_COLOR};
+    background-color: ${palette.TH_COLOR};
 `
 
 export const LinkBtn = styled(motion.div)`
@@ -99,5 +99,17 @@ export const ImageContainer = styled.div`
     column-gap: 1rem;
     h3 {
         color: #fff;
+    }
+`
+
+export const BasicMediumImage = styled.div`
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    img {
+        object-fit: cover;
+        width: 100%;
+        max-height: 100%;
     }
 `
