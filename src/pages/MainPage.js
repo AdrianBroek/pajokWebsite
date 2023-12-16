@@ -29,17 +29,25 @@ import { gql } from "graphql-request";
 import axios from "axios";
 import { useQuery } from "react-query";
 import playIcon from "../images/icons/play-button.png"
+// components
 import VideoComponent from '../components/VideoComponent'
 import CreativeExp from '../components/CreativeExp'
+import WhyMe from '../components/WhyMe'
 import ContactMe from '../components/ContactMeComponent'
 
 const MainPage = () => {
+    // if api loaded
     const [load, setLoad] = useState(false)
+    // full data from graph
     const [mainData, setMainData] = useState('')
+    // single data from graph api
     const [videos, setVideos] = useState()
     const [backgroundImage, setBackgroundImage] = useState()
     const [header, setHeader] = useState()
     const [description, setDescription] = useState()
+    const [bubbleComponent, setBubbleComponent] = useState()
+    const [myPassionText, setMyPassionText] = useState()
+    // graph settings
     const api_key = process.env.REACT_APP_GRAPH_KEY
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
@@ -50,6 +58,16 @@ const MainPage = () => {
             }
             mainPageHeader
             mainPageDescription
+            bubbleComponent {
+                bubbleText
+                bubbleHeader
+                bubbleImage {
+                  url
+                }
+            }
+            myPassionText {
+                myPassionText
+            }
         }
         videoPages {
             embedVimeoLink
@@ -76,11 +94,13 @@ const MainPage = () => {
             setBackgroundImage(mainData.mainPages[0].mainPhoto.url);
             setHeader(mainData.mainPages[0].mainPageDescription)
             setDescription(mainData.mainPages[0].mainPageHeader)
+            setBubbleComponent(mainData.mainPages[0].bubbleComponent)
+            setMyPassionText(mainData.mainPages[0].myPassionText.myPassionText)
             setVideos(mainData.videoPages[0].embedVimeoLink)
         }
     }, [mainData])
     
-
+    // console.log(bubbleComponent)
     
     return(
         <Container
@@ -90,39 +110,40 @@ const MainPage = () => {
             exit="exit"
         >
             
-        <PageContainerMain style={{backgroundImage: `url(${backgroundImage})`}}>
-            <div className='description'>
-                <h5><strong>{description}</strong></h5>
-                <h2><strong>{header}</strong></h2>
-                    {/* <motion.div variants={btnSlideUp} whileHover='work' className="button">
-                        <Link className='btn' to='/photo'>
-                            <div>
-                                <p>Zdjęcia</p>
-                            </div>
-                        </Link>
-                    </motion.div> */}
-                    <motion.button 
-                    // variants={btnSlideUp} whileHover='work'
-                    whileTap={{scale: .9}}
-                    whileHover={{
-                        scale: 0.9,
-                    }}
-                    className="button">
-                        <Link className='btn' to='/video'>
-                            <div className='flex'>
-                                <img className='filter-white' height="25px" src={playIcon} alt="play-Icon"/>
-                                {/* <p>Wideo</p> */}
-                            </div>
-                        </Link>
-                    </motion.button>
-                <InvisibleLine><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></InvisibleLine>
-            </div>
+            <PageContainerMain style={{backgroundImage: `url(${backgroundImage})`}}>
+                <div className='description'>
+                    <h5><strong>{description}</strong></h5>
+                    <h2><strong>{header}</strong></h2>
+                        {/* <motion.div variants={btnSlideUp} whileHover='work' className="button">
+                            <Link className='btn' to='/photo'>
+                                <div>
+                                    <p>Zdjęcia</p>
+                                </div>
+                            </Link>
+                        </motion.div> */}
+                        <motion.button 
+                        // variants={btnSlideUp} whileHover='work'
+                        whileTap={{scale: .9}}
+                        whileHover={{
+                            scale: 0.9,
+                        }}
+                        className="button">
+                            <Link className='btn' to='/video'>
+                                <div className='flex'>
+                                    <img className='filter-white' height="25px" src={playIcon} alt="play-Icon"/>
+                                    {/* <p>Wideo</p> */}
+                                </div>
+                            </Link>
+                        </motion.button>
+                    <InvisibleLine><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></InvisibleLine>
+                </div>
 
 
-        </PageContainerMain>
-        <CreativeExp />
-        <VideoComponent videos={videos}/>
-        <ContactMe />
+            </PageContainerMain>
+            <CreativeExp props={myPassionText}/>
+            <VideoComponent videos={videos}/>
+            <WhyMe props={bubbleComponent}/>
+            <ContactMe />
         </Container>
     )
 

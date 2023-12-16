@@ -4,9 +4,9 @@ import styled from "styled-components";
 // styles
 import {
     ComponentPageLayout,
-    Line
+    SmallLine
 } from '../style/styles'
-import Slider from "./Slider";
+import VideoSlider1 from "./VideoSlider1";
 
 const VideoComponent = ({videos}) => {
 
@@ -15,8 +15,8 @@ const VideoComponent = ({videos}) => {
             <Header>
                 <h1>Moje <span><strong>Prace</strong></span></h1>
             </Header>
-            <VideoLine />
-            <Slider props={videos}/>
+            <SmallLine />
+            <VideoSlider1 props={videos}/>
         </VideoComponentLayout>
         
     )
@@ -42,9 +42,4 @@ const Header = styled.header`
     }
 
 `
-
-const VideoLine = styled(Line)`
-    width: 35px;
-`
-
 export default VideoComponent

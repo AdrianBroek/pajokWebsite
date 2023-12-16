@@ -15,11 +15,11 @@ import { Pagination,Navigation } from 'swiper/modules';
 
 export default function Slider(props) {
   
-  console.log(props)
+  // console.log(props)
   return (
     <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        slidesPerView={1}
+        spaceBetween={10}
         centeredSlides={true}
         pagination={{
           clickable: true,
@@ -29,10 +29,6 @@ export default function Slider(props) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
         breakpoints={{
-          400: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
           640: {
             slidesPerView: 2,
             spaceBetween: 20,
@@ -46,7 +42,7 @@ export default function Slider(props) {
         {props.props?.map((video)=> (
         <SwiperSlide style={{height: '400px', paddingBottom: '2rem'}}>
           <Iframe
-            // className="noselect"
+            className="noselect"
             frameBorder="none"
             src={video}
             loading="lazy"

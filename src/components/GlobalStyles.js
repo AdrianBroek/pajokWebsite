@@ -79,6 +79,9 @@ const GlobalStyles = createGlobalStyle`
     .filter-white {
         filter: invert(95%) sepia(5%) saturate(18%) hue-rotate(140deg) brightness(104%) contrast(107%);
     }
+    .filter-orange {
+        filter: invert(91%) sepia(50%) saturate(765%) hue-rotate(313deg) brightness(89%) contrast(98%);
+    }
     a {
         text-decoration: none;
     }

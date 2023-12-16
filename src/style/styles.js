@@ -88,6 +88,14 @@ export const Line = styled.div`
     background: ${palette.GRAY_COLOR};
     margin-bottom: 1rem;
 `
+
+export const SmallLine = styled.div`
+    height: 1px;
+    width: 35px;
+    background: ${palette.SEC_COLOR};
+`
+
+
 export const Hide = styled(motion.div)`
     overflow: hidden;
 `
@@ -109,6 +117,18 @@ export const BasicMediumImage = styled.div`
     justify-content: center;
     img {
         object-fit: cover;
+        width: 100%;
+        max-height: 100%;
+    }
+`
+
+export const BasicSmallImage = styled.div`
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    img {
+        object-fit: contain;
         width: 100%;
         max-height: 100%;
     }

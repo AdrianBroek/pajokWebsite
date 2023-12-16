@@ -28,6 +28,7 @@ const ContactMe = () => {
                     </Header>
                     
                     <p>Jesteś zainteresowany? Napisz do mnie maila lub wypełnij formularz.</p>
+                    <Line></Line>
                     <SendBtn
                     variants={buttonAnim}
                     whileTap={{
@@ -47,8 +48,8 @@ const ContactMe = () => {
 
 const CreativeExpStyle = styled.article`
     position: relative;
-    top: -30px;
     width: 80%;
+    margin: 2rem 0;
     background-color: ${palette.MAIN_COLOR};
 `
 
