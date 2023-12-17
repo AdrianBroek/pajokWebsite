@@ -23,8 +23,8 @@ const WhyMe = ({props}) => {
                 <SmallLine />
 
                 <BubbleContainer>
-                {props?.map((bubbleData)=> (
-                    <Bubble className="flex">
+                {props?.map((bubbleData, index)=> (
+                    <Bubble key={index} className="flex">
                         <BasicSmallImageWhyMe>
                             <WhyMeIcon className="filter-orange" src={bubbleData.bubbleImage.url} alt="bubble icon"/>
                         </BasicSmallImageWhyMe>

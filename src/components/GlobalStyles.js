@@ -70,6 +70,7 @@ const GlobalStyles = createGlobalStyle`
     button {
         border: none;
         background-color: transparent;
+        cursor: pointer;
     }
     .htmlContent {
         li {

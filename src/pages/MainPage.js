@@ -70,7 +70,12 @@ const MainPage = () => {
             }
         }
         videoPages {
-            embedVimeoLink
+            videoAssets {
+                embedVimeoLink
+                videoCover {
+                  url
+                }
+            }
         }
       }
     `
@@ -96,7 +101,7 @@ const MainPage = () => {
             setDescription(mainData.mainPages[0].mainPageHeader)
             setBubbleComponent(mainData.mainPages[0].bubbleComponent)
             setMyPassionText(mainData.mainPages[0].myPassionText.myPassionText)
-            setVideos(mainData.videoPages[0].embedVimeoLink)
+            setVideos(mainData.videoPages[0])
         }
     }, [mainData])
     
