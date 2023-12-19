@@ -55,11 +55,11 @@ const GlobalStyles = createGlobalStyle`
             font-size: 10vw;
         }
     }
-    h2 {
+    h2,h4,h1 {
         font-family: ${palette.ROBOTO};
     }
-    h1,h2 {color: ${palette.WHITE_COLOR};}
-    a, p, span, h3, h4 {
+    h1,h2, h4 {color: ${palette.WHITE_COLOR};}
+    a, p, span, h3 {
         font-size: 1.25rem;
         color: ${palette.MAIN_TEXT_COLOR};
         font-weight: 300;
@@ -141,6 +141,31 @@ const GlobalStyles = createGlobalStyle`
     .swiper-pagination-bullet {
     background: ${palette.SEC_COLOR}; 
     }
+    .parallax-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130%;
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-slide .title {
+  font-size: 41px;
+  font-weight: 300;
+}
+
+.swiper-slide .subtitle {
+  font-size: 21px;
+}
+
+.swiper-slide .text {
+  font-size: 14px;
+  max-width: 400px;
+  line-height: 1.3;
+}
 
 `
 

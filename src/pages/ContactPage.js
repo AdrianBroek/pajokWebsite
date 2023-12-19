@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect, useMemo} from "react";
-import like from '../images/aboutMe/thumbs-up.svg'
+import like from '../images/icons/thumbs-up.svg'
 import emailjs from '@emailjs/browser';
 import loadingif from '../images/contact/spinner.gif'
 import background from '../images/contact/background-min.webp'

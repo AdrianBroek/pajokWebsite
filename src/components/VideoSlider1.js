@@ -7,7 +7,7 @@ import styled from "styled-components";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import PlayIcon from '../images/icons/play-button.png'
+import PlayIcon from '../images/icons/play-button-2.png'
 import x from "../images/icons/x.png"
 
 import { motion } from "framer-motion";
@@ -153,8 +153,8 @@ const VideoCover = styled.div`
     position: absolute;
     top: 5%;
     left: 5%;
-    width: 50px;
-    height: 50px;
+    width: 21px;
+    height: auto;
     img {
       
     }

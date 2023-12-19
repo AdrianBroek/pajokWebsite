@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import * as palette from './style-variables'
 
 const TextShadow = ({text}) => {
 
@@ -21,8 +22,8 @@ const CategoryName = styled.div`
         position: absolute;
         top: 45%;
         left: 1.5%;
-        width: 100%;
-        font-family: 'Assistant',sans-serif;
+        width: calc(100% + 20px);
+        font-family: ${palette.ROBOTO};
         text-transform: uppercase;
         font-size: 5rem;
         font-weight: 300;

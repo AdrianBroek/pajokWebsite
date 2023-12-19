@@ -20,13 +20,11 @@ import TextShadow from "../components/TextShadow";
 // animations
 import { motion } from 'framer-motion'
 import { glow, buttonAnim, PageAnimation } from '../animation'
+import ClickToCopy from "../components/reusable/ClickToCopy";
 // styles
 import * as palette from '../components/style-variables'
 
-// images
-// import avatar from '../images/aboutMe/avatar2.jpg'
-import copySvg from '../images/aboutMe/file.png'
-import like from '../images/aboutMe/thumbs-up.svg'
+
 
 const OmniePage = () => {
     const [avatar, setAvatar] = useState()
@@ -69,33 +67,16 @@ const OmniePage = () => {
     const backgroundImg = useMemo(()=> avatar, [avatar])
     const pageText = useMemo(()=> text, [text])
 
-    const [copy, setCopy] = useState(false)
-    const clickForLink = () => {
-        if (!copy) {
-        copyToClipboard('lucaskrzyzak@gmail.com')
-        setCopy(true)
-        clearTimeout()
-        }
-    }
-    useEffect(() => {
-        if (copy) {
-            setTimeout(()=> {
-                setCopy(false)
-            }, 2500)
-        }
-    }   
-    , [copy])
-
-    // copy text
-    const copyToClipboard = (text) => navigator.clipboard.writeText(text)
+    
     return (
-        <PageContainerAboutMe
-        >
+        <PageContainerAboutMe>
             <PageLayout
              variants={PageAnimation}
              initial="hidden"
              animate="show"
              exit="exit" >
+                
+
                 <AvContainer
                 // variants={glow}
                 animate='show'
@@ -113,35 +94,13 @@ const OmniePage = () => {
                 
                 <WriteToMe>
                 <h4><strong>Napisz do mnie!</strong></h4>
-                    <LinkBtn 
-                        onClick={clickForLink}
-                        whileHover="hover"
-                        variants={buttonAnim}
-                        whileTap={{
-                            scale: 0.95,
-                        }}
-                    >
-                        <ImageContainer>
-                            <h3>lucaskrzyzak@gmail.com</h3>
-                            <Icon src={copySvg} />
-                        </ImageContainer>
-                    </LinkBtn>
-
-                    <Copied
-                        variants={PageAnimation}
-                        animate={copy ? 'show' : 'hidden'}
-                        initial='hidden'>
-                        
-                        <h5>Skopiowano</h5>
-                        <Icon
-                            src={like} 
-                    />
-                    </Copied> 
+                    <ClickToCopy text={'lucaskrzyzak@gmail.com'}/>
                 </WriteToMe>
             </PageLayout>
         </PageContainerAboutMe>
     )
 }
+
 
 const WriteToMe = styled(motion.div)`
     display: flex;
@@ -173,27 +132,6 @@ const DescriptionAM = styled(Description)`
     @media screen and (max-width: 768px){
         padding: 1rem .5rem;
         max-width: 90%;
-    }
-`
-
-const Copied = styled(motion.div)`
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 1rem;
-    top: 15%;
-    right: 2.5%;
-    border-radius: .5rem;
-    padding: .5rem;
-    background: ${palette.SEC_COLOR};
-    h5 {
-        color: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    img {
-        max-width: 20px;
-        filter: invert(93%) sepia(100%) saturate(27%) hue-rotate(103deg) brightness(108%) contrast(106%);
     }
 `
 
