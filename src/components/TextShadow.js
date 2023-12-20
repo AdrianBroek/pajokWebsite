@@ -22,7 +22,7 @@ const CategoryName = styled.div`
         position: absolute;
         top: 45%;
         left: 1.5%;
-        width: calc(100% + 20px);
+        width: 100%;
         font-family: ${palette.ROBOTO};
         text-transform: uppercase;
         font-size: 5rem;

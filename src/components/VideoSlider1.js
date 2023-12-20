@@ -65,7 +65,7 @@ export default function Slider(props) {
           },
         }}
       >
-        {videoData.loaded && videoData.data[0].map((video,index)=> (
+        {videoData.loaded && videoData.data[0].map((video,index) => (
         <SwiperSlide key={index} style={{height: '400px', paddingBottom: '2rem'}}>
           <VideoContainer className="noselect">
             <VideoCover style={{zIndex: 1}}>
