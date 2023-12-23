@@ -1,4 +1,4 @@
-import React,{useCallback, useEffect, useMemo, useState} from 'react'
+import React,{useCallback, useEffect, useMemo, useState, useContext} from 'react'
 // styled components
 import styled from 'styled-components'
 import * as palette from '../components/style-variables'
@@ -24,10 +24,7 @@ import {
 } from '../style/styles'
 // routes
 import {Link} from 'react-router-dom'
-// graph
-import { gql } from "graphql-request";
-import axios from "axios";
-import { useQuery } from "react-query";
+
 import playIcon from "../images/icons/play-button.png"
 // components
 import VideoComponent from '../components/VideoComponent'
@@ -35,75 +32,30 @@ import CreativeExp from '../components/CreativeExp'
 import WhyMe from '../components/WhyMe'
 import ContactMe from '../components/ContactMeComponent'
 
+// import user context
+import UserContext from '../components/fetchData/data'
+
 const MainPage = () => {
-    // if api loaded
-    const [load, setLoad] = useState(false)
-    // full data from graph
-    const [mainData, setMainData] = useState('')
+    // context data
+    const { mainPageData, loading } = useContext(UserContext)
     // single data from graph api
-    const [videos, setVideos] = useState()
+    
     const [backgroundImage, setBackgroundImage] = useState()
     const [header, setHeader] = useState()
     const [description, setDescription] = useState()
-    const [bubbleComponent, setBubbleComponent] = useState()
+    const [bubbleComponent, setBubbleComponent] = useState([])
     const [myPassionText, setMyPassionText] = useState()
-    // graph settings
-    const api_key = process.env.REACT_APP_GRAPH_KEY
-    const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
-    const QUERY = gql`
-    {
-        mainPages {
-            mainPhoto {
-              url
-            }
-            mainPageHeader
-            mainPageDescription
-            bubbleComponent {
-                bubbleText
-                bubbleHeader
-                bubbleImage {
-                  url
-                }
-            }
-            myPassionText {
-                myPassionText
-            }
-        }
-        videoPages {
-            videoAssets {
-                embedVimeoLink
-                videoCover {
-                  url
-                }
-            }
-        }
-      }
-    `
-    // graph api
-    const { data, isLoading, error } = useQuery("launches", async () => {
-        return await axios({
-            url: endpoint,
-            method: "POST",
-            data: {
-            query: QUERY
-            }
-        })
-        .then(res => {
-            setMainData(res.data.data)
-            setLoad(true)
-        })
-    });
 
+    // set data
     useEffect(()=> {   
-        if (load){   
-            setBackgroundImage(mainData.mainPages[0].mainPhoto.url);
-            setHeader(mainData.mainPages[0].mainPageDescription)
-            setDescription(mainData.mainPages[0].mainPageHeader)
-            setBubbleComponent(mainData.mainPages[0].bubbleComponent)
-            setMyPassionText(mainData.mainPages[0].myPassionText.myPassionText)
-            setVideos(mainData.videoPages[0])
+        if (loading){   
+            setBackgroundImage(mainPageData.mainPhoto.url);
+            setHeader(mainPageData.mainPageHeader)
+            setDescription(mainPageData.mainPageDescription)
+            setBubbleComponent(mainPageData.bubbleComponent)
+            setMyPassionText(mainPageData.myPassionText.myPassionText)
         }
-    }, [mainData])
+    }, [mainPageData])
     
     // console.log(bubbleComponent)
     
@@ -143,10 +95,9 @@ const MainPage = () => {
                     <InvisibleLine><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></InvisibleLine>
                 </div>
 
-
             </PageContainerMain>
             <CreativeExp props={myPassionText}/>
-            <VideoComponent videos={videos}/>
+            <VideoComponent/>
             <WhyMe props={bubbleComponent}/>
             <ContactMe />
         </Container>
@@ -235,8 +186,7 @@ const InvisibleLine = styled.div`
             height: 25%;
         }
         &:nth-child(1){
-            top: 0;
-            
+            top: 0;   
         }
         &:nth-child(2){
             top: 0;

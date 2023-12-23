@@ -8,7 +8,7 @@ import {
 } from '../style/styles'
 import VideoSlider1 from "./VideoSlider1";
 
-const VideoComponent = ({videos}) => {
+const VideoComponent = () => {
 
     return (
         <VideoComponentLayout>
@@ -16,7 +16,7 @@ const VideoComponent = ({videos}) => {
                 <h1>Moje <span><strong>Prace</strong></span></h1>
             </Header>
             <SmallLine />
-            <VideoSlider1 props={videos}/>
+            <VideoSlider1/>
         </VideoComponentLayout>
         
     )

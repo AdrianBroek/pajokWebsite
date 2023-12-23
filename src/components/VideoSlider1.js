@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from "styled-components";
@@ -17,24 +17,23 @@ import { motion } from "framer-motion";
 import { Pagination,Navigation } from 'swiper/modules';
 import { Icon } from "../style/styles";
 
-export default function Slider(props) {
-  
+// import user context
+import UserContext from '../components/fetchData/data'
+
+export default function Slider() {
+  const { loading, lastAddedVideos } = useContext(UserContext)
+
+  const [videos, setVideos] = useState()
   // console.log(props)
   const [activeFrame, setActiveFrame] = useState('')
-  useEffect(()=> {
-    if(props.props != undefined) {
-      setVideoData(state => ({
-        data: [props.props.videoAssets],
-        loaded: true
-      }))
-      // console.log(videoData)
-    }
-  }, [props])
-
-  const [videoData, setVideoData] = useState({
-    data: [],
-    loaded: false
-  })
+    // set data
+    useEffect(()=> {   
+      if (loading){   
+          setVideos(lastAddedVideos)
+          console.log(videos)
+      }
+      
+  }, [lastAddedVideos])
 
   function showFrame(url){
     // console.log(url)
@@ -65,20 +64,20 @@ export default function Slider(props) {
           },
         }}
       >
-        {videoData.loaded && videoData.data[0].map((video,index) => (
-        <SwiperSlide key={index} style={{height: '400px', paddingBottom: '2rem'}}>
+        {videos?.map((video,index) => (
+        <SwiperSlide className="flex" key={index} style={{height: '600px', paddingBottom: '2rem', flexDirection: 'column'}}>
           <VideoContainer className="noselect">
             <VideoCover style={{zIndex: 1}}>
-              <img src={video.videoCover.url} alt="video-cover"/>
+              <img style={{filter: 'grayscale(.5)'}} src={video.videoCover.url} alt="video-cover"/>
               <motion.button whileHover={{
                 scale: 0.9,
-            }} onClick={()=>showFrame(video.embedVimeoLink)}>
+            }} onClick={()=>showFrame(video.link)}>
                 <Icon className="filter-white" src={PlayIcon} alt="play icon for showing a video"/>
               </motion.button>
             </VideoCover>
           </VideoContainer>
+          <VideoTitle className="noselect">{video.title}</VideoTitle>
         </SwiperSlide>
-        
       ))}
       </Swiper>
       {activeFrame && (
@@ -100,7 +99,6 @@ export default function Slider(props) {
           </Iframe>
         </PopupIframe>
       )}
-
       </>
   );
 }
@@ -159,6 +157,11 @@ const VideoCover = styled.div`
       
     }
   }
+`
+
+const VideoTitle = styled.h2`
+  margin: 2rem 0;
+  font-size: 1rem;
 `
 
 const VideoContainer = styled.div`

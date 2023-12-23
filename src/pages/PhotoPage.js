@@ -14,8 +14,8 @@ import UserContext from '../components/fetchData/data'
 import TextShadow from '../components/TextShadow'
 
 const PhotoPage = () => {
-    const { objectData } = useContext(UserContext)
-    // console.log(objectData)
+    const { photoObjectData } = useContext(UserContext)
+    // console.log(photoObjectData)
 
     const [element1, controls1] = useScroll()
     const [element2, controls2] = useScroll()
@@ -24,7 +24,7 @@ const PhotoPage = () => {
     const constraintsRef = useRef(null);
     return(
         <>
-        {objectData && (
+        {photoObjectData && (
             <PageContainerPhotos>
             <PageLayoutPhotos 
                 variants={HideParent}
@@ -39,7 +39,7 @@ const PhotoPage = () => {
                     <LinkCont>
                     <Parent variants={Slide} initial="hidden" animate="show" exit="exit" ref={constraintsRef}>
                         <SliderContainer drag="x" dragConstraints={constraintsRef}>
-                        {objectData.map((item)=>(
+                        {photoObjectData.map((item)=>(
                             <Children variants={Slide}>
                                 <LinkContainer key={uuidv4()}>        
                                     <ImgSlider src={item.backgroundPhoto.url} />

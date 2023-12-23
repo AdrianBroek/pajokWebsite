@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 //pages
 import MainPage from './pages/MainPage'
 import PhotoPage from './pages/PhotoPage'
-import VideoPage from './pages/VideoPage'
+import VideosPage from './pages/VideosPage'
 import ContactPage from './pages/ContactPage'
 import OmniePage from './pages/AboutMe'
 import PhotoOpen from './components/PhotoOpen'
@@ -37,6 +37,7 @@ import Overlay from './components/Overlay'
 // helmet
 import { HelmetProvider } from 'react-helmet-async';
 import AddPrice from './pages/TryToAddPrice'
+import Video from './components/Video'
 
 const queryClient = new QueryClient()
 
@@ -72,7 +73,8 @@ function App() {
         <Route path="/photo/:id/*" element={ <Photo />} >
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
-        <Route path="/video" element={<VideoPage />} />
+        <Route path="/videos" element={<VideosPage />} />
+        <Route path="/videos/:id" element={ <Video />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
         <Route path="/cennik" element={<Prices />} />

@@ -29,14 +29,25 @@ import TextShadow from "../TextShadow";
 import UserContext from '../fetchData/data'
 
 const Photos = () => {
-    const { objectData, singleObject, setSingleObject, photoData, open, setOpen, copiedObject, setCopiedObject } = useContext(UserContext)
+    const { photoObjectData, 
+        singleObject, 
+        setSingleObject, 
+        open, 
+        setOpen, 
+        setCopiedObject } = useContext(UserContext)
     // location
     const {pathname} = useLocation()
-    
-    const [copy, setCopy] = useState(objectData)
 
+    // state
+    const [copy, setCopy] = useState(photoObjectData)
+    const [grid, setGrid] = useState({
+        grid: '33% 33% 33%',
+        text: 'triple-view',
+    })
+
+    // setting the active category of photos
     useEffect(() => {
-        setCopy(objectData)
+        setCopy(photoObjectData)
 
         if(copy){
             let subWord = pathname.split('/')[2]
@@ -45,16 +56,12 @@ const Photos = () => {
             })
             setSingleObject(singleData[0])
         }
-    }, [objectData,copy])
+    }, [photoObjectData,copy])
     
-    // state
-    const [grid, setGrid] = useState({
-        grid: '33% 33% 33%',
-        text: 'triple-view',
-    })
 
+    // local storage for grid options
     useEffect(() => {
-        // Pobierz dane z localStorage podczas montowania komponentu
+        // download localstorage data while loading
         const gls = JSON.parse(localStorage.getItem('grid-options'));
         // console.log(gls.grid)
         if(gls!=undefined){

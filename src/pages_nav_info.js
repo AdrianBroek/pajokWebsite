@@ -31,7 +31,7 @@ const pages_nav = [
     },
     {
         title: 'Filmy',
-        url: '/video',
+        url: '/videos',
         active: false,
         key: 6
     },
