@@ -40,11 +40,12 @@ const PhotoPage = () => {
                     <Parent variants={Slide} initial="hidden" animate="show" exit="exit" ref={constraintsRef}>
                         <SliderContainer drag="x" dragConstraints={constraintsRef}>
                         {photoObjectData.map((item)=>(
-                            <Children variants={Slide}>
+                            <Children 
+                            variants={Slide}
+                            >
                                 <LinkContainer key={uuidv4()}>        
                                     <ImgSlider src={item.backgroundPhoto.url} />
                                     <div 
-                                    
                                     style={{
                                         userSelect: 'none',
                                         '-webkit-user-drag': 'none',

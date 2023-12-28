@@ -82,7 +82,7 @@ const Photos = () => {
     return (
         <motion.div className="test">
         {singleObject && (
-                <PageContainer>
+            <PageContainer>
                 <PageLayout 
                     // variants={HideParent}
                     // initial="hidden"
@@ -110,9 +110,8 @@ const Photos = () => {
                     </ImgCont>
                     <Overlay zindex='2' className='overlay' open={open} setOpen={setOpen} />
                 </PageLayout>
-                </PageContainer>
-                
-                )}
+            </PageContainer>
+            )}
                 <Outlet />
         </motion.div>
     )

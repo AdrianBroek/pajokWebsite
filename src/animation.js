@@ -301,3 +301,39 @@ export const LoadingSkeleton = {
 },
     loading: {backgroundPosition: "800 0"}
 }
+
+export const videoAnim = {
+    hidden: {
+        y: 20,
+        x: -20,
+        height: 0,
+        rotate: -1.7,
+        opacity: 0,
+        transition: {
+            duration: .5,
+            ease: "easeInOut",
+        }
+    },
+    show: {
+        y: 0,
+        x: 0,
+        height: 300,
+        rotate: 0,
+        opacity: 1,
+        transition: {
+            duration: .5,
+            ease: "easeInOut",
+            staggerChildren: .15,
+        }
+    },
+    exit: {
+        y: 20,
+        height: 0,
+        rotate: 0,
+        opacity: 0,
+        transition: {
+            duration: .5,
+            ease: "easeOut",
+        }
+    },
+}

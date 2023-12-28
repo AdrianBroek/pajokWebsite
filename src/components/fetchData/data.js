@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 // axios
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -31,8 +31,9 @@ export function UserProvider({children}){
     // videos
     const [videoData, setVideoData] = useState([])
     const [lastAddedVideos, setLastAddedVideo] = useState([])
-
-
+    // category
+    const [categories, setCategories] = useState([])
+    // grahpQl
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
     {
@@ -136,9 +137,29 @@ export function UserProvider({children}){
         setNews(object.data.newss)
         setVideoData(object.data.videoPages)
         setLastAddedVideo(object.data.lastAddedVideoss)
-        // console.log(lastAddedVideos)
       }
     },[object,pathname])
+
+    function setCategoryState(){
+      const copiedCategories = [...videoData];
+
+      copiedCategories.map((el) => {
+        const cat = el.videoCategorySlug.split("/")[1]
+        console.log(cat)
+        setCategories(prevState => [
+          ...prevState,
+          cat
+        ])
+      })  
+    }
+    
+
+    useEffect(()=> {
+      if(videoData && categories.length<=0){
+        setCategoryState()
+      }
+    },[videoData])
+    
 
     return (
         <UserContext.Provider 
@@ -157,7 +178,8 @@ export function UserProvider({children}){
             setCopiedObject,
             news,
             videoData,
-            lastAddedVideos
+            lastAddedVideos,
+            categories
         }}>
 
         {children}

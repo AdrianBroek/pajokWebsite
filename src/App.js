@@ -38,6 +38,7 @@ import Overlay from './components/Overlay'
 import { HelmetProvider } from 'react-helmet-async';
 import AddPrice from './pages/TryToAddPrice'
 import Video from './components/Video'
+import VideoCategoryPage from './pages/VideoPage'
 
 const queryClient = new QueryClient()
 
@@ -62,8 +63,6 @@ function App() {
       <Menu open={open} setOpen={setOpen}/>
       <Hamburger open={open} setOpen={setOpen}/>
       
-
-
       <UserProvider>
         
       <Routes location={location} key={location.pathname}>
@@ -74,7 +73,9 @@ function App() {
           <Route path=":id" element={ <PhotoOpen />} />
         </Route>
         <Route path="/videos" element={<VideosPage />} />
-        <Route path="/videos/:id" element={ <Video />} />
+        <Route path="/videos/category/*" element={ <VideoCategoryPage />}>
+          <Route path=":id" element={ <Video />} />
+        </Route>
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/o-mnie" element={<OmniePage />} />
         <Route path="/cennik" element={<Prices />} />
