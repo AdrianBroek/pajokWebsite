@@ -71,6 +71,31 @@ export const Logo = styled.img`
     border-radius: .25rem;
 `
 
+export const Header = styled.header`
+    h1 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        text-transform: capitalize;
+        font-family: ${palette.ROBOTO};
+        text-align: center;
+    }
+
+    span {
+        color: ${palette.SEC_COLOR};
+        font-size: inherit;
+    }
+
+`
+
+export const ImageDarker = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color: #0000009c;
+`
+
 export const Icon = styled(motion.img)`
     width: 100%;
     object-fit: cover;

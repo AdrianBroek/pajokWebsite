@@ -18,7 +18,7 @@ const WhyMe = ({props}) => {
         <ComponentPageLayout>
             <Description className="flex">
                 <Header>
-                    <h1>Co daje współpraca <span><strong>ze mną</strong></span></h1>
+                    <h1>Współpraca <span><strong>ze mną</strong></span></h1>
                 </Header>
                 <SmallLine />
 

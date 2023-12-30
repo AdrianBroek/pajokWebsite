@@ -304,21 +304,15 @@ export const LoadingSkeleton = {
 
 export const videoAnim = {
     hidden: {
-        y: 20,
-        x: -20,
-        height: 0,
-        rotate: -1.7,
+        x: -10,
         opacity: 0,
         transition: {
-            duration: .5,
+            duration: 5,
             ease: "easeInOut",
         }
     },
     show: {
-        y: 0,
         x: 0,
-        height: 300,
-        rotate: 0,
         opacity: 1,
         transition: {
             duration: .5,
@@ -327,13 +321,56 @@ export const videoAnim = {
         }
     },
     exit: {
-        y: 20,
-        height: 0,
-        rotate: 0,
+        x: -10,
         opacity: 0,
         transition: {
             duration: .5,
             ease: "easeOut",
         }
     },
+}
+
+export const videoAnimSlow = {
+    hidden: {
+        x: -10,
+        opacity: 0,
+        transition: {
+            duration: 5,
+            ease: "easeInOut",
+        }
+    },
+    show: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: .5,
+            ease: "easeInOut",
+            staggerChildren: .5,
+        }
+    },
+    exit: {
+        x: -10,
+        opacity: 0,
+        transition: {
+            duration: .5,
+            ease: "easeOut",
+        }
+    },
+}
+
+export const showVideoCover = {
+    hidden: {
+        opacity: 0,
+
+    },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: .15,
+            ease: "easeInOut"
+        }
+    },
+    exit: {
+        opacity: 0,
+    }
 }

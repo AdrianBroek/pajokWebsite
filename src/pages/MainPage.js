@@ -85,7 +85,7 @@ const MainPage = () => {
                             scale: 0.9,
                         }}
                         className="button">
-                            <Link className='btn' to='/video'>
+                            <Link className='btn' to='/videos'>
                                 <div className='flex'>
                                     <img className='filter-white' height="25px" src={playIcon} alt="play-Icon"/>
                                     {/* <p>Wideo</p> */}

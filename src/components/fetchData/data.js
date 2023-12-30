@@ -91,6 +91,9 @@ export function UserProvider({children}){
         videoCategoryTitle
         videoCategorySlug
         videoCategoryDescription
+        videoCategoryBackgroundMobile {
+          url
+        }
         videoCategoryBackground {
           url
         }
@@ -140,12 +143,13 @@ export function UserProvider({children}){
       }
     },[object,pathname])
 
+    // select video categories 
     function setCategoryState(){
       const copiedCategories = [...videoData];
 
       copiedCategories.map((el) => {
         const cat = el.videoCategorySlug.split("/")[1]
-        console.log(cat)
+        // console.log(cat)
         setCategories(prevState => [
           ...prevState,
           cat

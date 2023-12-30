@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 // defined styles
-import {PageLayout,PageContainer, Line} from '../style/styles'
+import {PageLayout,PageContainer, Line,} from '../style/styles'
 // routes
 import {Link, Outlet} from 'react-router-dom'
-import {HideMenuItems, HideParent, HideParent2, Slide, segregateAnim, showImg, showNav, videoAnim} from '../animation'
+import {HideMenuItems, showVideoCover,HideParent, HideParent2, Slide, segregateAnim, showImg, showNav, videoAnim} from '../animation'
 // styled
 import styled from 'styled-components'
 import {AnimatePresence, motion} from 'framer-motion'
+import * as palette from '../components/style-variables'
 // axios
 import axios from 'axios'
 // styles
@@ -28,6 +29,7 @@ const Video = () => {
     const [videos, setVideos] = useState([])
 
     const [activeFrame, setActiveFrame] = useState('')
+    const [activeHover, setActiveHover] = useState(false)
 
     // set data
     useEffect(()=> {   
@@ -44,28 +46,44 @@ const Video = () => {
       setActiveFrame(url)
     }
 
+    
+    // useEffect(()=> {
+    //   console.log(activeHover)
+    // }, [activeHover])
+
     return (
         <GridContainer>
           {videos.map((video, index)=> (
-            <Grid variants={videoAnim}
+            <Grid 
+            variants={videoAnim}
             animate='show'
             initial='hidden'
             key={index}>
             {video.videoComponent.map((vidata,index)=> (
               <motion.div key={index} variants={videoAnim}>
-              <VideoContainer>
+              <VideoContainer onMouseLeave={()=>setActiveHover(false)} whileHover={()=>setActiveHover(index)}>
                 <VideoCover style={{zIndex: 1}}>
                     <motion.img style={{filter: 'grayscale(.5)'}} src={vidata.videoCover.url} alt="video-cover"/>
-                    <motion.button whileHover={{scale: 0.9,}} onClick={()=>showFrame(vidata.videoEmbedLink)}>
-                      <Icon className="filter-white" src={PlayIcon} alt="play icon for showing a video"/>
-                    </motion.button>
                 </VideoCover>
+                <VideoNameCover 
+                variants={showVideoCover}
+                animate={activeHover === index ? 'show' : 'hidden'}
+                initial='hidden'
+                exit="exit"
+                >
+                  <Header className='flex'>
+                      <h1>{vidata.videoTitle}</h1>
+                  </Header>
+                  <motion.button whileHover={{scale: 0.9,}} onClick={()=>showFrame(vidata.videoEmbedLink)}>
+                      <Icon className="filter-white" src={PlayIcon} alt="play icon for showing a video"/>
+                  </motion.button> 
+                </VideoNameCover>
               </VideoContainer> 
               {activeFrame && (
                 <PopupIframe>
                   <motion.button whileTap={{scale: .9}}
                     whileHover={{
-                        scale: 0.9,
+                      scale: 0.9,
                     }} onClick={() => setActiveFrame()} className="filter-white">
                     <img src={x} alt="escape video button"/>
                   </motion.button>
@@ -88,6 +106,44 @@ const Video = () => {
     )
 }
 
+
+
+const VideoNameCover = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.335);
+  padding: 1rem;
+  button {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 21px;
+    height: auto;
+    img {
+      
+    }
+  }
+`
+const Header = styled.header`
+  width: 100%;
+  height: 100%;
+  h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: capitalize;
+      font-family: ${palette.ROBOTO};
+      text-align: center;
+  }
+  span {
+      color: ${palette.SEC_COLOR};
+      font-size: inherit;
+  }
+`
+
 const GridContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
@@ -96,20 +152,14 @@ const GridContainer = styled(motion.div)`
 
 const Grid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(50px, 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax(300px, .25fr) );
   place-content: center center;
   padding: 2rem;
   min-height: 30vh;
   gap: 1rem;
-  /* @media screen and (max-width: 1024px){
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media screen and (max-width: 768px){
-    grid-template-columns: 1fr 1fr;
-  }
-  @media screen and (max-width: 350px){
+  @media screen and (max-width: 400px){
     grid-template-columns: 1fr;
-  } */
+  }
 `
 
 const VideoCover = styled(motion.div)`
@@ -124,23 +174,14 @@ const VideoCover = styled(motion.div)`
     width: 100%;
     height: 100%;
   }
-  button {
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 21px;
-    height: auto;
-    img {
-      
-    }
-  }
+
 `
 
 const VideoContainer = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 300px;
-  
+  overflow: hidden;
   @media screen and (max-width: 1024px){
     height: 250px;
   }

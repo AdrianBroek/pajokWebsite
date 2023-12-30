@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react'
 // defined styles
-import {PageLayout,PageContainer, Line} from '../style/styles'
+import {
+    PageLayout,
+    PageContainer, 
+    Header, 
+    SmallLine, 
+    ImageDarker } from '../style/styles'
 // routes
 import {Link} from 'react-router-dom'
 import {HideParent} from '../animation'
 // styled
 import styled from 'styled-components'
-import {motion} from 'framer-motion'
-// axios
-import axios from 'axios'
-import { Routes, Route, useLocation, HistoryRouterProps } from "react-router-dom"
-// shadow
-import TextShadow from '../components/TextShadow'
-// video component
-import Video from '../components/Video'
+// animations
+import { motion } from 'framer-motion'
+import { videoAnimSlow } from '../animation'
 
 // import user context
 import UserContext from '../components/fetchData/data'
@@ -35,25 +35,38 @@ const VideosPage = () => {
     return(
         <PageContainer>
             <PageLayout 
-            variants={HideParent}
-            animate='show'
-            initial='hidden'
+            // variants={HideParent}
+            // animate='show'
+            // initial='hidden'
             >
-                <VideoCatContainer>
-                    {videos?.map(video=>(
-                    
-                        <VideoComponent>
+                <VideoCatContainer 
+                variants={videoAnimSlow}
+                animate='show'
+                initial='hidden'
+                >
+                    {videos?.map((video,index) => (
+                        <VideoComponent 
+                        variants={videoAnimSlow} 
+                        key={index}>
                             <Link to={video.videoCategorySlug}>
                             <ImageContainer>
-                                <CatCover 
+                                <ImageDarker />
+                                <PCBackground 
                                 src={video.videoCategoryBackground.url} 
                                 alt="video-category-cover"
                                 />
+                                <MobileBackground 
+                                src={video.videoCategoryBackgroundMobile.url} 
+                                alt="video-category-cover"
+                                />
                             </ImageContainer>
-                            <Header>
-                                <h1>{video.videoCategoryTitle}</h1>
-                                <p>{video.videoCategoryDescription}</p>
-                            </Header>
+                            <HeaderCustom>
+                                <motion.h1 variants={videoAnimSlow}>{video.videoCategoryTitle}</motion.h1>
+                                <SmallLine />
+                                <motion.p variants={videoAnimSlow}>{video.videoCategoryDescription}</motion.p>
+                                
+                            </HeaderCustom>
+                            
                             </Link>
                         </VideoComponent>
                         // </Link>
@@ -72,11 +85,13 @@ const VideosPage = () => {
 
 export default VideosPage
 
-const VideoCatContainer = styled.div`
+
+
+const VideoCatContainer = styled(motion.div)`
     width: 100%;
 `
 
-const VideoComponent = styled.div`
+const VideoComponent = styled(motion.div)`
     position: relative;
     height: 500px;
     width: 100%;
@@ -88,17 +103,40 @@ const ImageContainer = styled.div`
 
 `
 
-const CatCover = styled.img`
+const PCBackground = styled.img`
     max-height: 100%;
     object-fit: cover;
-
+    width: 100%;
+    @media screen and (max-width: 768px){
+        display: none;
+    }
 `
 
-const Header = styled.div`
+const MobileBackground = styled.img`
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    display: none;
+    @media screen and (max-width: 768px){
+        display: block;
+    }
+`
+
+const HeaderCustom = styled(Header)`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%;
-    max-width: 400px;
+    max-width: 800px;
+    text-align: justify;
+    gap: 1rem;
+    
+    h1 {
+        text-align: inherit;
+        font-size: 3rem;
+    }
 `
