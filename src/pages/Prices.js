@@ -60,9 +60,6 @@ const Prices = () => {
             query: QUERY
           }
         })
-        // .then(res => setPrices(res.data.data.pricess));
-        // .then(res => setBackground(res.data.data.pricess));
-        // .then(res => setGraphData(res.data.data.pricess));
         .then(res => setGraphData(res.data.data))
         .then(res => setLoad(true));
 
@@ -73,7 +70,6 @@ const Prices = () => {
         if (load){   
             setBackground(graphData.priceListPages[0].priceListPageBackgroundImage.url);
             setPrices(graphData.pricess)
-            // console.log(graphData)
         }
     }, [graphData])
 
@@ -86,7 +82,6 @@ const Prices = () => {
         >
            
             <ParallaxContainer>
-                
                  <Swiper
                     style={{
                     '--swiper-navigation-color': '#fff',
@@ -97,10 +92,6 @@ const Prices = () => {
                     }}
                     speed={600}
                     parallax={true}
-                    // pagination={{
-                    // clickable: true,
-                    // }}
-                    // navigation={true}
                     modules={[Parallax, Scrollbar]}
                     className="mySwiper"
                     >
@@ -108,9 +99,7 @@ const Prices = () => {
                     slot="container-start"
                     className="parallax-bg"
                     style={{
-                        'background-image':
-                        // 'url(https://swiperjs.com/demos/images/nature-1.jpg)',
-                        `url(${background})`
+                        'background-image':`url(${background})`
                     }}
                     data-swiper-parallax="-23%"
                     ></div>
@@ -131,9 +120,9 @@ const Prices = () => {
                                         <>
                                         <div className="single-price-list flex">
                                             <h3>{priceList.priceListText}</h3>
-                                            <p>{priceList.priceListNumber}</p>
+                                            <p>{priceList.priceListNumber} PLN</p>
                                         </div>
-                                        <Line />
+                                        <PriceLine />
                                         </>
                                     ))}
                                 </PriceListContainer>
@@ -146,16 +135,6 @@ const Prices = () => {
 
                 </Swiper>
                 </ParallaxContainer>
-                
-        {/* <TextShadow text='Cennik'/>
-        <Line />
-        {prices ? 
-            <>
-            {prices.map((el)=> (
-                <Price price={el} />
-            ))}
-            </>
-        : "proszę czekać..." } */}
         </PageLayout>
         </PriceListPageContainer>
     )
@@ -179,6 +158,10 @@ const PriceListContainer = styled.div`
             color: ${palette.SEC_COLOR};
         }
     }
+`
+
+const PriceLine = styled(Line)`
+    width: 100%;
 `
 
 const Header = styled.div`

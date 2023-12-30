@@ -49,7 +49,7 @@ const Footer = () => {
                         <h5>Zdjęcia</h5>
                     </Link>
 
-                    <Link to="/video">
+                    <Link to="/videos">
                         <h5>Filmy</h5>
                     </Link>
                         
