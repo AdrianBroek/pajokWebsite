@@ -115,7 +115,7 @@ const PCBackground = styled.img`
 const MobileBackground = styled.img`
     height: 100%;
     object-fit: cover;
-    max-width: 100%;
+    width: 100%;
     display: none;
     @media screen and (max-width: 768px){
         display: block;
