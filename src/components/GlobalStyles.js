@@ -59,7 +59,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: ${palette.ROBOTO};
     }
     h1,h2, h4 {color: ${palette.WHITE_COLOR};}
-    a, p, span, h3 {
+    a, p, span, h3, li {
         font-size: 1.25rem;
         color: ${palette.MAIN_TEXT_COLOR};
         font-weight: 300;
@@ -67,6 +67,7 @@ const GlobalStyles = createGlobalStyle`
             font-size: 1.1rem;
         }
     }
+    li {text-align: justify}
     button {
         border: none;
         background-color: transparent;

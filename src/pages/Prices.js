@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext, useMemo} from "react";
 // styled
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
@@ -10,7 +10,6 @@ import * as palette from '../components/style-variables'
 import { gql } from "graphql-request";
 import axios from "axios";
 import { useQuery } from "react-query";
-import Price from "../components/Price";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,57 +20,21 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { Parallax, Pagination, Navigation, Scrollbar } from 'swiper/modules';
-import TESTBACKGROUND from '../images/background2.webp'
+import { Parallax, Scrollbar } from 'swiper/modules';
+
+// import user context
+import UserContext from '../components/fetchData/data'
 
 const Prices = () => {
-    const [graphData, setGraphData] = useState()
-    const [load, setLoad] = useState(false)
-    const [prices, setPrices] = useState([])
-    const [background, setBackground] = useState()
-
-    const api_key = process.env.REACT_APP_GRAPH_KEY
-    const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
-    const QUERY = gql`
-    {
-        priceListPages {
-            priceListPageBackgroundImage {
-              url
-            }
-        }
-        pricess {
-            priceComponent {
-              priceText
-              priceName
-              priceListComponent {
-                priceListText
-                priceListNumber
-              }
-            }
-        }
-    }
-    `
-     // graph api
-     const { data, isLoading, error } = useQuery("launches", () => {
-        return axios({
-          url: endpoint,
-          method: "POST",
-          data: {
-            query: QUERY
-          }
-        })
-        .then(res => setGraphData(res.data.data))
-        .then(res => setLoad(true));
-
-    });
+    const { loading, prices, priceListPage } = useContext(UserContext)
+    const [background, setBackground] = useState('')
     
-
-    useEffect(()=> {   
-        if (load){   
-            setBackground(graphData.priceListPages[0].priceListPageBackgroundImage.url);
-            setPrices(graphData.pricess)
+    const setBackgroundImg = useMemo(()=> {
+        if(loading && priceListPage.length > 0){
+            setBackground(priceListPage[0].priceListPageBackgroundImage.url)
+            // console.log(priceListPage[0].priceListPageBackgroundImage.url)
         }
-    }, [graphData])
+    }, [loading,priceListPage])
 
     return (
         <PriceListPageContainer>
@@ -99,13 +62,13 @@ const Prices = () => {
                     slot="container-start"
                     className="parallax-bg"
                     style={{
-                        'background-image':`url(${background})`
+                        'backgroundImage':`url(${background})`
                     }}
                     data-swiper-parallax="-23%"
                     ></div>
                     <BackgroundHider />
                     {prices.map((el, index)=> (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                             <SlideContainer className="flex">
                                 <Header className="flex">
                                     <p className="number">{index < 9 ? "0"+(index + 1) : index + 1}</p>
@@ -116,23 +79,19 @@ const Prices = () => {
                                     {el.priceComponent[0].priceText}
                                 </p>
                                 <PriceListContainer className="text" data-swiper-parallax="-100">                           
-                                    {el.priceComponent[0].priceListComponent?.map((priceList)=> (
-                                        <>
+                                    {el.priceComponent[0].priceListComponent?.map((priceList,index)=> (
+                                        <span key={index}>
                                         <div className="single-price-list flex">
                                             <h3>{priceList.priceListText}</h3>
                                             <p>{priceList.priceListNumber} PLN</p>
                                         </div>
                                         <PriceLine />
-                                        </>
+                                        </span>
                                     ))}
                                 </PriceListContainer>
                             </SlideContainer>
                         </SwiperSlide>
                     ))}
-                    {prices.map((el)=> (
-                        console.log(el.priceComponent[0])
-                    ))}
-
                 </Swiper>
                 </ParallaxContainer>
         </PageLayout>

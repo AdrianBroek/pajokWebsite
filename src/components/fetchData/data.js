@@ -31,8 +31,13 @@ export function UserProvider({children}){
     // videos
     const [videoData, setVideoData] = useState([])
     const [lastAddedVideos, setLastAddedVideo] = useState([])
+    // prices 
+    const [prices, setPrices] = useState([])
+    const [priceListPage, setPriceListPage] = useState([])
     // category
     const [categories, setCategories] = useState([])
+    // aboutMePage
+    const [aboutMePages, setAboutMePages] = useState([])
     // grahpQl
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
     const QUERY = gql`
@@ -114,6 +119,33 @@ export function UserProvider({children}){
         }
         createdAt
       }
+      priceListPages {
+        priceListPageBackgroundImage {
+          url
+        }
+      }
+      pricess {
+          priceComponent {
+            priceText
+            priceName
+            priceListComponent {
+              priceListText
+              priceListNumber
+            }
+          }
+      }
+      aboutMePages {
+        photo {
+          photoAboutMePage {
+            photo {
+              url
+            }
+            aboutMeText {
+                html
+            }
+          }
+        }
+      }
     }
     `
     // graph api
@@ -140,6 +172,10 @@ export function UserProvider({children}){
         setNews(object.data.newss)
         setVideoData(object.data.videoPages)
         setLastAddedVideo(object.data.lastAddedVideoss)
+        setPrices(object.data.pricess)
+        setPriceListPage(object.data.priceListPages)
+        setAboutMePages(object.data.aboutMePages)
+        // console.log(object)
       }
     },[object,pathname])
 
@@ -183,7 +219,10 @@ export function UserProvider({children}){
             news,
             videoData,
             lastAddedVideos,
-            categories
+            prices,
+            priceListPage,
+            categories,
+            aboutMePages
         }}>
 
         {children}

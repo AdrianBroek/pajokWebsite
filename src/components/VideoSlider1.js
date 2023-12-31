@@ -30,7 +30,7 @@ export default function Slider() {
     useEffect(()=> {   
       if (loading){   
           setVideos(lastAddedVideos)
-          console.log(videos)
+          // console.log(videos)
       }
       
   }, [lastAddedVideos])

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from "react";
+import React, {useEffect, useState, useMemo, useContext} from "react";
 // styles
 import styled from 'styled-components'
 import axios from "axios";
@@ -24,48 +24,26 @@ import ClickToCopy from "../components/reusable/ClickToCopy";
 // styles
 import * as palette from '../components/style-variables'
 
-
+// Context Provider
+import UserContext from "../components/fetchData/data";
 
 const OmniePage = () => {
+    const {loading, aboutMePages} = useContext(UserContext)
+
     const [avatar, setAvatar] = useState()
     const [text, setText] = useState()
-    const api_key = process.env.REACT_APP_GRAPH_KEY
-    const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
-    const QUERY = gql`
-    {
-        aboutMePages {
-            photo {
-              photoAboutMePage {
-                photo {
-                  url
-                }
-                aboutMeText {
-                    html
-                }
-              }
-            }
-        }
-    }
-    `
-     // graph api
-     const { data, isLoading, error } = useQuery("launches", () => {
-        return axios({
-          url: endpoint,
-          method: "POST",
-          data: {
-            query: QUERY
-          }
-        }).then((res) => {
-            // console.log(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].photo.url)
-            // console.log(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
-            setAvatar(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].photo.url)
-            setText(res.data.data.aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
-            }
-        );
-    });
 
     const backgroundImg = useMemo(()=> avatar, [avatar])
     const pageText = useMemo(()=> text, [text])
+
+    useEffect(()=> {
+        if(loading && aboutMePages.length > 0){
+            setAvatar(aboutMePages[0].photo.photoAboutMePage[0].photo.url)
+            setText(aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
+            // console.log(aboutMePages)
+        }
+        
+    }, [loading,aboutMePages])
 
     
     return (
@@ -75,10 +53,8 @@ const OmniePage = () => {
              initial="hidden"
              animate="show"
              exit="exit" >
-                
-
                 <AvContainer
-                // variants={glow}
+                variants={glow}
                 animate='show'
                 >
                     <AvatarBlur src={backgroundImg}/>
@@ -129,6 +105,7 @@ const DescriptionAM = styled(Description)`
     flex-direction: column;
     row-gap: 1rem;
     padding: 2rem 2rem;
+    max-width: 1000px;
     @media screen and (max-width: 768px){
         padding: 1rem .5rem;
         max-width: 90%;

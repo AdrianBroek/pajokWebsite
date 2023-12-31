@@ -51,65 +51,65 @@ const Video = () => {
     //   console.log(activeHover)
     // }, [activeHover])
 
-    return (
-        <GridContainer>
-          {videos.map((video, index)=> (
-            <Grid 
-            variants={videoAnim}
-            animate='show'
+  return (
+    <GridContainer>
+      {videos.map((video, index)=> (
+        <Grid 
+        variants={videoAnim}
+        animate='show'
+        initial='hidden'
+        key={index}>
+        {video.videoComponent.map((vidata,index)=> (
+          <motion.div key={index} variants={videoAnim}>
+          <VideoContainer 
+          onTouchLeave={()=>setActiveHover(false)}
+          onTouchStart={()=>setActiveHover(index)}
+          onMouseLeave={()=>setActiveHover(false)} 
+          whileHover={()=>setActiveHover(index)}>
+            <VideoCover style={{zIndex: 1}}>
+                <motion.img style={{filter: 'grayscale(.5)'}} src={vidata.videoCover.url} alt="video-cover"/>
+            </VideoCover>
+            <VideoNameCover 
+            variants={showVideoCover}
+            animate={activeHover === index ? 'show' : 'hidden'}
             initial='hidden'
-            key={index}>
-            {video.videoComponent.map((vidata,index)=> (
-              <motion.div key={index} variants={videoAnim}>
-              <VideoContainer 
-              onTouchLeave={()=>setActiveHover(false)}
-              onTouchStart={()=>setActiveHover(index)}
-              onMouseLeave={()=>setActiveHover(false)} 
-              whileHover={()=>setActiveHover(index)}>
-                <VideoCover style={{zIndex: 1}}>
-                    <motion.img style={{filter: 'grayscale(.5)'}} src={vidata.videoCover.url} alt="video-cover"/>
-                </VideoCover>
-                <VideoNameCover 
-                variants={showVideoCover}
-                animate={activeHover === index ? 'show' : 'hidden'}
-                initial='hidden'
-                exit="exit"
-                >
-                  <Header className='flex'>
-                      <h1>{vidata.videoTitle}</h1>
-                  </Header>
-                  <motion.button 
-                  whileHover={{scale: 0.9,}} 
-                  onClick={()=>showFrame(vidata.videoEmbedLink)}>
-                      <Icon className="filter-white" src={PlayIcon} alt="play icon for showing a video"/>
-                  </motion.button> 
-                </VideoNameCover>
-              </VideoContainer> 
-              {activeFrame && (
-                <PopupIframe>
-                  <motion.button whileTap={{scale: .9}}
-                    whileHover={{
-                      scale: 0.9,
-                    }} onClick={() => setActiveFrame()} className="filter-white">
-                    <img src={x} alt="escape video button"/>
-                  </motion.button>
-                  <Iframe
-                    frameBorder="none"
-                    src={activeFrame}
-                    loading="lazy"
-                    title="vimeo-player" 
-                    width="500"
-                    allowFullScreen
-                  >
-                  </Iframe>
-                </PopupIframe>
-              )}
-              </motion.div>
-            ))} 
-            </Grid>
-          ))}
-        </GridContainer>
-    )
+            exit="exit"
+            >
+              <Header className='flex'>
+                  <h1>{vidata.videoTitle}</h1>
+              </Header>
+              <motion.button 
+              whileHover={{scale: 0.9,}} 
+              onClick={()=>showFrame(vidata.videoEmbedLink)}>
+                  <Icon className="filter-white" src={PlayIcon} alt="play icon for showing a video"/>
+              </motion.button> 
+            </VideoNameCover>
+          </VideoContainer> 
+          {activeFrame && (
+            <PopupIframe>
+              <motion.button whileTap={{scale: .9}}
+                whileHover={{
+                  scale: 0.9,
+                }} onClick={() => setActiveFrame()} className="filter-white">
+                <img src={x} alt="escape video button"/>
+              </motion.button>
+              <Iframe
+                frameBorder="none"
+                src={activeFrame}
+                loading="lazy"
+                title="vimeo-player" 
+                width="500"
+                allowFullScreen
+              >
+              </Iframe>
+            </PopupIframe>
+          )}
+          </motion.div>
+        ))} 
+        </Grid>
+      ))}
+    </GridContainer>
+  )
 }
 
 

@@ -1,3 +1,5 @@
+import * as palette from './components/style-variables'
+
 export const PageAnimation = {
     hidden : {opacity: 0},
     show : {opacity: 1, transition: {duration : .25, ease: 'easeIn'}},
@@ -171,10 +173,10 @@ export const buttonAnim = {
 
 export const glow = {
     show: {
-        boxShadow: '0px 0px 15px #50c878',
+        boxShadow: `0px 0px 15px ${palette.SEC_COLOR}`,
         transition: {
             yoyo : Infinity,
-            duration : .85,
+            duration : 1.2,
             ease: 'easeInOut'
         }   
     }
