@@ -30,7 +30,7 @@ const Prices = () => {
     const [background, setBackground] = useState('')
     
     const setBackgroundImg = useMemo(()=> {
-        if(loading && priceListPage.length > 0){
+        if(!loading && priceListPage.length > 0){
             setBackground(priceListPage[0].priceListPageBackgroundImage.url)
             // console.log(priceListPage[0].priceListPageBackgroundImage.url)
         }

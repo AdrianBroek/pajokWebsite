@@ -33,7 +33,7 @@ const Video = () => {
 
     // set data
     useEffect(()=> {   
-      if (loading){   
+      if (!loading){   
         let subWord = pathname.split('/')[2] +"/"+ pathname.split('/')[3]
         const category = videoData.filter(cat => cat.videoCategorySlug == subWord)
         setVideos(category)

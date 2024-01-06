@@ -1,7 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useCallback } from 'react'
 // defined styles
-import {PageLayout,PageContainer, Line, Description} from '../style/styles'
-import {HideParent, titleAnim} from '../animation'
+import {PageLayout,PageContainer, Icon} from '../style/styles'
+import {HideParent, likeAnim} from '../animation'
 // styled
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
@@ -13,21 +13,132 @@ import UserContext from './fetchData/data'
 import { Routes, Route, useLocation, HistoryRouterProps, Link } from "react-router-dom"
 // helmet
 import { Helmet } from 'react-helmet-async';
+// apollo
+import { gql, useMutation, useQuery } from '@apollo/client';
+// styles
+import * as palette from './style-variables'
+// icons
+import like from '../images/icons/thumbs-up.svg'
+ 
 
 const New = () => {
-    const {news} = useContext(UserContext)
+    const {news, userData} = useContext(UserContext)
     const [post, setPost] = useState()
     const {pathname} = useLocation()
+    const [activeLike, setActiveLike] = useState(false)
+
+    const FETCH_LIKES = gql`
+        query FetchLikes {
+            newss {
+                userLikes {
+                    userName
+                    userId
+                    userAvatar {
+                        url
+                    }
+                }
+            }
+        }
+    `
+
+    const ADD_LIKE = gql`
+        mutation AddLikeToPost($POST_ID: ID!, $USER_NAME: String!, $USER_ID: String!) {
+            updateNews(
+                where: { id: $POST_ID }
+                data: {
+                    userLikes: {
+                    create: {
+                        data: { userName: $USER_NAME, userId: $USER_ID }
+                    }
+                }
+            }
+            ) {
+                id
+                title
+                stage
+            }
+            publishNews(where: { id: $POST_ID }, to: PUBLISHED) {
+                id
+            }
+        }
+    `;
+
+    const DELETE_LIKE = gql`
+        mutation DeleteLikeFromPost ($POST_ID: ID!, $USER_ID: String!){
+            updateNews(
+                where: {id: $POST_ID}
+                data: {userLikes: {delete: {userId: $USER_ID}}}
+            ) {
+                id
+                title
+            },
+                publishNews(where:{id: $POST_ID}) {
+                id
+            }
+        }
+    `;
+
+    const { data: getLikesData, loading: getLikesLoading, error: getLikesError } = useQuery(FETCH_LIKES)
+
+    // useEffect(()=> {
+    //     if(!getLikesLoading){
+    //         console.log(getLikesData)
+    //     }
+    // }, [getLikesLoading,getLikesData])
+
+    const [addLike, { data: addLikeData, loading: addLikeLoading, error: addLikeError }] = useMutation(ADD_LIKE, {
+        variables: { POST_ID: post?.id, USER_NAME: userData?.name, USER_ID: userData?.id },
+        refetchQueries: [
+            FETCH_LIKES,
+        ],
+    });
+    
+    const [deleteLikeFromPost, { data: deleteLikeData, loading: deleteLikeLoading, error: deleteLikeError }] = useMutation(DELETE_LIKE, {
+        variables: { POST_ID: post?.id, USER_ID: userData?.id },
+        refetchQueries: [
+            FETCH_LIKES,
+        ],
+    });
+    
 
     useEffect(()=>{
         if (news){
             const split = pathname.split('/');
             const last = split.pop() || split.pop()
-            setPost(news.filter(link => link.slug == last))
+            let activePost = news.filter(link => link.slug == last)
+            setPost(activePost[0])
         }
     }, [news])
+      
 
-    // console.log(post[0])
+    useEffect(() => {
+        function checkAccLike() {
+            if (getLikesData && getLikesData.newss && getLikesData.newss[0]?.userLikes) {
+                const filteredLikes = getLikesData.newss[0]?.userLikes.filter((like) => {
+                return like.userId == userData?.id;
+                });
+                if (filteredLikes.length > 0) {
+                    setActiveLike(true);
+                }else {
+                    setActiveLike(false);
+                }
+            }
+        }
+      
+        // Wywołaj funkcję checkAccLike podczas zmiany getLikesData
+        checkAccLike();
+    }, [getLikesData, userData]);
+
+    function likeHandler() {
+        if(activeLike){
+            deleteLikeFromPost()
+        } else if (activeLike && userData.id == null){
+            // deleteLikeFromPost()
+        } else {
+            addLike()
+        }
+    }
+      
 
     return(
         <PageContainer>
@@ -37,30 +148,86 @@ const New = () => {
             initial='hidden'
             >
                 {post && (
+                    <>
                     <PostContainer>
-                        {post.map((item)=>(
-                            <div key={item.id}>
-                                <Helmet>
-                                    <title>{item.title}</title>
-                                    <meta name='description' content={item.MetaDescription} />
-                                </Helmet>
-                                <PostCover>
-                                    <img className='bg' src={item.coverPhoto.url}></img>
-                                    <img className='main' src={item.coverPhoto.url}></img>
-                                </PostCover>
-                                <Content>
-                                    <h2 className='title'>{item.title}</h2>
-
-                                    <div className='htmlContent' dangerouslySetInnerHTML={{__html: item.article.html}}></div>
-                                </Content>
-                            </div>
-                        ))}
+                        <div key={post.id}>
+                            <Helmet>
+                                <title>{post.title}</title>
+                                <meta name='description' content={post.MetaDescription} />
+                            </Helmet>
+                            <PostCover>
+                                <img className='bg' src={post.coverPhoto.url}></img>
+                                <img className='main' src={post.coverPhoto.url}></img>
+                            </PostCover>
+                            
+                            <Content>
+                                <LikeContainer className='flex'>
+                                    <LikeList>
+                                        {getLikesData?.newss[0].userLikes.map((like)=> (
+                                            <h3>{like.userName}</h3>
+                                        ))}
+                                    </LikeList>
+                                    <LikeCount className={activeLike ? 'active flex' : 'flex'}>
+                                        <p>{getLikesData?.newss[0].userLikes.length}</p>
+                                        <LikeButton 
+                                            variants={likeAnim}
+                                            animate={activeLike ? 'active' : 'deactivated'}
+                                            exit='exit'
+                                            initial='deactivated'
+                                            onClick={()=>likeHandler()}>
+                                                <Icon className="filter-white" src={like} />
+                                                
+                                        </LikeButton>
+                                    </LikeCount>
+                                </LikeContainer>
+                                <h2 className='title'>{post.title}</h2>
+                                <div className='htmlContent' dangerouslySetInnerHTML={{__html: post.article.html}}></div>
+                            </Content>
+                        </div>
+                        
                     </PostContainer>
+                    
+                    </>
                 )}
             </PageLayout>
         </PageContainer>
     )
 }
+
+const LikeContainer = styled.div`
+    position: relative;
+    margin-top: 1.2rem;
+    overflow: hidden;
+    justify-content: flex-end;
+    width: 100%;
+`
+const LikeButton = styled(motion.button)`
+`
+
+const LikeList = styled.div`
+    width: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid ${palette.GRAY_COLOR};
+    flex-direction: column;
+    padding: 1rem;
+    
+`
+const LikeCount = styled.div`
+    border: 1px solid ${palette.GRAY_COLOR};
+    border-radius: 1rem;
+    column-gap: .5rem;
+    padding: 0.5rem;
+    border-right: 1px solid ${palette.GRAY_COLOR};
+    transition: all .15s ease-in-out;
+    &:hover {
+        background-color: ${palette.GRAY_COLOR} !important;
+    }
+    &.active {
+        background-color: ${palette.SEC_COLOR};
+    }
+`
 
 const PostContainer = styled.article`
     width: 100%;

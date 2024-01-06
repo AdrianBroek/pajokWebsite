@@ -1,9 +1,8 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 // axios
 import axios from "axios";
-import { useQuery } from "react-query";
-// graph
-import { gql } from "graphql-request";
+import { gql, useQuery } from '@apollo/client';
+
 // location
 import { useLocation } from "react-router-dom";
 
@@ -12,12 +11,8 @@ const UserContext = createContext()
 export function UserProvider({children}){
     const api_key = process.env.REACT_APP_GRAPH_KEY
     const {pathname} = useLocation()
-
-    // api data
-    const [object, setObject] = useState({
-      data: []
-    })
-    const [loading, setLoading] = useState(false)
+    // google user
+    const [userData, setUserData] = useState(false)
     // main page state
     const [mainPageData, setMainPageData] = useState([])
     // photo state
@@ -40,144 +35,139 @@ export function UserProvider({children}){
     const [aboutMePages, setAboutMePages] = useState([])
     // grahpQl
     const endpoint  = `https://api-eu-central-1.hygraph.com/v2/${api_key}/master`
-    const QUERY = gql`
-    {
-      mainPages {
-        mainPhoto {
-          url
+    
+    const FETCH_DATA = gql`
+      query FetchData {
+        mainPages {
+          mainPhoto {
+            url
+          }
+          mainPageHeader
+          mainPageDescription
+          bubbleComponent {
+              bubbleText
+              bubbleHeader
+              bubbleImage {
+                url
+              }
+          }
+          myPassionText {
+              myPassionText
+          }
         }
-        mainPageHeader
-        mainPageDescription
-        bubbleComponent {
-            bubbleText
-            bubbleHeader
-            bubbleImage {
-              url
+        photos {
+            title
+            url
+            description
+            backgroundPhoto {
+                id
+                url
+            }
+            photoModule {
+                id
+                model
+                photo {
+                  url
+                  createdAt
+                }
+                photoDescription
             }
         }
-        myPassionText {
-            myPassionText
-        }
-      }
-      photos {
-          title
-          url
-          description
-          backgroundPhoto {
-              id
+        newss {
+          userLikes {
+            userName
+            userId
+            userAvatar {
               url
+            }
           }
-          photoModule {
-              id
-              model
-              photo {
-                url
-                createdAt
-              }
-              photoDescription
+          article {
+            html
           }
-      }
-      newss {
-        article {
-          html
+          coverPhoto {
+            url
+          }
+          tagList {
+            tag
+          }
+          slug
+          title
+          date
+          id
         }
-        coverPhoto {
-          url
+        videoPages {
+          videoCategoryTitle
+          videoCategorySlug
+          videoCategoryDescription
+          videoCategoryBackgroundMobile {
+            url
+          }
+          videoCategoryBackground {
+            url
+          }
+          videoComponent {
+            videoTitle
+            videoSlug
+            videoEmbedLink
+            videoCover {
+              url
+            }
+          }
         }
-        tagList {
-          tag
-        }
-        slug
-        title
-        date
-        id
-      }
-      videoPages {
-        videoCategoryTitle
-        videoCategorySlug
-        videoCategoryDescription
-        videoCategoryBackgroundMobile {
-          url
-        }
-        videoCategoryBackground {
-          url
-        }
-        videoComponent {
-          videoTitle
-          videoSlug
-          videoEmbedLink
+        lastAddedVideoss {
+          link
+          title
           videoCover {
             url
           }
+          createdAt
         }
-      }
-      lastAddedVideoss {
-        link
-        title
-        videoCover {
-          url
-        }
-        createdAt
-      }
-      priceListPages {
-        priceListPageBackgroundImage {
-          url
-        }
-      }
-      pricess {
-          priceComponent {
-            priceText
-            priceName
-            priceListComponent {
-              priceListText
-              priceListNumber
-            }
+        priceListPages {
+          priceListPageBackgroundImage {
+            url
           }
-      }
-      aboutMePages {
-        photo {
-          photoAboutMePage {
-            photo {
-              url
+        }
+        pricess {
+            priceComponent {
+              priceText
+              priceName
+              priceListComponent {
+                priceListText
+                priceListNumber
+              }
             }
-            aboutMeText {
-                html
+        }
+        aboutMePages {
+          photo {
+            photoAboutMePage {
+              photo {
+                url
+              }
+              aboutMeText {
+                  html
+              }
             }
           }
         }
       }
-    }
     `
     // graph api
-    const { data, isLoading, error } = useQuery("launches", () => {
-        return axios({
-          url: endpoint,
-          method: "POST",
-          data: {
-            query: QUERY
-          }
-        })
-        .then(res => setObject(state => ({
-          data: res.data.data,
-        })))
-        .then(res => setLoading(true))
-    });
-
-    // console.log(loading)
+    const { loading, error, data } = useQuery(FETCH_DATA);
 
     useEffect(()=> {
-      if(loading){
-        setMainPageData(object.data.mainPages[0])
-        setPhotoObjectData(object.data.photos)
-        setNews(object.data.newss)
-        setVideoData(object.data.videoPages)
-        setLastAddedVideo(object.data.lastAddedVideoss)
-        setPrices(object.data.pricess)
-        setPriceListPage(object.data.priceListPages)
-        setAboutMePages(object.data.aboutMePages)
-        // console.log(object)
+      if(!loading){
+        setMainPageData(data.mainPages[0])
+        setPhotoObjectData(data.photos)
+        setNews(data.newss)
+        setVideoData(data.videoPages)
+        setLastAddedVideo(data.lastAddedVideoss)
+        setPrices(data.pricess)
+        setPriceListPage(data.priceListPages)
+        setAboutMePages(data.aboutMePages)
+        // console.log(data.newss)
       }
-    },[object,pathname])
+    },[loading,pathname])
+
 
     // select video categories 
     function setCategoryState(){
@@ -205,6 +195,8 @@ export function UserProvider({children}){
         <UserContext.Provider 
           value={{
             loading,
+            userData,
+            setUserData,
             mainPageData,
             photoObjectData,
             photoObjectData,
@@ -222,7 +214,8 @@ export function UserProvider({children}){
             prices,
             priceListPage,
             categories,
-            aboutMePages
+            aboutMePages,
+            
         }}>
 
         {children}

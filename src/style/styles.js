@@ -102,6 +102,16 @@ export const Icon = styled(motion.img)`
     max-width: 18px;
 `
 
+export const IconCont = styled(motion.div)`
+    cursor: pointer;
+    column-gap: .5rem;
+    p,button {
+        font-size: .6rem;
+    }
+    button {
+        color: ${palette.WHITE_COLOR}
+    }
+`
 
 export const PajokThemeTxt = styled.h1`
     font-family: 'Yellowtail', cursive;

@@ -48,7 +48,7 @@ const MainPage = () => {
 
     // set data
     useEffect(()=> {   
-        if (loading){   
+        if (!loading){   
             setBackgroundImage(mainPageData.mainPhoto.url);
             setHeader(mainPageData.mainPageHeader)
             setDescription(mainPageData.mainPageDescription)

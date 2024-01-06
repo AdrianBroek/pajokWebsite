@@ -3,6 +3,8 @@ import {motion, useAnimationControls } from 'framer-motion'
 import styled from 'styled-components'
 // social
 import Socials from './Socials';
+// google singup
+import SignIn from '../components/google/SignIn'
 // location
 import { Link, useLocation } from "react-router-dom";
 // styles
@@ -44,6 +46,7 @@ const Nav = ({open, setOpen}) => {
             />
             </Link>
             <Socials />
+            <SignIn /> 
         </NavBar>       
     )
 }

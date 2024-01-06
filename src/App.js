@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
+
 //pages
 import MainPage from './pages/MainPage'
 import PhotoPage from './pages/PhotoPage'
@@ -40,6 +41,11 @@ import AddPrice from './pages/TryToAddPrice'
 import Video from './components/Video'
 import VideoCategoryPage from './pages/VideoPage'
 
+// google auth
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+import SignIn from './components/google/SignIn'
+
 const queryClient = new QueryClient()
 
 function App() {
@@ -50,21 +56,26 @@ function App() {
   
   useEffect(()=> {
     window.scrollTo(0,0)
+    
   }, [location.pathname])
 
   return (
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+
     <QueryClientProvider client={queryClient}>
+    
     <div className="App">
     <HelmetProvider>
+    <UserProvider>
       <GlobalStyles />
       <MoveUp />
       <Overlay open={open} setOpen={setOpen}/>
-      <Nav open={open} setOpen={setOpen}/>
-      <Menu open={open} setOpen={setOpen}/>
+      <Nav open={open} setOpen={setOpen}/> 
+      <Menu open={open} setOpen={setOpen}/> 
       <Hamburger open={open} setOpen={setOpen}/>
       
-      <UserProvider>
-        
+      
+      
       <Routes location={location} key={location.pathname}>
         <Route meta path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />
@@ -89,7 +100,10 @@ function App() {
       <Footer />
     </HelmetProvider>
     </div>
+
+   
     </QueryClientProvider>
+    </GoogleOAuthProvider>
   );
 }
 

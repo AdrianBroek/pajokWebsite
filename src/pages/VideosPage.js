@@ -26,7 +26,7 @@ const VideosPage = () => {
 
     // set data
     useEffect(()=> {   
-        if (loading){   
+        if (!loading){   
             setVideos(videoData)
         }
         console.log(videos)

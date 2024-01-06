@@ -376,3 +376,15 @@ export const showVideoCover = {
         opacity: 0,
     }
 }
+
+
+export const likeAnim = {
+    active: {
+        scale: [1,1.5, 1],
+    },
+    deactivated: {
+
+    },
+    exit: {
+    }
+}

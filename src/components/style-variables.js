@@ -1,5 +1,6 @@
 export const MAIN_COLOR = '#191A1C';
 export const SEC_COLOR = '#e1b667';
+export const SEC_COLOR_LIGHTER = 'rgb(183 169 144)';
 export const TH_COLOR = '#000';
 export const RD_COLOR = '#202224';
 export const GRAY_COLOR = 'rgba(255, 255, 255, 0.05)';

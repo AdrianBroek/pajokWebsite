@@ -37,13 +37,13 @@ const OmniePage = () => {
     const pageText = useMemo(()=> text, [text])
 
     useEffect(()=> {
-        if(loading && aboutMePages.length > 0){
+        if(!loading && aboutMePages.length > 0){
             setAvatar(aboutMePages[0].photo.photoAboutMePage[0].photo.url)
             setText(aboutMePages[0].photo.photoAboutMePage[0].aboutMeText.html)
             // console.log(aboutMePages)
         }
         
-    }, [loading,aboutMePages])
+    }, [loading, aboutMePages])
 
     
     return (

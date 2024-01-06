@@ -1,54 +1,47 @@
+import { gql, useMutation, useQuery  } from '@apollo/client';
+import React, { useEffect, useState } from 'react';
 
-import React from 'react';
-import { useMutation } from 'react-query';
-import { ApolloProvider, client } from './apollo';
-import { gql } from "@apollo/client";
-
-const CREATE_PRICES_MUTATION = gql`
-  mutation MyMutation($cena: Float!) {
-    createPrices(data: { cena: $cena }) {
-      cena
-      createdAt
-      createdBy {
-        name
+const AddPrice = () => {
+  const [input, setInput] = useState('ss')
+  // Define mutation
+  const ADD_TODO = gql`
+    mutation AddTodo($title: String!) {
+      createToDoList(data: {title: $title}) {
+        id
+        title
+        stage
       }
-      id
-      stage
-      updatedAt
-      updatedBy {
-        name
-      }
-      photoCount {
-        text
+      publishToDoList(where: {title: $title}, to: PUBLISHED) {
+        stage
+        id
       }
     }
-  }
-`;
+  `;
 
-function AddPrice() {
-  const mutation = useMutation(
-    (variables) => client.mutate({ mutation: CREATE_PRICES_MUTATION, variables }),
-    {
-      onSuccess: (data) => {
-        // Obsługa sukcesu mutacji
-        console.log('Mutation successful', data);
-      },
-      onError: (error) => {
-        // Obsługa błędu mutacji
-        console.error('Mutation error', error);
-      },
-    }
-  );
+  const [addTodo, { data, loading, error }] = useMutation(ADD_TODO, {
+    variables: { title: input }
+  });
 
-  const handleMutation = () => {
-    // Wywołaj mutację, przekazując odpowiednie zmienne
-    mutation.mutate({ cena: 3000.0 });
-  };
+  useEffect(()=>{ 
+    // console.log(input)
+  }, [input])
 
   return (
-    <div>
-      <button onClick={handleMutation}>Wywołaj mutację</button>
-    </div>
+   <>
+    <form
+        onSubmit={e => {
+          e.preventDefault();
+          addTodo();
+          setInput('');
+        }}
+      >
+        <input
+        type='text'
+          onChange={(e)=>setInput(e.target.value)}
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+   </>
   );
 }
 

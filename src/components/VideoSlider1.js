@@ -28,7 +28,7 @@ export default function Slider() {
   const [activeFrame, setActiveFrame] = useState('')
     // set data
     useEffect(()=> {   
-      if (loading){   
+      if (!loading){   
           setVideos(lastAddedVideos)
           // console.log(videos)
       }
