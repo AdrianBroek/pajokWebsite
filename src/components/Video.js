@@ -210,7 +210,7 @@ const PopupIframe = styled.div`
   width: 100%;
   height: 100%;
   background-color: #000;
-  z-index: 2;
+  z-index: 99;
   button {
     cursor: pointer;
     z-index: 2;

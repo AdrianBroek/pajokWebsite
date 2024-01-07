@@ -18,7 +18,8 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 // styles
 import * as palette from './style-variables'
 // icons
-import like from '../images/icons/thumbs-up.svg'
+import like from '../images/icons/thumbs-up-solid.svg'
+import likeEmpty from '../images/icons/thumbs-up-regular.svg'
  
 
 const New = () => {
@@ -28,14 +29,10 @@ const New = () => {
     const [activeLike, setActiveLike] = useState(false)
 
     const FETCH_LIKES = gql`
-        query FetchLikes {
-            newss {
+        query MyQuery($POST_ID: ID!) {
+                news(where: {id: $POST_ID}) {
                 userLikes {
-                    userName
                     userId
-                    userAvatar {
-                        url
-                    }
                 }
             }
         }
@@ -78,14 +75,15 @@ const New = () => {
         }
     `;
 
-    const { data: getLikesData, loading: getLikesLoading, error: getLikesError } = useQuery(FETCH_LIKES)
+    // fetch likes query
+    const { data: getLikesData, loading: getLikesLoading, error: getLikesError } = useQuery(FETCH_LIKES, {
+        variables: { POST_ID: post?.id }
+    })
 
-    // useEffect(()=> {
-    //     if(!getLikesLoading){
-    //         console.log(getLikesData)
-    //     }
-    // }, [getLikesLoading,getLikesData])
+    // console.log(getLikesData)
+    // console.log(post.id)
 
+    // add like query
     const [addLike, { data: addLikeData, loading: addLikeLoading, error: addLikeError }] = useMutation(ADD_LIKE, {
         variables: { POST_ID: post?.id, USER_NAME: userData?.name, USER_ID: userData?.id },
         refetchQueries: [
@@ -93,6 +91,7 @@ const New = () => {
         ],
     });
     
+    // del like query
     const [deleteLikeFromPost, { data: deleteLikeData, loading: deleteLikeLoading, error: deleteLikeError }] = useMutation(DELETE_LIKE, {
         variables: { POST_ID: post?.id, USER_ID: userData?.id },
         refetchQueries: [
@@ -100,7 +99,7 @@ const New = () => {
         ],
     });
     
-
+    // set news to active one from slug in link
     useEffect(()=>{
         if (news){
             const split = pathname.split('/');
@@ -110,11 +109,11 @@ const New = () => {
         }
     }, [news])
       
-
+    // get likes
     useEffect(() => {
         function checkAccLike() {
-            if (getLikesData && getLikesData.newss && getLikesData.newss[0]?.userLikes) {
-                const filteredLikes = getLikesData.newss[0]?.userLikes.filter((like) => {
+            if (getLikesData && getLikesData.news && getLikesData.news?.userLikes) {
+                const filteredLikes = getLikesData.news?.userLikes.filter((like) => {
                 return like.userId == userData?.id;
                 });
                 if (filteredLikes.length > 0) {
@@ -163,19 +162,22 @@ const New = () => {
                             <Content>
                                 <LikeContainer>
                                     <LikeList>
-                                        {getLikesData?.newss[0].userLikes.map((like)=> (
+                                        {getLikesData?.news.userLikes.map((like)=> (
                                             <h3>{like.userName}</h3>
                                         ))}
                                     </LikeList>
                                     <LikeCount className={activeLike ? 'active flex' : 'flex'}>
-                                        <p>{getLikesData?.newss[0].userLikes.length}</p>
+                                        <p>{getLikesData?.news.userLikes.length}</p>
                                         <LikeButton 
                                             variants={likeAnim}
                                             animate={activeLike ? 'active' : 'deactivated'}
                                             exit='exit'
                                             initial='deactivated'
                                             onClick={()=>likeHandler()}>
-                                                <Icon className="filter-white" src={like} />
+                                                {activeLike ? <Icon className="filter-white" src={like} />
+                                                : 
+                                                <Icon className="filter-white" src={likeEmpty} />}
+                                                
                                                 
                                         </LikeButton>
                                     </LikeCount>
@@ -223,9 +225,9 @@ const LikeCount = styled.div`
     padding: 0.5rem;
     border-right: 1px solid ${palette.GRAY_COLOR};
     transition: all .15s ease-in-out;
-    &.active {
+    /* &.active {
         background-color: ${palette.SEC_COLOR};
-    }
+    } */
 `
 
 const PostContainer = styled.article`
