@@ -49,8 +49,10 @@ const SocialContainer = styled(motion.div)`
     height: 100%;
     padding: 0 1rem;
     align-items: center;
-    background-color: ${palette.MAIN_COLOR};
     column-gap: .5rem;
+    @media screen and (max-width: 600px){
+        padding: 0;
+    }
 `
 
 const IconCont = styled(motion.div)`
@@ -58,6 +60,11 @@ const IconCont = styled(motion.div)`
     column-gap: .5rem;
     p {
         font-size: .6rem;
+    }
+    @media screen and (max-width: 600px){
+        p {
+            display: none;
+        }
     }
 `
 export default Socials

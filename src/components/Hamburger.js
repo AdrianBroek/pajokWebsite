@@ -29,7 +29,7 @@ const Hamburger = ({open, setOpen}) => {
 
 const HambContainer = styled(motion.div)`
     position: fixed;
-    z-index: 2;
+    z-index: 6;
     top: 0;
     height: 50px;
     display: flex;

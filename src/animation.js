@@ -89,6 +89,26 @@ export const titleAnim2 = {
     }
 }
 
+export const PopUpAnim = {
+    hidden: {y: -10, opacity: 0},
+    show: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: .5, 
+            ease: 'easeOut'
+        }
+    },
+    exit: {
+        y: 50, 
+        opacity: 0,
+        transition: {
+            duration: .5, 
+            ease: 'easeOut'
+        }
+    }
+}
+
 export const showImg = {
     hidden : {scale: 1},
     show: {

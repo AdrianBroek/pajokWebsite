@@ -34,16 +34,12 @@ const Nav = ({open, setOpen}) => {
                 background: shownav ? palette.MAIN_COLOR : 'transparent',
                 boxShadow: shownav ? '1px 13px 15px rgb(0 0 0 / 50%)' : 'none'
             }}>
-            <div />
-            <Link to="/" style={{height: '80%'}}>
-            <Logo 
-                style={{ 
-                    opacity: shownav ? '1' : '0',
-                    transition: '.2s ease-in' ,
-                    maxHeight: "100%"         
-                }}
-                src={pajokLogoWhite} 
-            />
+            <div style={{width: '85px'}}/>
+            <Link to="/" style={{
+                height: '80%',
+                // opacity: pointerEvents ? 'all' : 'none',
+                }}>
+                <h4>PAJOK</h4>
             </Link>
             <Socials />
             <SignIn /> 
@@ -53,14 +49,14 @@ const Nav = ({open, setOpen}) => {
 
 const NavBar = styled(motion.div)`
     position: fixed;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    place-content: center center;
     top: 0;
     left: 0;
     width: 100%;
     height: 50px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    z-index: 3;
     transition: all .18s ease-in;
 `
 

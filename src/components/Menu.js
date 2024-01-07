@@ -25,7 +25,7 @@ const MenuStyle = styled(motion.section)`
     width: 250px;
     background: ${palette.MAIN_COLOR};
     box-shadow: 1px 3px 5px rgba(0, 0, 0, .16);
-    z-index: 2;
+    z-index: 5;
 `
 
 export default Menu

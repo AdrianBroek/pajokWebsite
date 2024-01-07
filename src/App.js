@@ -73,9 +73,6 @@ function App() {
       <Nav open={open} setOpen={setOpen}/> 
       <Menu open={open} setOpen={setOpen}/> 
       <Hamburger open={open} setOpen={setOpen}/>
-      
-      
-      
       <Routes location={location} key={location.pathname}>
         <Route meta path="*" element={<NoPage />} />
         <Route path="/" element={<MainPage />} />

@@ -161,7 +161,7 @@ const New = () => {
                             </PostCover>
                             
                             <Content>
-                                <LikeContainer className='flex'>
+                                <LikeContainer>
                                     <LikeList>
                                         {getLikesData?.newss[0].userLikes.map((like)=> (
                                             <h3>{like.userName}</h3>
@@ -195,6 +195,8 @@ const New = () => {
 }
 
 const LikeContainer = styled.div`
+    display: flex;
+    align-items: center;
     position: relative;
     margin-top: 1.2rem;
     overflow: hidden;
@@ -221,9 +223,6 @@ const LikeCount = styled.div`
     padding: 0.5rem;
     border-right: 1px solid ${palette.GRAY_COLOR};
     transition: all .15s ease-in-out;
-    &:hover {
-        background-color: ${palette.GRAY_COLOR} !important;
-    }
     &.active {
         background-color: ${palette.SEC_COLOR};
     }

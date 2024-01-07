@@ -103,6 +103,7 @@ export const Icon = styled(motion.img)`
 `
 
 export const IconCont = styled(motion.div)`
+    position: relative;
     cursor: pointer;
     column-gap: .5rem;
     p,button {
