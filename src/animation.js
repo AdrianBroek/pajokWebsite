@@ -401,10 +401,24 @@ export const showVideoCover = {
 export const likeAnim = {
     active: {
         scale: [1,1.5, 1],
+        x: 0
     },
     deactivated: {
-
+        x: [-3,3,-3,0]
     },
     exit: {
+    }
+}
+
+export const commentLoading = {
+    loading: {
+        opacity: .5,
+        transition: {
+            duration: .15,
+            ease: "easeInOut"
+        }
+    },
+    loaded: {
+        opacity: 1,
     }
 }

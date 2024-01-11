@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 // defined styles
 import {PageLayout,PageContainer, Icon} from '../style/styles'
 import {HideParent, likeAnim} from '../animation'
@@ -20,6 +20,8 @@ import * as palette from './style-variables'
 // icons
 import like from '../images/icons/thumbs-up-solid.svg'
 import likeEmpty from '../images/icons/thumbs-up-regular.svg'
+// comment section
+import PostComment from './PostComment'
  
 
 const New = () => {
@@ -28,8 +30,10 @@ const New = () => {
     const {pathname} = useLocation()
     const [activeLike, setActiveLike] = useState(false)
 
+    const inputRef = useRef();
+
     const FETCH_LIKES = gql`
-        query MyQuery($POST_ID: ID!) {
+        query LikesQuery($POST_ID: ID!) {
                 news(where: {id: $POST_ID}) {
                 userLikes {
                     userId
@@ -37,6 +41,7 @@ const New = () => {
             }
         }
     `
+
 
     const ADD_LIKE = gql`
         mutation AddLikeToPost($POST_ID: ID!, $USER_NAME: String!, $USER_ID: String!) {
@@ -75,13 +80,14 @@ const New = () => {
         }
     `;
 
+   
+
+    // console.log(getCommentsData)
+
     // fetch likes query
     const { data: getLikesData, loading: getLikesLoading, error: getLikesError } = useQuery(FETCH_LIKES, {
         variables: { POST_ID: post?.id }
     })
-
-    // console.log(getLikesData)
-    // console.log(post.id)
 
     // add like query
     const [addLike, { data: addLikeData, loading: addLikeLoading, error: addLikeError }] = useMutation(ADD_LIKE, {
@@ -98,6 +104,7 @@ const New = () => {
             FETCH_LIKES,
         ],
     });
+
     
     // set news to active one from slug in link
     useEffect(()=>{
@@ -137,6 +144,7 @@ const New = () => {
             addLike()
         }
     }
+
       
 
     return(
@@ -184,6 +192,8 @@ const New = () => {
                                 </LikeContainer>
                                 <h2 className='title'>{post.title}</h2>
                                 <div className='htmlContent' dangerouslySetInnerHTML={{__html: post.article.html}}></div>
+                                
+                                <PostComment inputRef={inputRef} post={post} setPost={setPost}/>
                             </Content>
                         </div>
                         
@@ -195,6 +205,7 @@ const New = () => {
         </PageContainer>
     )
 }
+
 
 const LikeContainer = styled.div`
     display: flex;

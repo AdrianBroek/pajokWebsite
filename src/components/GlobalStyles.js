@@ -73,6 +73,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: transparent;
         cursor: pointer;
     }
+    button, input {color: #fff}
     .htmlContent {
         li {
             list-style-type: inside;
