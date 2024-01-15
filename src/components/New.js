@@ -42,7 +42,6 @@ const New = () => {
         }
     `
 
-
     const ADD_LIKE = gql`
         mutation AddLikeToPost($POST_ID: ID!, $USER_NAME: String!, $USER_ID: String!) {
             updateNews(

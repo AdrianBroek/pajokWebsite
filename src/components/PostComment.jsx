@@ -143,19 +143,29 @@ const PostComment = ({post, setPost}) => {
                     </Comment>
                 ))}
             </CommentSection>
-            <CommentForm onSubmit={sendComment}>
-                <motion.input
-                variants={commentLoading}
-                animate={addCommentLoading ? "loading" : "loaded"}
-                initial="loaded"
-                placeholder="Napisz komentarz..." contentEditable type='text' ref={inputRef}/>
-                <SendBtn type='submit'
-                variants={commentLoading}
-                animate={addCommentLoading ? "loading" : "loaded"}>
-                    SEND
-                    {addCommentLoading ? <Loader src={loader}/> : ""}    
-                </SendBtn>
-            </CommentForm>
+            <FormContainer>
+                <form style={!userData?.id ? {filter: 'blur(4px)'} : ""} 
+                onSubmit={sendComment}>
+                    <motion.input
+                    variants={commentLoading}
+                    animate={addCommentLoading ? "loading" : "loaded"}
+                    initial="loaded"
+                    placeholder="Napisz komentarz..." contentEditable type='text' ref={inputRef}/>
+                    <SendBtn 
+                        type='submit'
+                        variants={commentLoading}
+                        animate={addCommentLoading ? "loading" : "loaded"}>
+                            SEND
+                        {addCommentLoading ? <Loader src={loader}/> : ""}    
+                    </SendBtn>
+                    
+                </form>
+                {!userData?.id && (
+                    <CommentCover className="flex">
+                        <p>Dla zalogowanych użytkowników</p>
+                    </CommentCover>
+                )}
+            </FormContainer>
             
         </CommentContainer>
     )
@@ -163,6 +173,15 @@ const PostComment = ({post, setPost}) => {
 
 
 export default PostComment
+
+const CommentCover = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+`
 
 const Loader = styled.img`
     position: absolute;
@@ -208,8 +227,11 @@ const Comment = styled.div`
     
 
 
-const CommentForm = styled.form`
+const FormContainer = styled.div`
     position: relative;
+    form {
+
+    }
     input {
         width: 100%;
         padding: 1rem;

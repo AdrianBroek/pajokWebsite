@@ -24,6 +24,7 @@ const Overlay = ({zindex, open , setOpen, setCurrent}) => {
 const OverlayStyle = styled.div`
     &.overlay {
       display: none;
+      z-index: 1;
       &.open {
           position: fixed;
           display: block;
@@ -31,7 +32,6 @@ const OverlayStyle = styled.div`
           left: 0;
           width: 100%;
           height: 100%;
-          z-index: 1;
           background: rgba(0,0,0,0.35);
       }
   }

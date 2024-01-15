@@ -80,7 +80,7 @@ const Photos = () => {
     }, [singleObject])
 
     return (
-        <motion.div className="test">
+        <Container>
         {singleObject && (
             <PageContainer>
                 <PageLayout 
@@ -108,14 +108,18 @@ const Photos = () => {
                             />
                         ))}
                     </ImgCont>
-                    <Overlay zindex='2' className='overlay' open={open} setOpen={setOpen} />
+                    <Overlay zindex='6' className='overlay' open={open} setOpen={setOpen} />
                 </PageLayout>
             </PageContainer>
             )}
                 <Outlet />
-        </motion.div>
+        </Container>
     )
 }
+
+const Container = styled(motion.div)`
+    position: relative;
+`
 
 const ImgCont = styled(motion.div)`
     width: 100%;

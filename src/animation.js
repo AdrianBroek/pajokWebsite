@@ -422,3 +422,7 @@ export const commentLoading = {
         opacity: 1,
     }
 }
+
+export const SliderAnim = {
+    
+}

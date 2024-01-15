@@ -44,7 +44,7 @@ import VideoCategoryPage from './pages/VideoPage'
 // google auth
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-import SignIn from './components/google/SignIn'
+import Popup from './components/reusable/Popup'
 
 const queryClient = new QueryClient()
 

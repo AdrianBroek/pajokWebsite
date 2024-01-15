@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import {motion} from 'framer-motion'
-import {showImg} from '../animation'
 import { useLocation, useNavigate } from "react-router-dom";
 import leftArrow from '../images/icons/up-arrow left.png'
 import rightArrow from '../images/icons/up-arrow right.png'
@@ -19,22 +18,23 @@ const PhotoOpen = () => {
 
     useEffect(()=>{
         setOpen(true)
-        // console.log(singleObject)
     }, [openDetail])
 
-    const changePhoto = (e) => {
-        let activeId
+    const changePhoto = (pagination) => {
+        let activeId;
         const allphotos = singleObject.photoModule
         // check index of active photoOpen
         const checkActiveId = allphotos.findIndex((el)=> el.id == openDetail.id)
 
-        if(e.target.parentNode.id == 'left') {
+        console.log(singleObject.url)
+
+        if(pagination == 'left') {
             activeId = checkActiveId - 1
             if(activeId < 0){
                 activeId = allphotos.length - 1
             }
             
-        }else if(e.target.parentNode.id == 'right') {
+        }else if(pagination == 'right') {
             activeId = checkActiveId + 1
             if(activeId > allphotos.length - 1){
                 activeId = 0
@@ -44,7 +44,7 @@ const PhotoOpen = () => {
         const filteredIndex = allphotos[activeId]
         setOpenDetail(filteredIndex)
         // console.log(filteredIndex)
-        const newURL = `/photo/biznesowe/${filteredIndex.id}`;
+        const newURL = `${singleObject.url}/${filteredIndex.id}`;
         window.history.pushState({}, '', newURL);
     }
 
@@ -68,6 +68,11 @@ const PhotoOpen = () => {
         // console.log(openDetail)
     }, [copiedObject])
 
+    const swipeConfidenceThreshold = 10000;
+    const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+    };
+
 
     return (
         <>
@@ -79,19 +84,32 @@ const PhotoOpen = () => {
                 <button onClick={() => navigateBack()} className="escape">
                     <img src={x} alt="escape photo button"/>
                 </button>
-                <div id="left" className="arrow left" onClick={(e)=>changePhoto(e)}>
+                <div id="left" className="arrow left" onClick={ ()=>changePhoto('left')}>
                     <img src={leftArrow} />
                 </div>
-                <div id="right" className="arrow right" onClick={(e)=>changePhoto(e)}>
+                <div id="right" className="arrow right" onClick={()=>changePhoto('right')}>
                     <img src={rightArrow} />
                 </div>
                 <div className="imgCont">
                     <motion.img 
                         key={openDetail.photo.url}
                         src={openDetail.photo.url}
-                        initial={{ x: 0, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: -0, opacity: 0 }}
+                        // custom={direction}
+                        initial={{  opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{  opacity: 0 }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                            const swipe = swipePower(offset.x, velocity.x);
+                
+                            if (swipe < -swipeConfidenceThreshold) {
+                                changePhoto('left');
+                            } else if (swipe > swipeConfidenceThreshold) {
+                                changePhoto('right');
+                            }
+                          }}
                     />
                 </div>
                 <div className="photoDescription">
@@ -106,7 +124,6 @@ const PhotoOpen = () => {
                                 ))}
                             </ul>
                         </div>
-                        {/* <div className="line" /> */}
                         <p className="desc">{openDetail.photoDescription}</p>
                     </div>
                 </div>
@@ -210,10 +227,10 @@ const Picture = styled.section`
     }
     @media screen and (max-width: 1024px) {
         flex-direction: column;
-        overflow-y: auto;
+        /* overflow-y: auto;
         ::-webkit-scrollbar {
             width: 5px;
-        }
+        } */
         .photoDescription {
             padding: 0;
             max-width: 100%;
