@@ -145,7 +145,7 @@ const PostComment = ({post, setPost}) => {
             </CommentSection>
             <FormContainer>
                 <form 
-                className={!userData.id ? "blur" : ""}
+                className={!userData?.id ? "blur" : ""}
 
                 onSubmit={sendComment}>
                     <motion.input
