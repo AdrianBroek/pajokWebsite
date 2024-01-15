@@ -111,7 +111,7 @@ const PostComment = ({post, setPost}) => {
         })
     }
 
-    function delComment( id) {
+    function delComment(id) {
         // console.log(id)
         deleteComment({
           variables: { POST_ID: post?.id, COMMENT_ID: id },
@@ -144,7 +144,9 @@ const PostComment = ({post, setPost}) => {
                 ))}
             </CommentSection>
             <FormContainer>
-                <form style={!userData?.id ? {filter: 'blur(4px)'} : ""} 
+                <form 
+                className={!userData.id ? "blur" : ""}
+
                 onSubmit={sendComment}>
                     <motion.input
                     variants={commentLoading}

@@ -40,6 +40,9 @@ const GlobalStyles = createGlobalStyle`
     .invisible {
         background: transparent;
     }
+    .blur {
+        filter: blur(4px);
+    }
     .mediumDark {
         background: rgba(0,0,0,0.35);
     }

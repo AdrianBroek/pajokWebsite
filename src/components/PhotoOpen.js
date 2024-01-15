@@ -26,7 +26,7 @@ const PhotoOpen = () => {
         // check index of active photoOpen
         const checkActiveId = allphotos.findIndex((el)=> el.id == openDetail.id)
 
-        console.log(singleObject.url)
+        // console.log(singleObject.url)
 
         if(pagination == 'left') {
             activeId = checkActiveId - 1
